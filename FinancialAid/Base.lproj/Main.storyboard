@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hEb-YR-3n7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hEb-YR-3n7">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--填表-->
         <scene sceneID="FYj-es-tY2">
             <objects>
-                <tableViewController id="oV5-EI-lGU" customClass="QuestionnaireTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="oV5-EI-lGU" customClass="FormTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3ez-gd-JzN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="C1m-dT-b0s">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FormTableViewCell" textLabel="QJU-vX-FW3" style="IBUITableViewCellStyleDefault" id="C1m-dT-b0s">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C1m-dT-b0s" id="ziz-SX-gm4">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QJU-vX-FW3">
+                                            <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Gox-aM-BjW" kind="show" id="igS-MV-Uug"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -28,44 +41,47 @@
                             <outlet property="delegate" destination="oV5-EI-lGU" id="9EB-hE-a4I"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="x7U-mh-sBE"/>
-                    <connections>
-                        <segue destination="h2A-uO-kRC" kind="showDetail" identifier="" id="nWs-gE-4DF"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="填表" id="4Id-3F-t8M"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9XC-4z-466" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733" y="-824"/>
+            <point key="canvasLocation" x="1476" y="-824"/>
         </scene>
-        <!--Questionnaire Detail Table View Controller-->
-        <scene sceneID="8ib-4b-OYN">
+        <!--北京大学资助中心-->
+        <scene sceneID="svU-4t-H0e">
             <objects>
-                <tableViewController id="h2A-uO-kRC" customClass="QuestionnaireDetailTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iKr-Ca-2Bb">
+                <viewController title="北京大学资助中心" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Gox-aM-BjW" customClass="FillFormWebViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ttV-lv-jfi"/>
+                        <viewControllerLayoutGuide type="bottom" id="5h2-wD-7dO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Odw-fF-Dsy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndc-TL-kHl">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="miT-qd-t89">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miT-qd-t89" id="Pgb-FH-zBO">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="h2A-uO-kRC" id="bzK-mN-oCM"/>
-                            <outlet property="delegate" destination="h2A-uO-kRC" id="Lvy-Cf-NNL"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9v-YZ-58e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ndc-TL-kHl" secondAttribute="trailing" constant="-20" id="aKX-WO-fc1"/>
+                            <constraint firstItem="Ndc-TL-kHl" firstAttribute="leading" secondItem="Odw-fF-Dsy" secondAttribute="leadingMargin" constant="-20" id="h31-TA-Ugm"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Ndc-TL-kHl" secondAttribute="bottom" id="pPc-oo-kos"/>
+                            <constraint firstItem="Ndc-TL-kHl" firstAttribute="top" secondItem="ttV-lv-jfi" secondAttribute="bottom" id="sRX-f4-ckY"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="Ndc-TL-kHl" id="k8I-p5-Rrw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H66-c9-SgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1533" y="-824"/>
+            <point key="canvasLocation" x="2343" y="-824"/>
         </scene>
-        <!--Item-->
+        <!--我-->
         <scene sceneID="E8O-pA-Yk2">
             <objects>
                 <tableViewController id="15R-3N-Aef" customClass="SettingsTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,10 +91,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PdQ-68-kxL">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdQ-68-kxL" id="Uu9-0X-exV">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -88,29 +104,80 @@
                             <outlet property="delegate" destination="15R-3N-Aef" id="K5B-BW-vgs"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="5vH-VI-LvX"/>
+                    <navigationItem key="navigationItem" title="我" id="5bY-x4-1D4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyy-XW-MiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733" y="-1"/>
+            <point key="canvasLocation" x="1545" y="-1"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--北大学生资助中心-->
         <scene sceneID="Opi-yX-Fhq">
             <objects>
-                <tabBarController id="hEb-YR-3n7" sceneMemberID="viewController">
+                <tabBarController title="北大学生资助中心" id="hEb-YR-3n7" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="北大学生资助中心" id="Otk-Xv-VMS"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="WNw-cV-M8X">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="oV5-EI-lGU" kind="relationship" relationship="viewControllers" id="R4N-zB-TKd"/>
-                        <segue destination="15R-3N-Aef" kind="relationship" relationship="viewControllers" id="KMq-GP-AsV"/>
+                        <segue destination="Vj2-jN-KGV" kind="relationship" relationship="viewControllers" id="R4N-zB-TKd"/>
+                        <segue destination="ifz-ep-Elx" kind="relationship" relationship="viewControllers" id="KMq-GP-AsV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oN-PE-w6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-91" y="-331"/>
         </scene>
+        <!--填表-->
+        <scene sceneID="B9D-tM-cEp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Vj2-jN-KGV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="填表" image="tab_form" id="x7U-mh-sBE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gHk-bd-5ib">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oV5-EI-lGU" kind="relationship" relationship="rootViewController" id="TVN-PE-pMC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AYh-cv-cs5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="733" y="-824"/>
+        </scene>
+        <!--我-->
+        <scene sceneID="gEM-Dq-Vuh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="ifz-ep-Elx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我" image="tab_user" id="5vH-VI-LvX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4l6-pI-IT9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="15R-3N-Aef" kind="relationship" relationship="rootViewController" id="8zt-fV-VOH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HMb-eK-Nxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="733" y="-1"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="tab_form" width="28" height="28"/>
+        <image name="tab_user" width="28" height="28"/>
+    </resources>
 </document>

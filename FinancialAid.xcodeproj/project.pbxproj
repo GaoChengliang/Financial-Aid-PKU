@@ -162,6 +162,7 @@
 				F84722691CEAC6D600B99F03 /* AppDelegate.swift */,
 				F847226D1CEAC6D600B99F03 /* Main.storyboard */,
 				F84722731CEAC6D600B99F03 /* Assets.xcassets */,
+				F84722691CEAC6D600B99F03 /* AppDelegate.swift */,
 				F84722751CEAC6D600B99F03 /* LaunchScreen.storyboard */,
 				F84722781CEAC6D600B99F03 /* Info.plist */,
 				F84722701CEAC6D600B99F03 /* FinancialAid.xcdatamodeld */,
@@ -605,6 +606,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.pku.netlab.FinancialAid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -617,6 +619,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.pku.netlab.FinancialAid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
