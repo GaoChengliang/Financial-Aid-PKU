@@ -14,9 +14,6 @@ class FillFormWebViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         webView.delegate = self
         webView.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.baidu.com")!))
-        if (true) {
-            print(1)
-        }
     }
 
     @IBOutlet weak var webView: UIWebView!
