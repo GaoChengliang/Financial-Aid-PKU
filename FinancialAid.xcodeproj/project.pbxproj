@@ -7,14 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC4C6CD6B829F97D1474FF5A /* Pods_FinancialAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3404DBB50C7F94BD8F2CD996 /* Pods_FinancialAid.framework */; };
 		F847226A1CEAC6D600B99F03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84722691CEAC6D600B99F03 /* AppDelegate.swift */; };
-		F847226C1CEAC6D600B99F03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847226B1CEAC6D600B99F03 /* ViewController.swift */; };
 		F847226F1CEAC6D600B99F03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F847226D1CEAC6D600B99F03 /* Main.storyboard */; };
 		F84722721CEAC6D600B99F03 /* FinancialAid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F84722701CEAC6D600B99F03 /* FinancialAid.xcdatamodeld */; };
 		F84722741CEAC6D600B99F03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F84722731CEAC6D600B99F03 /* Assets.xcassets */; };
 		F84722771CEAC6D600B99F03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84722751CEAC6D600B99F03 /* LaunchScreen.storyboard */; };
 		F84722821CEAC6D600B99F03 /* FinancialAidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84722811CEAC6D600B99F03 /* FinancialAidTests.swift */; };
 		F847228D1CEAC6D600B99F03 /* FinancialAidUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847228C1CEAC6D600B99F03 /* FinancialAidUITests.swift */; };
+		F869E99C1CEB3C68001A9D03 /* ContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E99A1CEB3C68001A9D03 /* ContentManager.swift */; };
+		F869E99D1CEB3C68001A9D03 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E99B1CEB3C68001A9D03 /* NetworkManager.swift */; };
+		F869E99F1CEB3CCC001A9D03 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E99E1CEB3CCC001A9D03 /* Observable.swift */; };
+		F869E9B31CEB3D5A001A9D03 /* QuestionnaireDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A21CEB3D5A001A9D03 /* QuestionnaireDetailTableViewController.swift */; };
+		F869E9B41CEB3D5A001A9D03 /* QuestionnaireTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A31CEB3D5A001A9D03 /* QuestionnaireTableViewController.swift */; };
+		F869E9B51CEB3D5A001A9D03 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A41CEB3D5A001A9D03 /* TabBarController.swift */; };
+		F869E9B61CEB3D5A001A9D03 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A51CEB3D5A001A9D03 /* UIViewController.swift */; };
+		F869E9B71CEB3D5A001A9D03 /* UITabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A61CEB3D5A001A9D03 /* UITabBarItem.swift */; };
+		F869E9B81CEB3D5A001A9D03 /* SDWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A71CEB3D5A001A9D03 /* SDWebImage.swift */; };
+		F869E9B91CEB3D5A001A9D03 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A81CEB3D5A001A9D03 /* NSDateFormatter.swift */; };
+		F869E9BA1CEB3D5A001A9D03 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9A91CEB3D5A001A9D03 /* UIView.swift */; };
+		F869E9BC1CEB3D5A001A9D03 /* CocoaLumberjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9AB1CEB3D5A001A9D03 /* CocoaLumberjack.swift */; };
+		F869E9BD1CEB3D5A001A9D03 /* SVProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9AC1CEB3D5A001A9D03 /* SVProgressHUD.swift */; };
+		F869E9BE1CEB3D5A001A9D03 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9AD1CEB3D5A001A9D03 /* String.swift */; };
+		F869E9BF1CEB3D5A001A9D03 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9AE1CEB3D5A001A9D03 /* CGFloat.swift */; };
+		F869E9C01CEB3D5A001A9D03 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9AF1CEB3D5A001A9D03 /* Character.swift */; };
+		F869E9C11CEB3D5A001A9D03 /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F869E9B01CEB3D5A001A9D03 /* UIStoryboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +52,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04CA7012B1E9A0EE3F045675 /* Pods-FinancialAid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialAid.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinancialAid/Pods-FinancialAid.release.xcconfig"; sourceTree = "<group>"; };
+		3404DBB50C7F94BD8F2CD996 /* Pods_FinancialAid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinancialAid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5AB523C4F1BC80121E5A06 /* Pods-FinancialAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinancialAid/Pods-FinancialAid.debug.xcconfig"; sourceTree = "<group>"; };
 		F84722661CEAC6D600B99F03 /* FinancialAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinancialAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84722691CEAC6D600B99F03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F847226B1CEAC6D600B99F03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F847226E1CEAC6D600B99F03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F84722711CEAC6D600B99F03 /* FinancialAid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FinancialAid.xcdatamodel; sourceTree = "<group>"; };
 		F84722731CEAC6D600B99F03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +68,23 @@
 		F84722881CEAC6D600B99F03 /* FinancialAidUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinancialAidUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F847228C1CEAC6D600B99F03 /* FinancialAidUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialAidUITests.swift; sourceTree = "<group>"; };
 		F847228E1CEAC6D600B99F03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F869E99A1CEB3C68001A9D03 /* ContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentManager.swift; path = FinancialAid/ContentManager.swift; sourceTree = "<group>"; };
+		F869E99B1CEB3C68001A9D03 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = FinancialAid/NetworkManager.swift; sourceTree = "<group>"; };
+		F869E99E1CEB3CCC001A9D03 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = FinancialAid/Observable.swift; sourceTree = "<group>"; };
+		F869E9A21CEB3D5A001A9D03 /* QuestionnaireDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionnaireDetailTableViewController.swift; path = FinancialAid/QuestionnaireDetailTableViewController.swift; sourceTree = "<group>"; };
+		F869E9A31CEB3D5A001A9D03 /* QuestionnaireTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionnaireTableViewController.swift; path = FinancialAid/QuestionnaireTableViewController.swift; sourceTree = "<group>"; };
+		F869E9A41CEB3D5A001A9D03 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = FinancialAid/TabBarController.swift; sourceTree = "<group>"; };
+		F869E9A51CEB3D5A001A9D03 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = FinancialAid/UIViewController.swift; sourceTree = "<group>"; };
+		F869E9A61CEB3D5A001A9D03 /* UITabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITabBarItem.swift; path = FinancialAid/UITabBarItem.swift; sourceTree = "<group>"; };
+		F869E9A71CEB3D5A001A9D03 /* SDWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDWebImage.swift; path = FinancialAid/SDWebImage.swift; sourceTree = "<group>"; };
+		F869E9A81CEB3D5A001A9D03 /* NSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateFormatter.swift; path = FinancialAid/NSDateFormatter.swift; sourceTree = "<group>"; };
+		F869E9A91CEB3D5A001A9D03 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = FinancialAid/UIView.swift; sourceTree = "<group>"; };
+		F869E9AB1CEB3D5A001A9D03 /* CocoaLumberjack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaLumberjack.swift; path = FinancialAid/CocoaLumberjack.swift; sourceTree = "<group>"; };
+		F869E9AC1CEB3D5A001A9D03 /* SVProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SVProgressHUD.swift; path = FinancialAid/SVProgressHUD.swift; sourceTree = "<group>"; };
+		F869E9AD1CEB3D5A001A9D03 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = FinancialAid/String.swift; sourceTree = "<group>"; };
+		F869E9AE1CEB3D5A001A9D03 /* CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGFloat.swift; path = FinancialAid/CGFloat.swift; sourceTree = "<group>"; };
+		F869E9AF1CEB3D5A001A9D03 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Character.swift; path = FinancialAid/Character.swift; sourceTree = "<group>"; };
+		F869E9B01CEB3D5A001A9D03 /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboard.swift; path = FinancialAid/UIStoryboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC4C6CD6B829F97D1474FF5A /* Pods_FinancialAid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,13 +113,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90EB69F857349A6417E289A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3404DBB50C7F94BD8F2CD996 /* Pods_FinancialAid.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8D1BFFF4B325DD8E6B3201A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E5AB523C4F1BC80121E5A06 /* Pods-FinancialAid.debug.xcconfig */,
+				04CA7012B1E9A0EE3F045675 /* Pods-FinancialAid.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F847225D1CEAC6D500B99F03 = {
 			isa = PBXGroup;
 			children = (
+				F869E9991CEB3C5A001A9D03 /* Controller */,
+				F869E9981CEB3C55001A9D03 /* View */,
+				F869E9971CEB3C4E001A9D03 /* Model */,
+				F869E9961CEB3C48001A9D03 /* Utility */,
 				F84722681CEAC6D600B99F03 /* FinancialAid */,
 				F84722801CEAC6D600B99F03 /* FinancialAidTests */,
 				F847228B1CEAC6D600B99F03 /* FinancialAidUITests */,
 				F84722671CEAC6D600B99F03 /* Products */,
+				B8D1BFFF4B325DD8E6B3201A /* Pods */,
+				90EB69F857349A6417E289A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				F84722691CEAC6D600B99F03 /* AppDelegate.swift */,
-				F847226B1CEAC6D600B99F03 /* ViewController.swift */,
 				F847226D1CEAC6D600B99F03 /* Main.storyboard */,
 				F84722731CEAC6D600B99F03 /* Assets.xcassets */,
 				F84722751CEAC6D600B99F03 /* LaunchScreen.storyboard */,
@@ -128,6 +187,59 @@
 			path = FinancialAidUITests;
 			sourceTree = "<group>";
 		};
+		F869E9961CEB3C48001A9D03 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F869E9A91CEB3D5A001A9D03 /* UIView.swift */,
+				F869E9A81CEB3D5A001A9D03 /* NSDateFormatter.swift */,
+				F869E99E1CEB3CCC001A9D03 /* Observable.swift */,
+				F869E99A1CEB3C68001A9D03 /* ContentManager.swift */,
+				F869E99B1CEB3C68001A9D03 /* NetworkManager.swift */,
+				F869E9C21CEB3D8F001A9D03 /* Wrapper */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		F869E9971CEB3C4E001A9D03 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F869E9981CEB3C55001A9D03 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F869E9991CEB3C5A001A9D03 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F869E9A41CEB3D5A001A9D03 /* TabBarController.swift */,
+				F869E9A21CEB3D5A001A9D03 /* QuestionnaireDetailTableViewController.swift */,
+				F869E9A31CEB3D5A001A9D03 /* QuestionnaireTableViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F869E9C21CEB3D8F001A9D03 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				F869E9AF1CEB3D5A001A9D03 /* Character.swift */,
+				F869E9AE1CEB3D5A001A9D03 /* CGFloat.swift */,
+				F869E9AD1CEB3D5A001A9D03 /* String.swift */,
+				F869E9A51CEB3D5A001A9D03 /* UIViewController.swift */,
+				F869E9B01CEB3D5A001A9D03 /* UIStoryboard.swift */,
+				F869E9A61CEB3D5A001A9D03 /* UITabBarItem.swift */,
+				F869E9AB1CEB3D5A001A9D03 /* CocoaLumberjack.swift */,
+				F869E9AC1CEB3D5A001A9D03 /* SVProgressHUD.swift */,
+				F869E9A71CEB3D5A001A9D03 /* SDWebImage.swift */,
+			);
+			name = Wrapper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +247,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F84722911CEAC6D600B99F03 /* Build configuration list for PBXNativeTarget "FinancialAid" */;
 			buildPhases = (
+				382EEB324C1CC35A4CD5E35D /* 📦 Check Pods Manifest.lock */,
+				F869E9C31CEB41BB001A9D03 /* Swift lint */,
 				F84722621CEAC6D600B99F03 /* Sources */,
 				F84722631CEAC6D600B99F03 /* Frameworks */,
 				F84722641CEAC6D600B99F03 /* Resources */,
+				37E18FDA4DCDC1CC8AA1B1D4 /* 📦 Embed Pods Frameworks */,
+				9C1E669A07F1F0177FA9E003 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,14 +370,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		37E18FDA4DCDC1CC8AA1B1D4 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FinancialAid/Pods-FinancialAid-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		382EEB324C1CC35A4CD5E35D /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9C1E669A07F1F0177FA9E003 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FinancialAid/Pods-FinancialAid-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F869E9C31CEB41BB001A9D03 /* Swift lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F84722621CEAC6D600B99F03 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F847226C1CEAC6D600B99F03 /* ViewController.swift in Sources */,
+				F869E9C11CEB3D5A001A9D03 /* UIStoryboard.swift in Sources */,
+				F869E9BF1CEB3D5A001A9D03 /* CGFloat.swift in Sources */,
+				F869E9BE1CEB3D5A001A9D03 /* String.swift in Sources */,
+				F869E9B31CEB3D5A001A9D03 /* QuestionnaireDetailTableViewController.swift in Sources */,
+				F869E99D1CEB3C68001A9D03 /* NetworkManager.swift in Sources */,
+				F869E9BC1CEB3D5A001A9D03 /* CocoaLumberjack.swift in Sources */,
+				F869E9B71CEB3D5A001A9D03 /* UITabBarItem.swift in Sources */,
+				F869E9B61CEB3D5A001A9D03 /* UIViewController.swift in Sources */,
+				F869E9C01CEB3D5A001A9D03 /* Character.swift in Sources */,
+				F869E9B51CEB3D5A001A9D03 /* TabBarController.swift in Sources */,
+				F869E9B41CEB3D5A001A9D03 /* QuestionnaireTableViewController.swift in Sources */,
+				F869E99F1CEB3CCC001A9D03 /* Observable.swift in Sources */,
+				F869E9B91CEB3D5A001A9D03 /* NSDateFormatter.swift in Sources */,
+				F869E9BA1CEB3D5A001A9D03 /* UIView.swift in Sources */,
 				F847226A1CEAC6D600B99F03 /* AppDelegate.swift in Sources */,
+				F869E99C1CEB3C68001A9D03 /* ContentManager.swift in Sources */,
 				F84722721CEAC6D600B99F03 /* FinancialAid.xcdatamodeld in Sources */,
+				F869E9B81CEB3D5A001A9D03 /* SDWebImage.swift in Sources */,
+				F869E9BD1CEB3D5A001A9D03 /* SVProgressHUD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +597,7 @@
 		};
 		F84722921CEAC6D600B99F03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E5AB523C4F1BC80121E5A06 /* Pods-FinancialAid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FinancialAid/Info.plist;
@@ -414,6 +609,7 @@
 		};
 		F84722931CEAC6D600B99F03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04CA7012B1E9A0EE3F045675 /* Pods-FinancialAid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FinancialAid/Info.plist;
@@ -488,6 +684,7 @@
 				F84722931CEAC6D600B99F03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F84722941CEAC6D600B99F03 /* Build configuration list for PBXNativeTarget "FinancialAidTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +693,7 @@
 				F84722961CEAC6D600B99F03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F84722971CEAC6D600B99F03 /* Build configuration list for PBXNativeTarget "FinancialAidUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +702,7 @@
 				F84722991CEAC6D600B99F03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
