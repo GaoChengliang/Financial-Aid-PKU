@@ -3,9 +3,17 @@ use_frameworks!
 
 target :FinancialAid do
 	# UI related
+	pod 'DZNEmptyDataSet'
+	pod 'SVProgressHUD'
 
-	# Modal related
+	# Model related
+	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 
 	# Network
 	pod 'Alamofire'
+	pod 'SDWebImage'
+
+	# Utility
+	pod 'KeychainAccess'
+    pod 'CocoaLumberjack'
 end
