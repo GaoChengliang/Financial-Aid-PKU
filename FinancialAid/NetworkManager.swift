@@ -13,13 +13,13 @@ import SwiftyJSON
 typealias NetworkCallbackBlock = (JSON?, NetworkErrorType?) -> Void
 
 enum NetworkErrorType: ErrorType, CustomStringConvertible {
-    
+
     case NetworkUnreachable(String) // Timeout or Unreachable
     case NetworkUnauthenticated(String) // 401 or 403
     case NetworkServerError(String) // 5XX
     case NetworkForbiddenAccess(String) // 400 or 404
     case NetworkWrongParameter(String) // 422
-    
+
     var description: String {
         get {
             switch self {
@@ -38,7 +38,7 @@ enum NetworkErrorType: ErrorType, CustomStringConvertible {
     }
 }
 class NetworkManager: NSObject {
-    
+
     // MARK: Singleton
     static let sharedInstance = NetworkManager()
 
@@ -62,42 +62,43 @@ class NetworkManager: NSObject {
         static let QuizListKey      = "Quiz List"
         static let QuizSummaryKey   = "Quiz Summary"
     }
-    
+
     // Default network manager, timeout set to 10s
     private static let Manager: Alamofire.Manager = {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 10.0
         return Alamofire.Manager(configuration: configuration, serverTrustPolicyManager: nil)
     }()
-    
+
     /**
      Caching dictionary
-     Each network request is served as a key-value pair in the dictionary. No duplicate request would be executed until the previosus one (sharing with the same key) finished.
+     Each network request is served as a key-value pair in the dictionary.
+     No duplicate request would be executed until the previosus one (sharing with the same key) finished.
      */
     private static var PendingOpDict = [String : (Request, NSDate)]()
-    
+
     /**
      Execute the network request
-     
+
      - parameter key:      unique string in caching dictionary
      - parameter request:  request (or value) in caching dictionary
      - parameter callback: a block executed when network request finished
      */
     private class func executeRequestWithKey(key: String, request: Request, callback: NetworkCallbackBlock) {
-        
+
         // Update the new item in the caching dictionary
         PendingOpDict[key] = (request, NSDate())
         // Executing request
         request.responseJSON {
-            
+
             let (statusCode, result) = ($0.response?.statusCode ?? 404, $0.result)
-            
+
             var json: JSON?
             var error: NetworkErrorType?
-            
+
             // Remove the item the caching dictionary
             PendingOpDict.removeValueForKey(key)
-            
+
             // Deal with statusCode and JSON from server
             if result.isSuccess && (statusCode >= 200 && statusCode < 300) {
                 json = JSON(result.value!)
@@ -107,10 +108,12 @@ class NetworkManager: NSObject {
                 } else if let value = result.value {
                     // Retrieve error message, pls refer to 'API.md' for details
                     let message = JSON(value)["message"].stringValue
-                    
-                    if statusCode == Constants.ForbiddenStatusCode || statusCode == Constants.UnauthorizedStatusCode {
+
+                    if statusCode == Constants.ForbiddenStatusCode ||
+                       statusCode == Constants.UnauthorizedStatusCode {
                         error = NetworkErrorType.NetworkUnauthenticated(message ?? "Unauthenticated access")
-                    } else if statusCode == Constants.BadRequestStatusCode || statusCode == Constants.NotFoundStatusCode {
+                    } else if statusCode == Constants.BadRequestStatusCode ||
+                              statusCode == Constants.NotFoundStatusCode {
                         error = NetworkErrorType.NetworkForbiddenAccess(message ?? "Bad request")
                     } else if case(400..<500) = statusCode {
                         error = NetworkErrorType.NetworkWrongParameter(message ?? "Wrong parameters")
@@ -123,21 +126,21 @@ class NetworkManager: NSObject {
             callback(json, error)
         }
     }
-    
+
     class func existPendingOperation(key: String) -> Bool {
         return PendingOpDict[key] != nil
     }
 }
 //
 //extension NetworkManager {
-//    
+//
 //    // Router is a factory for producing network request
 //    private enum Router: URLRequestConvertible {
-//        
+//
 //        // Server URL
 //        static let APIURLString = "http://smartclass.zakelly.com:3000"
 //        static let ImageURLString = "http://162.105.146.125:3000/image"
-//        
+//
 //        // Different types of network request
 //        case Login(String, String)
 //        case Register(String, String, String)
@@ -149,9 +152,9 @@ class NetworkManager: NSObject {
 //        case SigninRecord(String, String, String)
 //        case QuizList(String, String, String)
 //        case QuizSummaryKey(String, String, String, String)
-//        
+//
 //        var URLRequest: NSMutableURLRequest {
-//            
+//
 //            // 1. Set the properties for the request, including URL, HTTP Method, and its parameters
 //            var (path, method, parameters): (String, Alamofire.Method, [String: AnyObject]) = {
 //                switch self {
@@ -187,23 +190,23 @@ class NetworkManager: NSObject {
 //                    return ("/private/answer/quiz/info", Method.GET, params)
 //                }
 //            }()
-//            
+//
 //            // 2. Add HTTP headers
 //            let URLRequest: NSMutableURLRequest = {
 //                (inout parameters: [String: AnyObject]) in
 //                let URL = NSURL(string: Router.APIURLString)!
 //                let request = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
-//                
+//
 //                let buildVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
 //                request.setValue("\(buildVersion)", forHTTPHeaderField: "x-build-version")
-//                
+//
 //                request.setValue(parameters["token"] as? String, forHTTPHeaderField: "x-access-token")
 //                parameters.removeValueForKey("token")
-//                
+//
 //                request.HTTPMethod = method.rawValue
 //                return request
 //            }(&parameters)
-//            
+//
 //            // 3. Encode the network request
 //            if method == Method.GET {
 //                return ParameterEncoding.URL.encode(URLRequest, parameters: parameters).0
@@ -212,7 +215,7 @@ class NetworkManager: NSObject {
 //            }
 //        }
 //    }
-//    
+//
 //    /** 4. From now on, each network access only require three lines of code
 //        *   4.0 Make sure there is no pending network operations
 //        *   4.1 Retrieve the network request
@@ -224,63 +227,15 @@ class NetworkManager: NSObject {
 //        let request = NetworkManager.Manager.request(Router.Login(name, password))
 //        NetworkManager.executeRequestWithKey(Constants.LoginKey, request: request, callback: callback)
 //    }
-//    
+//
 //    func register(name: String, realName: String, password: String, callback: NetworkCallbackBlock) {
 //        guard !NetworkManager.existPendingOperation(Constants.RegisterKey) else {return}
 //        let request = NetworkManager.Manager.request(Router.Register(name, realName, password))
 //        NetworkManager.executeRequestWithKey(Constants.RegisterKey, request: request, callback: callback)
 //    }
-//    
+//
 //    func courseList(userID: String, token: String, callback: NetworkCallbackBlock) {
 //        guard !NetworkManager.existPendingOperation(Constants.CourseListKey) else {return}
 //        let request = NetworkManager.Manager.request(Router.CourseList(userID, token))
 //        NetworkManager.executeRequestWithKey(Constants.CourseListKey, request: request, callback: callback)
 //    }
-//    
-//    func signinInfo(userID: String, token: String, courseID: String, callback: NetworkCallbackBlock) {
-//        guard !NetworkManager.existPendingOperation(Constants.SigninInfoKey) else {return}
-//        let request = NetworkManager.Manager.request(Router.SigninInfo(userID, token, courseID))
-//        NetworkManager.executeRequestWithKey(Constants.SigninInfoKey, request: request, callback: callback)
-//    }
-//    
-//    func signinEnable(userID: String, token: String, courseID: String, uuid: String, callback: NetworkCallbackBlock) {
-//        guard !NetworkManager.existPendingOperation(Constants.SigninEnableKey) else {return}
-//        let request = NetworkManager.Manager.request(Router.SigninEnable(userID, token, courseID, uuid))
-//        NetworkManager.executeRequestWithKey(Constants.SigninEnableKey, request: request, callback: callback)
-//    }
-//    
-//    func signinDisable(userID: String, token: String, courseID: String, signinID: String, callback: NetworkCallbackBlock) {
-//        guard !NetworkManager.existPendingOperation(Constants.SigninDisableKey) else {return}
-//        let request = NetworkManager.Manager.request(Router.SigninDisable(userID, token, courseID, signinID))
-//        NetworkManager.executeRequestWithKey(Constants.SigninDisableKey, request: request, callback: callback)
-//    }
-//    
-//    func updateUUID(userID: String, token: String, courseID: String, uuidString: String, callback: NetworkCallbackBlock) {
-//        guard !NetworkManager.existPendingOperation(Constants.UpdateUUIDKey) else {return}
-//        let request = NetworkManager.Manager.request(Router.UpdateUUID(userID, token, courseID, uuidString))
-//        NetworkManager.executeRequestWithKey(Constants.UpdateUUIDKey, request: request, callback: callback)
-//    }
-//    
-//    func signinRecord(userID: String, token: String, courseID: String, callback: NetworkCallbackBlock) {
-//        guard !NetworkManager.existPendingOperation(Constants.SigninRecordKey) else {return}
-//        let request = NetworkManager.Manager.request(Router.SigninRecord(userID, token, courseID))
-//        NetworkManager.executeRequestWithKey(Constants.SigninRecordKey, request: request, callback: callback)
-//    }
-//    
-//    func quizList(userID: String, token: String, courseID: String, callback: NetworkCallbackBlock) {
-//        guard !NetworkManager.existPendingOperation(Constants.QuizListKey) else {return}
-//        let request = NetworkManager.Manager.request(Router.QuizList(userID, token, courseID))
-//        NetworkManager.executeRequestWithKey(Constants.QuizListKey, request: request, callback: callback)
-//    }
-//    
-//    func quizSummary(userID: String, token: String, courseID: String, quizID: String, callback: NetworkCallbackBlock) {
-//        guard !NetworkManager.existPendingOperation(Constants.QuizSummaryKey) else {return}
-//        let request = NetworkManager.Manager.request(Router.QuizSummaryKey(userID, token, courseID, quizID))
-//        NetworkManager.executeRequestWithKey(Constants.QuizSummaryKey, request: request, callback: callback)
-//    }
-//    
-//    func imageURL(imageName: String) -> NSURL? {
-//        return NSURL(string: Router.ImageURLString)?.URLByAppendingPathComponent(imageName)
-//    }
-//
-//}

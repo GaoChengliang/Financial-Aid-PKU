@@ -5,6 +5,8 @@
 ## Build generated
 build/
 DerivedData
+.vscode
+.DS_Store
 
 ## Various settings
 *.pbxuser
