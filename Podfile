@@ -8,4 +8,5 @@ target :FinancialAid do
 
 	# Network
 	pod 'Alamofire'
+	pod 'SDWebImage'
 end
