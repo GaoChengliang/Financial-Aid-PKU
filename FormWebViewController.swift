@@ -1,23 +1,31 @@
 //
-//  FillFormWebViewController.swift
+//  FormWebViewController.swift
 //  FinancialAid
 //
-//  Created by GaoChengliang on 16/5/17.
+//  Created by GaoChengliang on 16/5/19.
 //  Copyright © 2016年 pku. All rights reserved.
 //
 
 import UIKit
 
-class FillFormWebViewController: UIViewController, UIWebViewDelegate {
+class FormWebViewController: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = titles[option]
         webView.delegate = self
         webView.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.baidu.com")!))
     }
 
-    @IBOutlet weak var webView: UIWebView!
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    var option = 0
+    
+    var titles = ["填表指引", "填写表格"]
 
+    @IBOutlet weak var webView: UIWebView!
     /*
     // MARK: - Navigation
 
