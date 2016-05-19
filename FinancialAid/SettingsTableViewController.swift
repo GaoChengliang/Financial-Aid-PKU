@@ -27,25 +27,42 @@ class SettingsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if section == 0 {
+            return 1
+        }
+        return 2
     }
 
-    /*
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("UserInformationTableViewCell", forIndexPath: indexPath) as! UserInformationTableViewCell
+            cell.portrait.image = UIImage(named: "portrait1")
+            cell.name.text = "韩梅梅"
+            cell.SID.text = "1700017888"
+            return cell
+        }
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCellWithIdentifier("ChangePwdTableViewCell", forIndexPath: indexPath)
+            return cell
+        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("LogoutTableViewCell", forIndexPath: indexPath)
         return cell
+        
     }
-    */
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 80
+        }
+        return 44
+    }
 
     /*
     // Override to support conditional editing of the table view.
