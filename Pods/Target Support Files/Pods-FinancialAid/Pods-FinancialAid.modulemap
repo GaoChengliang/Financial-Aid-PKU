@@ -1,0 +1,6 @@
+framework module Pods_FinancialAid {
+  umbrella header "Pods-FinancialAid-umbrella.h"
+
+  export *
+  module * { export * }
+}
