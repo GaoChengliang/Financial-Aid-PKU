@@ -31,34 +31,34 @@ class FormOptionTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 3
     }
-    
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
     }
 
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell! = nil
-        
-        if indexPath.row == 0{
+        var cell: UITableViewCell! = nil
+
+        if indexPath.row == 0 {
             cell = tableView.dequeueReusableCellWithIdentifier("FormFillTableViewCell", forIndexPath: indexPath)
         }
-        
-        if indexPath.row == 1{
+
+        if indexPath.row == 1 {
             cell = tableView.dequeueReusableCellWithIdentifier("PDFTableViewCell", forIndexPath: indexPath)
         }
-        
-        if indexPath.row == 2{
+
+        if indexPath.row == 2 {
             cell = tableView.dequeueReusableCellWithIdentifier("UploadImageTableViewCell", forIndexPath: indexPath)
         }
-        
+
         return cell
     }
-    
-    
+
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
             performSegueWithIdentifier("FormFillSegue", sender: cell)
         }
     }
@@ -79,7 +79,7 @@ class FormOptionTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -99,7 +99,7 @@ class FormOptionTableViewController: UITableViewController {
     */
 
     // MARK: - Navigation
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
@@ -107,7 +107,7 @@ class FormOptionTableViewController: UITableViewController {
             case "FormGuideSegue":
                 let MVC = segue.destinationViewController as! FormWebViewController
                 MVC.option = 0
-                
+
             case "FormFillSegue":
                 let MVC = segue.destinationViewController as! FormWebViewController
                 MVC.option = 1

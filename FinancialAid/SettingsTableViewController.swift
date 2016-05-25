@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-class SettingsTableViewController: UITableViewController,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SettingsTableViewController: UITableViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,13 +52,13 @@ class SettingsTableViewController: UITableViewController,UIActionSheetDelegate, 
             cell.SID.text = "1700017888"
             return cell
         }
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("ChangePwdTableViewCell", forIndexPath: indexPath)
             return cell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("LogoutTableViewCell", forIndexPath: indexPath)
         return cell
-        
+
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -67,20 +67,20 @@ class SettingsTableViewController: UITableViewController,UIActionSheetDelegate, 
         }
         return 44
     }
-    
-    
+
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             editImage()
         }
     }
-    
-    
+
+
     func editImage() {
         let alertController = UIAlertController(title: Constant.EditPortrait, message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
-        let alertActionCamera = UIAlertAction(title: Constant.OpenCamera, style: UIAlertActionStyle.Default){
+        let alertActionCamera = UIAlertAction(title: Constant.OpenCamera, style: UIAlertActionStyle.Default) {
             alert in
-            if UIImagePickerController.isSourceTypeAvailable(.Camera){
+            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
                 let picker = UIImagePickerController()
                 picker.sourceType = .Camera
                 picker.mediaTypes = [String(kUTTypeImage)]
@@ -90,10 +90,10 @@ class SettingsTableViewController: UITableViewController,UIActionSheetDelegate, 
             }
         }
         alertController.addAction(alertActionCamera)
-        
-        let alertActionAlbum = UIAlertAction(title: Constant.OpenAlbum, style: UIAlertActionStyle.Default){
+
+        let alertActionAlbum = UIAlertAction(title: Constant.OpenAlbum, style: UIAlertActionStyle.Default) {
             alert in
-            if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
+            if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
                 let picker = UIImagePickerController()
                 picker.sourceType = .PhotoLibrary
                 picker.mediaTypes = [String(kUTTypeImage)]
@@ -103,22 +103,22 @@ class SettingsTableViewController: UITableViewController,UIActionSheetDelegate, 
             }
         }
         alertController.addAction(alertActionAlbum)
-        
-        
-        let alertActionCancel = UIAlertAction(title: Constant.Cancel, style: UIAlertActionStyle.Cancel){
+
+
+        let alertActionCancel = UIAlertAction(title: Constant.Cancel, style: UIAlertActionStyle.Cancel) {
             alert in  alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(alertActionCancel)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
-    
-    
-    
+
+
+
     // 打开照片 delegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+
             let image = pickedImage
             /* while(image.size.height > 200){    // 压缩图片到200以下 100以上
                 let newSize = CGSize(width: image.size.width/2, height: image.size.height/2)
@@ -131,9 +131,9 @@ class SettingsTableViewController: UITableViewController,UIActionSheetDelegate, 
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    
+
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
 }

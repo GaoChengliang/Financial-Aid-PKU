@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Constant{
+struct Constant {
     static let Catalog = "目录"
     static let TitleFormFillGuide = "填表指引"
     static let TitleFormFill = "填写表格"

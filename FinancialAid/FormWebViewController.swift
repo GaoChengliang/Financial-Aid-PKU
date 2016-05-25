@@ -21,54 +21,54 @@ class FormWebViewController: UIViewController, UIWebViewDelegate {
     func webViewDidStartLoad(webView: UIWebView) {
         startLoad()
     }
-    
-    
+
+
     func webViewDidFinishLoad(webView: UIWebView) {
         finishLoad()
     }
-    
+
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         finishLoad()
     }
-    
-    
-    
+
+
+
     var option = 0
     var titles = [Constant.TitleFormFillGuide, Constant.TitleFormFill]
     var loadFlag = false
-    var myTimer:NSTimer = NSTimer()
+    var myTimer: NSTimer = NSTimer()
 
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var webView: UIWebView!
 
-    func timerCallback(){
-        if loadFlag{
+    func timerCallback() {
+        if loadFlag {
             if progressView.progress >= 1 {
                 progressView.hidden = true
                 myTimer.invalidate()
-            }else{
+            } else {
                 progressView.progress += 0.1
             }
-        }else{
+        } else {
             progressView.progress += 0.05
             if progressView.progress >= 0.90 {
                 progressView.progress = 0.90
             }
         }
     }
-    
-    func startLoad(){
+
+    func startLoad() {
         loadFlag = false
         progressView.hidden = false
         progressView.progress = 0
         myTimer.invalidate()
         myTimer = NSTimer.scheduledTimerWithTimeInterval(0.01667, target: self, selector: #selector(FormWebViewController.timerCallback), userInfo: nil, repeats: true)
     }
-    
-    func finishLoad(){
+
+    func finishLoad() {
         loadFlag = true
     }
-    
+
     /*
     // MARK: - Navigation
 

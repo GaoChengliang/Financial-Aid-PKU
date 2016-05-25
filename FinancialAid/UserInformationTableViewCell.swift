@@ -25,5 +25,5 @@ class UserInformationTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var SID: UILabel!
 
-    
+
 }
