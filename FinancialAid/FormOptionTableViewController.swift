@@ -57,8 +57,10 @@ class FormOptionTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! UITableViewCell
-        performSegueWithIdentifier("", sender: cell)
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if indexPath.row == 0{
+            performSegueWithIdentifier("FormFillSegue", sender: cell)
+        }
     }
 
     /*

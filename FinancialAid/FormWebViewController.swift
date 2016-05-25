@@ -40,19 +40,18 @@ class FormWebViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var webView: UIWebView!
-    
-    
+
     func timerCallback(){
-        if (loadFlag) {
-            if (progressView.progress >= 1) {
+        if loadFlag{
+            if progressView.progress >= 1 {
                 progressView.hidden = true
                 myTimer.invalidate()
-            }else {
+            }else{
                 progressView.progress += 0.1
             }
-        }else {
+        }else{
             progressView.progress += 0.05
-            if (progressView.progress >= 0.95) {
+            if progressView.progress >= 0.90 {
                 progressView.progress = 0.90
             }
         }

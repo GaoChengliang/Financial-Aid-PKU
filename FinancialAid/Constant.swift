@@ -9,6 +9,11 @@
 import Foundation
 
 struct Constant{
-    static var TitleFormFillGuide = "填表指引"
-    static var TitleFormFill = "填写表格"
+    static let Catalog = "目录"
+    static let TitleFormFillGuide = "填表指引"
+    static let TitleFormFill = "填写表格"
+    static let EditPortrait = "上传头像"
+    static let OpenCamera = "拍照"
+    static let OpenAlbum = "打开相册"
+    static let Cancel = "取消"
 }
