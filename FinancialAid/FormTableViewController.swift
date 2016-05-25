@@ -22,17 +22,25 @@ class FormTableViewController: CloudAnimateTableViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        navigationItem.backBarButtonItem?.title = AppConstant.Catalog
+        navigationItem.backBarButtonItem = {
+            let backButtonItem = UIBarButtonItem()
+            backButtonItem.title = AppConstant.Catalog
+            return backButtonItem
+        }()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: CGRectZero)
         retriveFormList()
     }
 
     func retriveFormList() {
-//        NetworkManager.sharedInstance.formList() {
-//        }
+        formList = [
+            Form(name: "excel 1", startDate: NSDate(), endDate: NSDate()),
+            Form(name: "excel 2", startDate: NSDate(), endDate: NSDate()),
+            Form(name: "excel 3", startDate: NSDate(), endDate: NSDate())
+        ]
     }
 
     // MARK: - Table view data source
@@ -72,5 +80,11 @@ class FormTableViewController: CloudAnimateTableViewController {
             default: break
             }
         }
+    }
+}
+
+extension FormTableViewController {
+    override func animationDidStart() {
+        retriveFormList()
     }
 }

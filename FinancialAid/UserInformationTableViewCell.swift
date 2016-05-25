@@ -1,5 +1,5 @@
 //
-//  UserInformationTableViewCell.swift
+//  UserInformationTableViewCell.swiftUserTableViewController
 //  FinancialAid
 //
 //  Created by GaoChengliang on 16/5/19.
