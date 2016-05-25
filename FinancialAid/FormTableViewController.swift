@@ -22,7 +22,7 @@ class FormTableViewController: CloudAnimateTableViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        navigationItem.backBarButtonItem?.title = Constant.Catalog
+        navigationItem.backBarButtonItem?.title = AppConstant.Catalog
     }
 
     override func viewDidLoad() {
@@ -31,8 +31,8 @@ class FormTableViewController: CloudAnimateTableViewController {
     }
 
     func retriveFormList() {
-        NetworkManager.sharedInstance.formList() {
-        }
+//        NetworkManager.sharedInstance.formList() {
+//        }
     }
 
     // MARK: - Table view data source

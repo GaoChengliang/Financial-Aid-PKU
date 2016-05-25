@@ -34,7 +34,7 @@ class FormWebViewController: UIViewController, UIWebViewDelegate {
 
 
     var option = 0
-    var titles = [Constant.TitleFormFillGuide, Constant.TitleFormFill]
+    var titles = [AppConstant.TitleFormFillGuide, AppConstant.TitleFormFill]
     var loadFlag = false
     var myTimer: NSTimer = NSTimer()
 

@@ -8,8 +8,6 @@
 
 import UIKit
 import MobileCoreServices
-import Alamofire
-import SwiftyJSON
 import SVProgressHUD
 
 class SettingsTableViewController: UITableViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -22,11 +20,6 @@ class SettingsTableViewController: UITableViewController, UIActionSheetDelegate,
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -47,9 +40,7 @@ class SettingsTableViewController: UITableViewController, UIActionSheetDelegate,
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("UserInformationTableViewCell", forIndexPath: indexPath) as! UserInformationTableViewCell
-            cell.portrait.image = UIImage(named: "portrait1")
             cell.name.text = "韩梅梅"
-            cell.SID.text = "1700017888"
             return cell
         }
         if indexPath.row == 0 {
@@ -77,8 +68,8 @@ class SettingsTableViewController: UITableViewController, UIActionSheetDelegate,
 
 
     func editImage() {
-        let alertController = UIAlertController(title: Constant.EditPortrait, message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
-        let alertActionCamera = UIAlertAction(title: Constant.OpenCamera, style: UIAlertActionStyle.Default) {
+        let alertController = UIAlertController(title: AppConstant.EditPortrait, message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
+        let alertActionCamera = UIAlertAction(title: AppConstant.OpenCamera, style: UIAlertActionStyle.Default) {
             alert in
             if UIImagePickerController.isSourceTypeAvailable(.Camera) {
                 let picker = UIImagePickerController()
@@ -91,7 +82,7 @@ class SettingsTableViewController: UITableViewController, UIActionSheetDelegate,
         }
         alertController.addAction(alertActionCamera)
 
-        let alertActionAlbum = UIAlertAction(title: Constant.OpenAlbum, style: UIAlertActionStyle.Default) {
+        let alertActionAlbum = UIAlertAction(title: AppConstant.OpenAlbum, style: UIAlertActionStyle.Default) {
             alert in
             if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
                 let picker = UIImagePickerController()
@@ -105,7 +96,7 @@ class SettingsTableViewController: UITableViewController, UIActionSheetDelegate,
         alertController.addAction(alertActionAlbum)
 
 
-        let alertActionCancel = UIAlertAction(title: Constant.Cancel, style: UIAlertActionStyle.Cancel) {
+        let alertActionCancel = UIAlertAction(title: AppConstant.Cancel, style: UIAlertActionStyle.Cancel) {
             alert in  alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(alertActionCancel)
@@ -135,5 +126,4 @@ class SettingsTableViewController: UITableViewController, UIActionSheetDelegate,
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
 }
