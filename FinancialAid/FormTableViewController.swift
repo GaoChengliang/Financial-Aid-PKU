@@ -13,7 +13,7 @@ class FormTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let backItem = UIBarButtonItem()
-        backItem.title = Constant.Catalog
+        backItem.title = AppConstant.Catalog
         self.navigationItem.backBarButtonItem = backItem
     }
 

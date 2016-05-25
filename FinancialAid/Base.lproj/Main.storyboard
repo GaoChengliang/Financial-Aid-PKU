@@ -16,21 +16,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FormTableViewCell" textLabel="QJU-vX-FW3" style="IBUITableViewCellStyleDefault" id="C1m-dT-b0s">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FormTableViewCell" id="C1m-dT-b0s" customClass="FormTableViewCell" customModule="FinancialAid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C1m-dT-b0s" id="ziz-SX-gm4">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QJU-vX-FW3">
-                                            <rect key="frame" x="15" y="0.0" width="550" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -176,13 +167,13 @@
         <!--北大学生资助中心-->
         <scene sceneID="E8O-pA-Yk2">
             <objects>
-                <tableViewController id="15R-3N-Aef" customClass="SettingsTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="15R-3N-Aef" customClass="UserTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="MNg-nk-5nm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserInformationTableViewCell" rowHeight="80" id="PdQ-68-kxL" customClass="UserInformationTableViewCell" customModule="FinancialAid" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserPortraitTableViewCell" rowHeight="80" id="PdQ-68-kxL" customClass="UserPortraitTableViewCell" customModule="FinancialAid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdQ-68-kxL" id="Uu9-0X-exV">
@@ -243,34 +234,91 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="SID" destination="YOa-m9-tuw" id="uDK-Wk-pPs"/>
-                                    <outlet property="name" destination="dmC-4O-AbC" id="wI7-FI-GjW"/>
-                                    <outlet property="portrait" destination="Itu-Vf-SEJ" id="ASh-Te-qZI"/>
+                                    <outlet property="SID" destination="YOa-m9-tuw" id="wB6-jm-PC4"/>
+                                    <outlet property="name" destination="dmC-4O-AbC" id="YZU-Mh-p6y"/>
+                                    <outlet property="portrait" destination="Itu-Vf-SEJ" id="Lx3-xn-FO0"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChangePwdTableViewCell" textLabel="FE3-gl-0Ty" imageView="wMw-wn-vSk" style="IBUITableViewCellStyleDefault" id="IJw-Ak-0kW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingTableViewCell" textLabel="jUp-Qz-25a" imageView="Fr6-FJ-6vg" style="IBUITableViewCellStyleDefault" id="FnE-aS-bxe">
                                 <rect key="frame" x="0.0" y="194" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IJw-Ak-0kW" id="qUr-Tb-1x6">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FnE-aS-bxe" id="4pV-17-C4h">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="修改密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FE3-gl-0Ty">
-                                            <rect key="frame" x="58" y="0.0" width="527" height="43"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jUp-Qz-25a">
+                                            <rect key="frame" x="58" y="0.0" width="507" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="change_pwd" id="wMw-wn-vSk">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="setting" id="Fr6-FJ-6vg">
                                             <rect key="frame" x="15" y="7" width="28" height="28"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogoutTableViewCell" textLabel="6es-65-8ID" imageView="kGQ-gu-0IY" style="IBUITableViewCellStyleDefault" id="bW6-cG-dnB">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserInformationTableViewCell" id="cvu-fZ-kOC" customClass="UserInformationTableViewCell" customModule="FinancialAid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="238" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cvu-fZ-kOC" id="v8m-kB-ET2">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVE-xO-FHL">
+                                            <rect key="frame" x="15" y="11" width="45" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vaule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-i8-h1o">
+                                            <rect key="frame" x="517" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="rVE-xO-FHL" secondAttribute="leading" constant="-7" id="UqM-lD-M8I"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AhG-i8-h1o" secondAttribute="trailing" id="fLD-Ts-hPr"/>
+                                        <constraint firstItem="rVE-xO-FHL" firstAttribute="centerY" secondItem="v8m-kB-ET2" secondAttribute="centerY" id="hY1-rl-Hro"/>
+                                        <constraint firstItem="AhG-i8-h1o" firstAttribute="centerY" secondItem="v8m-kB-ET2" secondAttribute="centerY" id="m54-GD-XpV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="name" destination="rVE-xO-FHL" id="G8x-yc-78F"/>
+                                    <outlet property="value" destination="AhG-i8-h1o" id="ikD-QV-Y2O"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="15R-3N-Aef" id="0jQ-1y-tJg"/>
+                            <outlet property="delegate" destination="15R-3N-Aef" id="K5B-BW-vgs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="北大学生资助中心" id="5bY-x4-1D4"/>
+                    <connections>
+                        <segue destination="xv9-pX-4uw" kind="show" identifier="EditProfileSegue" id="bDd-9I-a9L"/>
+                        <segue destination="Gd6-rc-bd3" kind="show" identifier="SettingSegue" id="eg4-Q9-Ko7"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tyy-XW-MiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1476" y="-1"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="kfp-OO-bkE">
+            <objects>
+                <tableViewController id="Gd6-rc-bd3" customClass="SettingsTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7FC-jf-agF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogoutTableViewCell" textLabel="6es-65-8ID" imageView="kGQ-gu-0IY" style="IBUITableViewCellStyleDefault" id="bW6-cG-dnB">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bW6-cG-dnB" id="akk-od-rlO">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -290,20 +338,37 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangePwdTableViewCell" textLabel="FE3-gl-0Ty" imageView="wMw-wn-vSk" style="IBUITableViewCellStyleDefault" id="IJw-Ak-0kW">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IJw-Ak-0kW" id="qUr-Tb-1x6">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="修改密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FE3-gl-0Ty">
+                                            <rect key="frame" x="58" y="0.0" width="507" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="change_pwd" id="wMw-wn-vSk">
+                                            <rect key="frame" x="15" y="7" width="28" height="28"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="15R-3N-Aef" id="0jQ-1y-tJg"/>
-                            <outlet property="delegate" destination="15R-3N-Aef" id="K5B-BW-vgs"/>
+                            <outlet property="dataSource" destination="Gd6-rc-bd3" id="Si6-EP-B0g"/>
+                            <outlet property="delegate" destination="Gd6-rc-bd3" id="5m6-Dg-dxj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="北大学生资助中心" id="5bY-x4-1D4"/>
-                    <connections>
-                        <segue destination="xv9-pX-4uw" kind="show" identifier="EditProfileSegue" id="bDd-9I-a9L"/>
-                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tyy-XW-MiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nby-Al-TUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="-1"/>
+            <point key="canvasLocation" x="1476" y="729"/>
         </scene>
         <!--Edit Profile Table View Controller-->
         <scene sceneID="Gee-tz-7nF">
@@ -417,6 +482,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4l6-pI-IT9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.12941176469999999" green="0.58823529409999997" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -437,6 +504,7 @@
         <image name="default_portrait" width="72" height="72"/>
         <image name="fill_form_guide" width="22" height="22"/>
         <image name="logout" width="28" height="28"/>
+        <image name="setting" width="28" height="28"/>
         <image name="tab_form" width="28" height="28"/>
         <image name="tab_user" width="28" height="28"/>
     </resources>
