@@ -13,7 +13,7 @@ class FormTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let backItem = UIBarButtonItem()
-        backItem.title = "目录"
+        backItem.title = Constant.Catalog
         self.navigationItem.backBarButtonItem = backItem
     }
 
@@ -39,6 +39,11 @@ class FormTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("FormTableViewCell", forIndexPath: indexPath)
         cell.textLabel?.text = "表格\(indexPath.row)"
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        performSegueWithIdentifier("FormOptionSegue", sender: cell)
     }
 
 
