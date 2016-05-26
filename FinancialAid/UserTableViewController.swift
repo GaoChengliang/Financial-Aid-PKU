@@ -79,12 +79,20 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
         case 0:
             editImage()
         case 1:
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            performSegueWithIdentifier("EditProfileSegue", sender: cell)
+            if indexPath.row == 0{
+                performSegueWithIdentifier("EditGenderSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
+            }
+            
+            if indexPath.row == 1{
+                performSegueWithIdentifier("EditBirthdaySegue", sender: tableView.cellForRowAtIndexPath(indexPath))
+            }
+            
+            if indexPath.row == 2 || indexPath.row == 3{
+                performSegueWithIdentifier("EditProfileSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
+            }
 
         default:
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            performSegueWithIdentifier("SettingSegue", sender: cell)
+            performSegueWithIdentifier("SettingSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
         }
     }
     
@@ -100,6 +108,10 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
                     MVC.index = indexPath.row
                     MVC.value = value[indexPath.row]
                 }
+            
+            case "EditGenderSegue":
+                let MVC = segue.destinationViewController as! EditGenderTableViewController
+                MVC.gender = 1
             default: break
             }
         }

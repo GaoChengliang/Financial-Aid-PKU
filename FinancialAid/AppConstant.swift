@@ -17,4 +17,10 @@ struct AppConstant {
     static let OpenCamera = "拍照"
     static let OpenAlbum = "打开相册"
     static let Cancel = "取消"
+    static let Save = "保存"
+    static let Edit = "设置"
+    static let ChangePwd = "修改密码"
+    static let Male = "男"
+    static let Female = "女"
+    static let Gender = "性别"
 }

@@ -58,6 +58,11 @@ class FormTableViewController: CloudAnimateTableViewController {
         cell.setupWithName(form.name, startDate: form.startDate, endDate: form.endDate)
         return cell
     }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 66
+    }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("FormOptionSegue",
