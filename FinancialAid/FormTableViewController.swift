@@ -8,42 +8,60 @@
 
 import UIKit
 
-class FormTableViewController: UITableViewController {
+class FormTableViewController: CloudAnimateTableViewController {
+
+    var formList = [Form]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    private struct Constants {
+        static let cellIdentifier = "FormTableViewCell"
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        navigationItem.backBarButtonItem = {
+            let backButtonItem = UIBarButtonItem()
+            backButtonItem.title = AppConstant.Catalog
+            return backButtonItem
+        }()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backItem = UIBarButtonItem()
-        backItem.title = Constant.Catalog
-        self.navigationItem.backBarButtonItem = backItem
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        retriveFormList()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func retriveFormList() {
+        formList = [
+            Form(name: "excel 1", startDate: NSDate(), endDate: NSDate()),
+            Form(name: "excel 2", startDate: NSDate(), endDate: NSDate()),
+            Form(name: "excel 3", startDate: NSDate(), endDate: NSDate())
+        ]
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 5
+        return formList.count
     }
-
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FormTableViewCell", forIndexPath: indexPath)
-        cell.textLabel?.text = "表格\(indexPath.row)"
+        guard
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.cellIdentifier,
+                       forIndexPath: indexPath) as? FormTableViewCell
+            else { return UITableViewCell() }
+        let form = formList[indexPath.row]
+        cell.setupWithName(form.name, startDate: form.startDate, endDate: form.endDate)
         return cell
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        performSegueWithIdentifier("FormOptionSegue", sender: cell)
+        performSegueWithIdentifier("FormOptionSegue",
+                                   sender: tableView.cellForRowAtIndexPath(indexPath))
     }
 
 
@@ -62,5 +80,11 @@ class FormTableViewController: UITableViewController {
             default: break
             }
         }
+    }
+}
+
+extension FormTableViewController {
+    override func animationDidStart() {
+        retriveFormList()
     }
 }
