@@ -31,7 +31,7 @@ class FormTableViewController: CloudAnimateTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         retriveFormList()
     }
 

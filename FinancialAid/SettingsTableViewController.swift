@@ -15,12 +15,26 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     // MARK: - Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: UITableViewCell! = nil
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCellWithIdentifier("ChangePwdTableViewCell", forIndexPath: indexPath)
+        }
+        if indexPath.section == 1 {
+            cell = tableView.dequeueReusableCellWithIdentifier("LogoutTableViewCell", forIndexPath: indexPath)
+        }
+        return cell
+    }
+
 }
