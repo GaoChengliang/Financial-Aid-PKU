@@ -47,10 +47,10 @@ class FormWebViewController: UIViewController, UIWebViewDelegate {
                 progressView.hidden = true
                 myTimer.invalidate()
             } else {
-                progressView.progress += 0.1
+                progressView.progress += 0.05
             }
         } else {
-            progressView.progress += 0.05
+            progressView.progress += 0.025
             if progressView.progress >= 0.90 {
                 progressView.progress = 0.90
             }

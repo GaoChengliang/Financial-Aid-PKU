@@ -14,7 +14,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = AppConstant.Edit
     }
 
     // MARK: - Table view data source
@@ -35,6 +35,14 @@ class SettingsTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCellWithIdentifier("LogoutTableViewCell", forIndexPath: indexPath)
         }
         return cell
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0{
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            performSegueWithIdentifier("ChangePwdSegue", sender: cell)
+        }
     }
 
 }
