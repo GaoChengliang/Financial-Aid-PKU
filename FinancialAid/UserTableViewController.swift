@@ -27,7 +27,7 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
     }
 
     
-    let name = ["性别", "生日", "电话号码", "邮箱"]
+    let name = [AppConstant.Gender, AppConstant.Birthday, AppConstant.PhoneNumber, AppConstant.Email]
     let value = ["女", "1996-11-11", "13888888888", "hmm@pku.edu.cn"]
     
 
@@ -72,8 +72,7 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
         }
         return 44
     }
-
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 0:
@@ -94,6 +93,7 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
         default:
             performSegueWithIdentifier("SettingSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     
