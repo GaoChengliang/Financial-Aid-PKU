@@ -43,6 +43,8 @@ class SettingsTableViewController: UITableViewController {
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             performSegueWithIdentifier("ChangePwdSegue", sender: cell)
         }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
 }

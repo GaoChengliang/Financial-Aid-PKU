@@ -23,4 +23,7 @@ struct AppConstant {
     static let Male = "男"
     static let Female = "女"
     static let Gender = "性别"
+    static let Birthday = "生日"
+    static let PhoneNumber = "电话号码"
+    static let Email = "邮箱"
 }

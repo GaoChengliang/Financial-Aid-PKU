@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hEb-YR-3n7">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -43,7 +42,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jg5-2D-vbW">
-                                            <rect key="frame" x="50" y="8" width="446" height="21"/>
+                                            <rect key="frame" x="50" y="8" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -61,14 +60,6 @@
                                                 <constraint firstAttribute="width" secondItem="cLA-4Q-38X" secondAttribute="height" multiplier="1:1" id="p7h-JU-qIV"/>
                                             </constraints>
                                         </imageView>
-                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIN-tZ-A5n" customClass="PercentageView" customModule="FinancialAid" customModuleProvider="target">
-                                            <rect key="frame" x="504" y="11" width="43" height="43"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="43" id="osz-OK-gjp"/>
-                                                <constraint firstAttribute="width" constant="43" id="yUV-aV-e3o"/>
-                                            </constraints>
-                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCB-y4-Up8">
                                             <rect key="frame" x="109" y="36" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -87,16 +78,13 @@
                                         <constraint firstItem="6we-qu-YSN" firstAttribute="leading" secondItem="k3B-l7-YEt" secondAttribute="trailing" constant="8" symbolic="YES" id="GQI-qc-ZVG"/>
                                         <constraint firstItem="cLA-4Q-38X" firstAttribute="leading" secondItem="k3B-l7-YEt" secondAttribute="leading" id="LrH-cT-rgQ"/>
                                         <constraint firstItem="jg5-2D-vbW" firstAttribute="leading" secondItem="cLA-4Q-38X" secondAttribute="trailing" constant="8" symbolic="YES" id="OHq-2d-u1X"/>
-                                        <constraint firstAttribute="centerY" secondItem="PIN-tZ-A5n" secondAttribute="centerY" id="TIb-SU-6gG"/>
                                         <constraint firstItem="k3B-l7-YEt" firstAttribute="leading" secondItem="eAE-S4-3qX" secondAttribute="leading" id="Ud2-6F-TSA"/>
                                         <constraint firstItem="k3B-l7-YEt" firstAttribute="top" secondItem="ncy-13-bXj" secondAttribute="bottom" id="UfL-9U-CBu"/>
-                                        <constraint firstAttribute="trailing" secondItem="PIN-tZ-A5n" secondAttribute="trailing" constant="20" symbolic="YES" id="VVp-8Y-QuA"/>
                                         <constraint firstItem="cLA-4Q-38X" firstAttribute="width" secondItem="cLA-4Q-38X" secondAttribute="height" multiplier="1:1" id="W6Y-qn-maM"/>
                                         <constraint firstItem="jg5-2D-vbW" firstAttribute="trailing" secondItem="6we-qu-YSN" secondAttribute="trailing" id="WNe-gx-29M"/>
                                         <constraint firstItem="ncy-13-bXj" firstAttribute="width" secondItem="cLA-4Q-38X" secondAttribute="width" id="Xrs-cM-d9I"/>
                                         <constraint firstItem="jg5-2D-vbW" firstAttribute="centerY" secondItem="cLA-4Q-38X" secondAttribute="centerY" id="cej-Ui-2Nc"/>
                                         <constraint firstAttribute="bottom" secondItem="eAE-S4-3qX" secondAttribute="bottom" constant="4" id="dJi-T1-nkZ"/>
-                                        <constraint firstItem="PIN-tZ-A5n" firstAttribute="leading" secondItem="jg5-2D-vbW" secondAttribute="trailing" constant="8" symbolic="YES" id="hhA-SR-j2x"/>
                                         <constraint firstItem="cLA-4Q-38X" firstAttribute="leading" secondItem="FFJ-Er-koc" secondAttribute="leading" constant="20" symbolic="YES" id="hho-ZW-6fi"/>
                                         <constraint firstItem="ncy-13-bXj" firstAttribute="leading" secondItem="cLA-4Q-38X" secondAttribute="leading" id="iBr-Pq-VW2"/>
                                         <constraint firstItem="ncy-13-bXj" firstAttribute="top" secondItem="cLA-4Q-38X" secondAttribute="bottom" id="jsY-pb-df1"/>
@@ -216,7 +204,7 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="60e-fl-W3y">
             <objects>
-                <viewController id="NcJ-SB-E67" customClass="EditProfileViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="NcJ-SB-E67" customClass="EditProfileViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bz0-po-2b1"/>
                         <viewControllerLayoutGuide type="bottom" id="tfJ-mT-PrB"/>
@@ -275,9 +263,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YkW-GZ-4Ay">
-                                <rect key="frame" x="0.0" y="64" width="600" height="4"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="4" id="jIl-Kh-mMM"/>
+                                    <constraint firstAttribute="height" constant="3" id="jIl-Kh-mMM"/>
                                 </constraints>
                             </progressView>
                         </subviews>
@@ -451,7 +439,7 @@
         <!--Settings Table View Controller-->
         <scene sceneID="kfp-OO-bkE">
             <objects>
-                <tableViewController id="Gd6-rc-bd3" customClass="SettingsTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Gd6-rc-bd3" customClass="SettingsTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="7FC-jf-agF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -699,7 +687,7 @@
         <!--Edit Birthday View Controller-->
         <scene sceneID="bTM-my-giQ">
             <objects>
-                <viewController id="YvE-Xk-gb3" customClass="EditBirthdayViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="YvE-Xk-gb3" customClass="EditBirthdayViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sx3-oJ-OX5"/>
                         <viewControllerLayoutGuide type="bottom" id="J4v-Om-Fnr"/>
@@ -771,12 +759,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ych-ah-8ZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2175" y="763"/>
+            <point key="canvasLocation" x="2191" y="729"/>
         </scene>
         <!--Edit Gender Table View Controller-->
         <scene sceneID="1mq-B7-keo">
             <objects>
-                <tableViewController id="R4v-ov-TVL" customClass="EditGenderTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="R4v-ov-TVL" customClass="EditGenderTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="wFa-Ep-B0m">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
