@@ -8,11 +8,8 @@
 
 import Foundation
 
-struct AppConstant {
-    static let Catalog = "目录"
+struct AppConstants {
     static let Me = "我"
-    static let TitleFormFillGuide = "填表指引"
-    static let TitleFormFill = "填写表格"
     static let EditPortrait = "上传头像"
     static let OpenCamera = "拍照"
     static let OpenAlbum = "打开相册"
@@ -26,5 +23,4 @@ struct AppConstant {
     static let Birthday = "生日"
     static let PhoneNumber = "电话号码"
     static let Email = "邮箱"
-
 }

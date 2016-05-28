@@ -96,25 +96,4 @@ class ContentManager: NSObject {
 //    }
 //
 
-    func truncateData() {
-        clearConfidential()
-//        CoreDataManager.sharedInstance.truncateData()
-    }
-
-    private func saveConfidential(name: String, userID: String, token: String, password: String) {
-        if let id = ContentManager.UserID where id != userID {
-            truncateData()
-        }
-        ContentManager.UserName = name
-        ContentManager.UserID = userID
-        ContentManager.Token = token
-        ContentManager.Password = password
-    }
-
-    private func clearConfidential() {
-        ContentManager.UserName = nil
-        ContentManager.UserID = nil
-        ContentManager.Token = nil
-        ContentManager.Password = nil
-    }
 }

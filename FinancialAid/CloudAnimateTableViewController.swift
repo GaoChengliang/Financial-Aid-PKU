@@ -9,9 +9,9 @@
 import UIKit
 import DZNEmptyDataSet
 
-protocol RefreshControlAnimationDelegate : class {
-    func animationDidStart()
-    func animationDidEnd()
+protocol RefreshAnimation : class {
+    func refreshAnimationDidStart()
+    func refreshAnimationDidFinish()
 }
 
 class CloudAnimateTableViewController: UITableViewController {
@@ -27,35 +27,31 @@ class CloudAnimateTableViewController: UITableViewController {
     }
     var titleForEmptyData: String {
         get {
-            return "网络错误，请下拉以刷新！"
+            return NSLocalizedString("Network failure, please pull to refresh.",
+                                     comment: "title for empty data set")
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRefreshControl()
+
+        refreshControl = {
+            let refreshControl = UIRefreshControl()
+            refreshControl.tintColor = UIColor.clearColor()
+            refreshControl.backgroundColor = UIColor.clearColor()
+            cloudRefresh = RefreshContents(frame: refreshControl.bounds)
+            refreshControl.addSubview(cloudRefresh)
+            tableView.addSubview(refreshControl)
+            return refreshControl
+        }()
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
     }
 
     override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
         resetAnimiation()
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func setupRefreshControl() {
-        refreshControl = UIRefreshControl()
-        refreshControl!.tintColor = UIColor.clearColor()
-        refreshControl!.backgroundColor = UIColor.clearColor()
-        tableView.addSubview(refreshControl!)
-
-        cloudRefresh = RefreshContents(frame: refreshControl!.bounds)
-        refreshControl!.addSubview(cloudRefresh)
+        super.viewDidDisappear(animated)
     }
 
     func animateRefreshStep1() {
@@ -63,10 +59,10 @@ class CloudAnimateTableViewController: UITableViewController {
 
         cloudRefresh.background.image = UIImage(named: "CloudBackground")
         cloudRefresh.refreshingImageView.image = UIImage(named: "Refresh")
-        UIView.animateWithDuration(0.3, animations: {self.alpha = 1.0}) {
+        UIView.animateWithDuration(0.3, animations: { self.alpha = 1.0 }) {
             [weak self] in
             if $0 {
-                self?.animationDidStart()
+                self?.refreshAnimationDidStart()
             }
         }
     }
@@ -75,8 +71,7 @@ class CloudAnimateTableViewController: UITableViewController {
         cloudRefresh.background.image = UIImage(named: "Tick")
         UIView.animateWithDuration(0.6, animations: {
             self.cloudRefresh.background.alpha = 1.0
-            }) {
-            [weak self] in
+        }) { [weak self] in
             if $0 {
                 self?.resetAnimiation()
             }
@@ -85,14 +80,14 @@ class CloudAnimateTableViewController: UITableViewController {
 
     func resetAnimiation() {
         cloudRefresh.refreshingImageView.layer.removeAnimationForKey("rotate")
-        refreshControl!.endRefreshing()
+        refreshControl?.endRefreshing()
         isAnimating = false
         alpha = 0
     }
 }
 
 
-extension CloudAnimateTableViewController: RefreshControlAnimationDelegate {
+extension CloudAnimateTableViewController: RefreshAnimation {
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         // Get the current size of the refresh controller
@@ -112,12 +107,13 @@ extension CloudAnimateTableViewController: RefreshControlAnimationDelegate {
         cloudRefresh.frame = refreshBounds
 
         // If we're refreshing and the animation is not playing, then play the animation
-        if refreshControl!.refreshing && !isAnimating {
+        let refreshing = refreshControl?.refreshing ?? false
+        if refreshing && !isAnimating {
             animateRefreshStep1()
         }
     }
 
-    func animationDidStart() {
+    func refreshAnimationDidStart() {
         let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
         rotate.toValue = M_PI * 2
         rotate.duration  = 0.9
@@ -127,7 +123,7 @@ extension CloudAnimateTableViewController: RefreshControlAnimationDelegate {
         cloudRefresh.refreshingImageView.layer.addAnimation(rotate, forKey: "rotate")
     }
 
-    func animationDidEnd() {
+    func refreshAnimationDidFinish() {
         if !isAnimating {
             return
         }

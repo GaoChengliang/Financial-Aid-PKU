@@ -17,19 +17,8 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
         super.viewDidLoad()
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        navigationItem.backBarButtonItem = {
-            let backButtonItem = UIBarButtonItem()
-            backButtonItem.title = AppConstant.Me
-            return backButtonItem
-        }()
-    }
-
-    
-    let name = [AppConstant.Gender, AppConstant.Birthday, AppConstant.PhoneNumber, AppConstant.Email]
+    let name = [AppConstants.Gender, AppConstants.Birthday, AppConstants.PhoneNumber, AppConstants.Email]
     let value = ["女", "1996-11-11", "13888888888", "hmm@pku.edu.cn"]
-    
 
     // MARK: - Table view data source
 
@@ -39,7 +28,7 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if section == 1{
+        if section == 1 {
             return 4
         }
         return 1
@@ -53,12 +42,13 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
             let cell = tableView.dequeueReusableCellWithIdentifier("UserPortraitTableViewCell", forIndexPath: indexPath) as! UserPortraitTableViewCell
             cell.portrait.image = UIImage(named: "portrait1")
             cell.name.text = "韩梅梅"
-            cell.SID.text = "1700017888"
+            cell.studentID.text = "1700017888"
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("UserInformationTableViewCell", forIndexPath: indexPath) as! UserInformationTableViewCell
-            cell.name.text = name[indexPath.row]
-            cell.value.text = value[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier("UserInformationTableViewCell", forIndexPath: indexPath)
+            let row = indexPath.row
+            cell.textLabel?.text = name[row]
+            cell.detailTextLabel?.text = value[row]
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableViewCell", forIndexPath: indexPath)
@@ -72,21 +62,21 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
         }
         return 44
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 0:
             editImage()
         case 1:
-            if indexPath.row == 0{
+            if indexPath.row == 0 {
                 performSegueWithIdentifier("EditGenderSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
-            
-            if indexPath.row == 1{
+
+            if indexPath.row == 1 {
                 performSegueWithIdentifier("EditBirthdaySegue", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
-            
-            if indexPath.row == 2 || indexPath.row == 3{
+
+            if indexPath.row == 2 || indexPath.row == 3 {
                 performSegueWithIdentifier("EditProfileSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
             }
 
@@ -95,20 +85,20 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
-    
+
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
             case "EditProfileSegue":
-                let cell = sender as! UserInformationTableViewCell
-                if let indexPath = tableView.indexPathForCell(cell) {
-                    let MVC = segue.destinationViewController as! EditProfileViewController
-                    MVC.title = name[indexPath.row]
-                    MVC.index = indexPath.row
-                    MVC.value = value[indexPath.row]
-                }
-            
+//                let cell = sender as! UserInformationTableViewCell
+//                if let indexPath = tableView.indexPathForCell(cell) {
+//                    let MVC = segue.destinationViewController as! EditProfileViewController
+//                    MVC.title = name[indexPath.row]
+//                    MVC.index = indexPath.row
+//                    MVC.value = value[indexPath.row]
+//                }
+                fallthrough
             case "EditGenderSegue":
                 let MVC = segue.destinationViewController as! EditGenderTableViewController
                 MVC.gender = 1
@@ -119,8 +109,8 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
 
 
     func editImage() {
-        let alertController = UIAlertController(title: AppConstant.EditPortrait, message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
-        let alertActionCamera = UIAlertAction(title: AppConstant.OpenCamera, style: UIAlertActionStyle.Default) {
+        let alertController = UIAlertController(title: AppConstants.EditPortrait, message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
+        let alertActionCamera = UIAlertAction(title: AppConstants.OpenCamera, style: UIAlertActionStyle.Default) {
             alert in
             if UIImagePickerController.isSourceTypeAvailable(.Camera) {
                 let picker = UIImagePickerController()
@@ -132,7 +122,7 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
             }
         }
         alertController.addAction(alertActionCamera)
-        let alertActionAlbum = UIAlertAction(title: AppConstant.OpenAlbum, style: UIAlertActionStyle.Default) {
+        let alertActionAlbum = UIAlertAction(title: AppConstants.OpenAlbum, style: UIAlertActionStyle.Default) {
             alert in
             if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
                 let picker = UIImagePickerController()
@@ -146,7 +136,7 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
         alertController.addAction(alertActionAlbum)
 
 
-        let alertActionCancel = UIAlertAction(title: AppConstant.Cancel, style: UIAlertActionStyle.Cancel) {
+        let alertActionCancel = UIAlertAction(title: AppConstants.Cancel, style: UIAlertActionStyle.Cancel) {
             alert in  alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(alertActionCancel)

@@ -17,11 +17,11 @@ class EditBirthdayViewController: UIViewController {
     }
 
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+
     @IBAction func save(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     @IBAction func cancel(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

@@ -14,7 +14,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = AppConstant.Edit
+        self.title = AppConstants.Edit
     }
 
     // MARK: - Table view data source
@@ -36,10 +36,10 @@ class SettingsTableViewController: UITableViewController {
         }
         return cell
     }
-    
-    
+
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0{
+        if indexPath.section == 0 {
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             performSegueWithIdentifier("ChangePwdSegue", sender: cell)
         }

@@ -9,19 +9,15 @@
 import Foundation
 
 struct Form {
-    var name: String
-    var startDate: NSDate
-    var endDate: NSDate
-
-    init() {
-        name = ""
-        startDate = NSDate()
-        endDate = NSDate()
-    }
-
-    init(name: String, startDate: NSDate, endDate: NSDate) {
-        self.name = name
-        self.startDate = startDate
-        self.endDate = endDate
-    }
+    var ID: Int = 0
+    var active = false
+    var isStepHelp = false
+    var isStepFill = false
+    var isStepPdf = false
+    var isStepUpload = false
+    var helpPath = ""
+    var fillPath = ""
+    var name = "1111"
+    var startDate = NSDate()
+    var endDate = NSDate()
 }

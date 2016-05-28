@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  FinancialAid
+
+  Created by PengZhao on 16/5/27.
+  Copyright © 2016年 pku. All rights reserved.
+*/
+
+"Network failure, please pull to refresh." = "网络错误，请刷新重试";
+"Tips" = "填表帮助";
+"Fill form" = "填写表格";

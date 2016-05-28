@@ -13,11 +13,11 @@ class EditGenderTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.title = AppConstant.Gender
+        self.title = AppConstants.Gender
     }
-    
-    var gender = 0{
-        didSet{
+
+    var gender = 0 {
+        didSet {
             tableView.reloadData()
         }
     }
@@ -41,22 +41,22 @@ class EditGenderTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell:UITableViewCell! = nil
-        
-        if indexPath.row == gender{
+
+        var cell: UITableViewCell! = nil
+
+        if indexPath.row == gender {
             cell = tableView.dequeueReusableCellWithIdentifier("EditGenderTableViewCellChecked", forIndexPath: indexPath)
-        }else{
+        } else {
             cell = tableView.dequeueReusableCellWithIdentifier("EditGenderTableViewCellUnchecked", forIndexPath: indexPath)
         }
-        if indexPath.row == 0{
-            cell.textLabel?.text = AppConstant.Male
-        }else{
-            cell.textLabel?.text = AppConstant.Female
+        if indexPath.row == 0 {
+            cell.textLabel?.text = AppConstants.Male
+        } else {
+            cell.textLabel?.text = AppConstants.Female
         }
         return cell
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         gender = indexPath.row
     }
@@ -77,7 +77,7 @@ class EditGenderTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
