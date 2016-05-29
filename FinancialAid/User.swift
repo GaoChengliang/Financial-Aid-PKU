@@ -9,6 +9,7 @@
 import Foundation
 
 class User {
+
     static let sharedInstance = User()
 
     var userName = ""

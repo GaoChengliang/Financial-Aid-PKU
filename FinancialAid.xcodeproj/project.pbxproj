@@ -14,7 +14,7 @@
 		6AB1541F1CF5C645007191DB /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541A1CF5C645007191DB /* AppConstants.swift */; };
 		6AB154201CF5C645007191DB /* FormOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */; };
 		6AB154211CF5C645007191DB /* FormWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541C1CF5C645007191DB /* FormWebViewController.swift */; };
-		6AB154221CF5C645007191DB /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541D1CF5C645007191DB /* LoginTableViewController.swift */; };
+		6AB154221CF5C645007191DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541D1CF5C645007191DB /* LoginViewController.swift */; };
 		6ACCF48F1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACCF48E1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift */; };
 		6ACCF4911CF5DBB700025AA0 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACCF4901CF5DBB700025AA0 /* UserTableViewController.swift */; };
 		6ADD4D101CF6A32500B4CBEC /* ChangePwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADD4D0F1CF6A32500B4CBEC /* ChangePwdViewController.swift */; };
@@ -50,6 +50,8 @@
 		F878B6901CF5E17900A3CC01 /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = F878B68F1CF5E17900A3CC01 /* RefreshContents.xib */; };
 		F878B6921CF5EF0B00A3CC01 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F878B6911CF5EF0B00A3CC01 /* EditProfileViewController.swift */; };
 		F878B6941CF839FE00A3CC01 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F878B6931CF839FE00A3CC01 /* Localizable.strings */; };
+		F8B76FB51CFAAEE9007A4CE0 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B76FB41CFAAEE9007A4CE0 /* Login.swift */; };
+		F8B76FB71CFAB987007A4CE0 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B76FB61CFAB987007A4CE0 /* TextFieldCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +82,7 @@
 		6AB1541A1CF5C645007191DB /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConstants.swift; path = FinancialAid/AppConstants.swift; sourceTree = "<group>"; };
 		6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormOptionTableViewController.swift; path = FinancialAid/FormOptionTableViewController.swift; sourceTree = "<group>"; };
 		6AB1541C1CF5C645007191DB /* FormWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormWebViewController.swift; path = FinancialAid/FormWebViewController.swift; sourceTree = "<group>"; };
-		6AB1541D1CF5C645007191DB /* LoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginTableViewController.swift; path = FinancialAid/LoginTableViewController.swift; sourceTree = "<group>"; };
+		6AB1541D1CF5C645007191DB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = FinancialAid/LoginViewController.swift; sourceTree = "<group>"; };
 		6ACCF48E1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPortraitTableViewCell.swift; path = FinancialAid/UserPortraitTableViewCell.swift; sourceTree = "<group>"; };
 		6ACCF4901CF5DBB700025AA0 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewController.swift; path = FinancialAid/UserTableViewController.swift; sourceTree = "<group>"; };
 		6ADD4D0F1CF6A32500B4CBEC /* ChangePwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangePwdViewController.swift; path = FinancialAid/ChangePwdViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,9 @@
 		F878B68F1CF5E17900A3CC01 /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RefreshContents.xib; path = FinancialAid/RefreshContents.xib; sourceTree = "<group>"; };
 		F878B6911CF5EF0B00A3CC01 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = FinancialAid/EditProfileViewController.swift; sourceTree = "<group>"; };
 		F878B6931CF839FE00A3CC01 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F8B76FB41CFAAEE9007A4CE0 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = FinancialAid/Login.swift; sourceTree = "<group>"; };
+		F8B76FB61CFAB987007A4CE0 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldCell.swift; path = FinancialAid/TextFieldCell.swift; sourceTree = "<group>"; };
+		F8B76FBB1CFAC20A007A4CE0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +157,7 @@
 		90EB69F857349A6417E289A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8B76FBB1CFAC20A007A4CE0 /* XCTest.framework */,
 				3404DBB50C7F94BD8F2CD996 /* Pods_FinancialAid.framework */,
 			);
 			name = Frameworks;
@@ -244,6 +250,7 @@
 			children = (
 				F878B6871CF5DCF800A3CC01 /* Form.swift */,
 				F801626F1CF9AF8100C6C582 /* User.swift */,
+				F8B76FB41CFAAEE9007A4CE0 /* Login.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -251,11 +258,11 @@
 		F869E9981CEB3C55001A9D03 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F878B68F1CF5E17900A3CC01 /* RefreshContents.xib */,
-				F878B68D1CF5E16100A3CC01 /* RefreshContents.swift */,
+				F8B76FB81CFABC3E007A4CE0 /* RefreshContents */,
 				F878B6891CF5DF2000A3CC01 /* FormTableViewCell.swift */,
 				6ACCF48E1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift */,
 				F80162711CF9B08A00C6C582 /* ProgressView.swift */,
+				F8B76FB61CFAB987007A4CE0 /* TextFieldCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -266,7 +273,7 @@
 				F878B68B1CF5E11E00A3CC01 /* CloudAnimateTableViewController.swift */,
 				F869E9A41CEB3D5A001A9D03 /* TabBarController.swift */,
 				6A01A93C1CEB590E00D106AA /* FormTableViewController.swift */,
-				6AB1541D1CF5C645007191DB /* LoginTableViewController.swift */,
+				6AB1541D1CF5C645007191DB /* LoginViewController.swift */,
 				6AB1541C1CF5C645007191DB /* FormWebViewController.swift */,
 				6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */,
 				6ACCF4901CF5DBB700025AA0 /* UserTableViewController.swift */,
@@ -293,6 +300,15 @@
 				F869E9A71CEB3D5A001A9D03 /* SDWebImage.swift */,
 			);
 			name = Wrapper;
+			sourceTree = "<group>";
+		};
+		F8B76FB81CFABC3E007A4CE0 /* RefreshContents */ = {
+			isa = PBXGroup;
+			children = (
+				F878B68D1CF5E16100A3CC01 /* RefreshContents.swift */,
+				F878B68F1CF5E17900A3CC01 /* RefreshContents.xib */,
+			);
+			name = RefreshContents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,13 +522,15 @@
 				6AB154201CF5C645007191DB /* FormOptionTableViewController.swift in Sources */,
 				F869E99D1CEB3C68001A9D03 /* NetworkManager.swift in Sources */,
 				F869E9BC1CEB3D5A001A9D03 /* CocoaLumberjack.swift in Sources */,
-				6AB154221CF5C645007191DB /* LoginTableViewController.swift in Sources */,
+				6AB154221CF5C645007191DB /* LoginViewController.swift in Sources */,
 				F869E9B71CEB3D5A001A9D03 /* UITabBarItem.swift in Sources */,
 				F878B68A1CF5DF2000A3CC01 /* FormTableViewCell.swift in Sources */,
 				6A320E2E1CF6BA9000E1F751 /* EditBirthdayViewController.swift in Sources */,
+				F8B76FB51CFAAEE9007A4CE0 /* Login.swift in Sources */,
 				F869E9B61CEB3D5A001A9D03 /* UIViewController.swift in Sources */,
 				6AB1541F1CF5C645007191DB /* AppConstants.swift in Sources */,
 				6AB154211CF5C645007191DB /* FormWebViewController.swift in Sources */,
+				F8B76FB71CFAB987007A4CE0 /* TextFieldCell.swift in Sources */,
 				F869E9C01CEB3D5A001A9D03 /* Character.swift in Sources */,
 				F869E9B51CEB3D5A001A9D03 /* TabBarController.swift in Sources */,
 				6ACCF48F1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift in Sources */,
@@ -607,6 +625,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -653,6 +672,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

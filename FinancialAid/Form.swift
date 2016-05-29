@@ -17,7 +17,7 @@ struct Form {
     var isStepUpload = false
     var helpPath = ""
     var fillPath = ""
-    var name = "1111"
+    var name = ""
     var startDate = NSDate()
     var endDate = NSDate()
 }

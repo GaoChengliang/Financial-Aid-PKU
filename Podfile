@@ -9,6 +9,7 @@ target :FinancialAid do
 
 	# Model related
 	pod 'SwiftyJSON', '2.3.2'
+	pod 'MJExtension', '3.0.10'
 
 	# Network
 	pod 'Alamofire', '3.1.4'
@@ -18,4 +19,8 @@ target :FinancialAid do
 	pod 'KeychainAccess', '2.3.3'
 	pod 'CocoaLumberjack', '2.2.0'
 	pod 'OHHTTPStubs',  '4.6.0'
+
+	# Test
+	# pod 'Nimble', '4.0.1'
+	# pod 'Quick', '0.9.2'
 end

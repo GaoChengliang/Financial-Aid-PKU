@@ -6,7 +6,9 @@
 //  Copyright (c) 2015年 PKU. All rights reserved.
 //
 
+import CocoaLumberjack
 import KeychainAccess
+import MJExtension
 import SwiftyJSON
 
 class ContentManager: NSObject {
@@ -16,36 +18,17 @@ class ContentManager: NSObject {
 
     // MARK: Key chain
     private static let keychain: Keychain = {
-        let bundle = NSBundle.mainBundle()
-        let bundleIdentifier = bundle.bundleIdentifier!
+        let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier!
         return Keychain(service: bundleIdentifier)
     }()
 
-    // UserName, UserID, Token, and Password can identify an unique user
+    // UserName and Password can identify an unique user
     static var UserName: String? {
         get {
             return try? keychain.getString("name") ?? ""
         }
         set {
             setKeyChainItem(newValue, forKey: "name")
-        }
-    }
-
-    static var UserID: String? {
-        get {
-            return try? keychain.getString("_id") ?? ""
-        }
-        set {
-            setKeyChainItem(newValue, forKey: "_id")
-        }
-    }
-
-    static var Token: String? {
-        get {
-            return try? keychain.getString("token") ?? ""
-        }
-        set {
-            setKeyChainItem(newValue, forKey: "token")
         }
     }
 
@@ -69,12 +52,42 @@ class ContentManager: NSObject {
         }
     }
 
-    /**
-     Each method correspond to some kinds of data retrieval operation.
-     Basically, we first ask NetworkManager to require data from network, however it fails, we
-     will query the local database, and the callback block will be executed.
-     */
-//
+    func login(userName: String, password: String, block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.login(userName, password: password) {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Login success \(userName)")
+                print(json["data"].description)
+
+            } else {
+                DDLogInfo("Login failed \(userName): \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue(), {
+                block?(error: error)
+            })
+        }
+    }
+
+    func register(userName: String, password: String, block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.register(userName, password: password) {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Register success \(userName)")
+                print(json["data"].string)
+
+            } else {
+                DDLogInfo("Register failed \(userName): \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue(), {
+                block?(error: error)
+            })
+        }
+    }
+
 //    func courseList(block: ((error: NetworkErrorType?) -> Void)?) {
 //        NetworkManager.sharedInstance.courseList(ContentManager.UserID ?? "",
 //            token: ContentManager.Token ?? "") {
@@ -94,6 +107,6 @@ class ContentManager: NSObject {
 //            }
 //        }
 //    }
-//
+
 
 }
