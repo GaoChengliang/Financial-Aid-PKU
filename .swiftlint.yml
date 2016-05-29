@@ -1,6 +1,7 @@
 disabled_rules:
   - variable_name
   - conditional_binding_cascade
+  - function_body_length
 included: # paths to include during linting. `--path` is ignored if present.
   - FinancialAid
 excluded: # paths to ignore during linting. Takes precedence over `included`.

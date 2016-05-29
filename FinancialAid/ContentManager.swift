@@ -58,8 +58,7 @@ class ContentManager: NSObject {
 
             if error == nil, let json = json {
                 DDLogInfo("Login success \(userName)")
-                print(json["data"].description)
-
+                self.saveUser(json["data"].description, userName: userName, password: password)
             } else {
                 DDLogInfo("Login failed \(userName): \(error)")
             }
@@ -76,8 +75,7 @@ class ContentManager: NSObject {
 
             if error == nil, let json = json {
                 DDLogInfo("Register success \(userName)")
-                print(json["data"].string)
-
+                self.saveUser(json["data"].description, userName: userName, password: password)
             } else {
                 DDLogInfo("Register failed \(userName): \(error)")
             }
@@ -108,5 +106,10 @@ class ContentManager: NSObject {
 //        }
 //    }
 
-
+    func saveUser(json: String, userName: String, password: String) {
+        User.sharedInstance = User.mj_objectWithKeyValues(json)
+        // Inject cookies
+        ContentManager.UserName = User.sharedInstance.userName
+        ContentManager.Password = password
+    }
 }

@@ -147,17 +147,7 @@ class LoginViewController: UIViewController {
                 self.enableLoginButton()
 
                 if let error = error {
-//                    if case .NetworkForbiddenAccess = error {
-//                        if self.status == LoginStatus.Login {
-//                            SVProgressHUD.showErrorWithStatus(GlobalConstants.PasswordWrongPrompt)
-//                        } else {
-//                            SVProgressHUD.showErrorWithStatus(GlobalConstants.DuplicateUserName)
-//                        }
-//                    } else if case .NetworkUnreachable = error {
-//                        SVProgressHUD.showErrorWithStatus(GlobalConstants.LoginOrRegisterErrorPrompt)
-//                    } else {
-//                        SVProgressHUD.showErrorWithStatus(GlobalConstants.ServerErrorPrompt)
-//                    }
+                    SVProgressHUD.showErrorWithStatus("Error")
                 } else {
                     if self.isRuntimeInit {
                         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)

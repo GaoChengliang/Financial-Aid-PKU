@@ -7,16 +7,31 @@
 //
 
 import Foundation
+import MJExtension
 
-class User {
+class User: NSObject {
 
-    static let sharedInstance = User()
+    static var sharedInstance = User()
 
+    var ID = ""
     var userName = ""
-    var password = ""
-    var realname = ""
+    var realName = ""
     var gender = ""
     var birthday = ""
     var phone = ""
     var email = ""
+}
+
+extension User {
+    override static func mj_replacedKeyFromPropertyName() -> [NSObject : AnyObject]! {
+        return [
+            "realName" : "realname",
+            "gender" : "gender",
+            "phone" : "phone",
+            "birthday" : "birthday",
+            "email" : "email",
+            "userName" : "username",
+            "ID": "id"
+        ]
+    }
 }

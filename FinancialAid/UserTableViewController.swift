@@ -25,7 +25,7 @@ class UserTableViewController: UITableViewController {
     func setupUserInformation(studentID: String, name: String, portrait: String, gender: String,
                               birthday: String, phoneNum: String, email: String) {
         user.userName = studentID
-        user.realname = name
+        user.realName = name
         user.gender = gender
         user.birthday = birthday
         user.phone = phoneNum
@@ -47,7 +47,7 @@ class UserTableViewController: UITableViewController {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         if indexPath.section == 0 {
             if let cell_ = cell as? UserPortraitTableViewCell {
-                cell_.name?.text = user.realname
+                cell_.name?.text = user.realName
                 cell_.portrait?.image = UIImage(named: portrait)
                 cell_.studentID?.text = user.userName
                 return cell_
