@@ -59,6 +59,8 @@ class NetworkManager: NSObject {
     private static let Manager: Alamofire.Manager = {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 10.0
+        configuration.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        configuration.HTTPCookieAcceptPolicy = .Always
         return Alamofire.Manager(configuration: configuration, serverTrustPolicyManager: nil)
     }()
 
