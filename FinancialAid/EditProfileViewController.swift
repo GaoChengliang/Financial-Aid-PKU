@@ -8,29 +8,28 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextFieldDelegate {
+class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let barItem =  UIBarButtonItem(title: AppConstants.Save, style: .Done, target: self, action: #selector(EditProfileViewController.saveEdit))
+        let barItem =  UIBarButtonItem(title: NSLocalizedString("Save", comment: "save button item"),
+                                       style: .Done, target: self, action: #selector(EditProfileViewController.saveEdit))
         self.navigationItem.rightBarButtonItem = barItem
-
         textField.delegate = self
         textField.text = value
     }
 
-    var index = 0
     var value = ""
 
     func saveEdit() {
         self.navigationController?.popViewControllerAnimated(true)
     }
+}
 
-
+extension EditProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-
 }
