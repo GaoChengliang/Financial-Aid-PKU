@@ -14,11 +14,10 @@ class FormWebViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
 
     var timer = NSTimer()
-    var url: NSURL? = nil
+    var url: NSURL!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(url)
-        webView.loadRequest(NSURLRequest(URL: url!))
+        webView.loadRequest(NSURLRequest(URL: url))
     }
 
     func timerCallback() {

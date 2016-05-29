@@ -151,7 +151,17 @@ class LoginViewController: UIViewController {
                 self.enableLoginButton()
 
                 if let error = error {
-                    SVProgressHUD.showErrorWithStatus("Error")
+                    if case NetworkErrorType.NetworkUnreachable(_) = error {
+                        SVProgressHUD.showErrorWithStatus(
+                            NSLocalizedString("Network timeout",
+                                comment: "network timeout or interruptted")
+                        )
+                    } else {
+                        SVProgressHUD.showErrorWithStatus(
+                            NSLocalizedString("Username or password is incorrect",
+                                comment: "wrong username or password")
+                        )
+                    }
                 } else {
                     if self.isRuntimeInit {
                         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)

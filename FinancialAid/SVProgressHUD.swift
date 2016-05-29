@@ -19,5 +19,6 @@ extension SVProgressHUD {
         SVProgressHUD.setErrorImage(UIImage(named: "Error"))
         SVProgressHUD.setSuccessImage(UIImage(named: "Success"))
         SVProgressHUD.setRingThickness(5.0)
+        SVProgressHUD.setMinimumDismissTimeInterval(2.0)
     }
 }

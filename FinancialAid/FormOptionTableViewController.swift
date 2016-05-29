@@ -58,10 +58,10 @@ class FormOptionTableViewController: UITableViewController {
         switch segueIdentifer {
         case Constants.HelpSegueIdentifier:
             fwvc.title = NSLocalizedString("Tips", comment: "tips for filling the form")
-            fwvc.url = NSURL(string: form.helpPath)
+            fwvc.url = NetworkManager.sharedInstance.relativeURL(form.helpPath)
         case Constants.FillFormSegueIdentifier:
             fwvc.title = NSLocalizedString("Fill form", comment: "fill the form")
-            fwvc.url = NSURL(string: form.fillPath)
+            fwvc.url = NetworkManager.sharedInstance.relativeURL(form.fillPath)
         default:
             break
         }

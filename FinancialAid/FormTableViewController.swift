@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class FormTableViewController: CloudAnimateTableViewController {
 
@@ -25,7 +26,10 @@ class FormTableViewController: CloudAnimateTableViewController {
     func retriveFormList() {
         ContentManager.sharedInstance.formList {
             if $0 != nil {
-                print("Error occurred")
+                SVProgressHUD.showErrorWithStatus(
+                    NSLocalizedString("Network timeout",
+                        comment: "network timeout or interruptted")
+                )
             }
             self.tableView.reloadData()
             self.refreshAnimationDidFinish()

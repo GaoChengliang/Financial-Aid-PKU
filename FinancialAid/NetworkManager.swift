@@ -95,26 +95,18 @@ class NetworkManager: NSObject {
             PendingOpDict.removeValueForKey(key)
 
             // Deal with statusCode and JSON from server
+
             if result.isSuccess && (statusCode >= 200 && statusCode < 300) {
-                json = JSON(result.value!)
+                let value = JSON(result.value!)
+                json = value
+                if (value["error"].int ?? 1) > 0 {
+                    error = NetworkErrorType.NetworkWrongParameter("Bad request")
+                }
             } else {
                 if result.isFailure {
                     error = NetworkErrorType.NetworkUnreachable("\(result.error)")
-                } else if let value = result.value {
-                    // Retrieve error message, pls refer to 'API.md' for details
-                    let message = JSON(value)["message"].stringValue
-
-                    if statusCode == Constants.ForbiddenStatusCode ||
-                       statusCode == Constants.UnauthorizedStatusCode {
-                        error = NetworkErrorType.NetworkUnauthenticated(message ?? "Unauthenticated access")
-                    } else if statusCode == Constants.BadRequestStatusCode ||
-                              statusCode == Constants.NotFoundStatusCode {
-                        error = NetworkErrorType.NetworkForbiddenAccess(message ?? "Bad request")
-                    } else if case(400..<500) = statusCode {
-                        error = NetworkErrorType.NetworkWrongParameter(message ?? "Wrong parameters")
-                    } else if case(500...505) = statusCode {
-                        error = NetworkErrorType.NetworkServerError(message ?? "Server error")
-                    }
+                } else {
+                    error = NetworkErrorType.NetworkServerError("Server error")
                 }
             }
             // execute the block
@@ -170,6 +162,11 @@ extension NetworkManager {
                 return ParameterEncoding.JSON.encode(URLRequest, parameters: parameters).0
             }
         }
+    }
+
+    func relativeURL(urlString: String) -> NSURL {
+        let baseURL = NSURL(string: Router.APIURLString)!
+        return baseURL.URLByAppendingPathComponent(urlString)
     }
 
     func login(userName: String, password: String, callback: NetworkCallbackBlock) {
