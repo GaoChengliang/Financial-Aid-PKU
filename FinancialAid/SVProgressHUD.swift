@@ -12,7 +12,7 @@ extension SVProgressHUD {
 
     class func config() {
         SVProgressHUD.setDefaultMaskType(.Black)
-//        SVProgressHUD.setDefaultStyle(.Custom)
+        SVProgressHUD.setDefaultStyle(.Custom)
         SVProgressHUD.setBackgroundColor(UIColor.flatWhiteColor())
         SVProgressHUD.setForegroundColor(UIColor.flatGrayColorDark().darkenByPercentage(0.3))
         SVProgressHUD.setFont(UIFont.systemFontOfSize(14.0))

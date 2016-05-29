@@ -30,8 +30,6 @@ extension TextFieldCell {
 
         textField.text = content
         textField.placeholder = placeholder
-        textField.keyboardType = keyboardType
-
         textField.secureTextEntry = isSecure
         textField.clearsOnBeginEditing = isSecure
         textField.clearButtonMode = isSecure ? .WhileEditing : .Never

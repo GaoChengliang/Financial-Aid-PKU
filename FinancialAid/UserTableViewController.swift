@@ -48,7 +48,7 @@ class UserTableViewController: UITableViewController {
         if indexPath.section == 0 {
             if let cell_ = cell as? UserPortraitTableViewCell {
                 cell_.name?.text = user.realName
-                cell_.portrait?.image = UIImage(named: portrait)
+                cell_.portrait?.image = UIImage(named: "DefaultPortrait")
                 cell_.studentID?.text = user.userName
                 return cell_
             }

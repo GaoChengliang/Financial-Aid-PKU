@@ -14,7 +14,6 @@ class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Setup", comment: "app setup")
     }
 
     private struct Constants {
