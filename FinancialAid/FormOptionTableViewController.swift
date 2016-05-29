@@ -18,18 +18,41 @@ class FormOptionTableViewController: UITableViewController {
         static let FillFormSegueIdentifier = "FormFillSegue"
     }
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         title = form.name
-    }
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if indexPath.row == 0 {
-            performSegueWithIdentifier(Constants.FillFormSegueIdentifier, sender: cell)
+        if form.isStepHelp {
+            let barItem = UIBarButtonItem(image: UIImage(named: "FillFormGuide"),
+                                          style: .Done, target: self,
+                                          action: #selector(FormOptionTableViewController.formHelp))
+            self.navigationItem.rightBarButtonItem = barItem
         }
+
     }
 
+    func formHelp() {
+        performSegueWithIdentifier(Constants.HelpSegueIdentifier, sender: self)
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        if indexPath.row == 0 && !form.isStepFill {
+            cell.userInteractionEnabled = false
+            cell.accessoryType = .None
+        }
+        if indexPath.row == 1 && !form.isStepPdf {
+            cell.userInteractionEnabled = false
+            cell.accessoryType = .None
+        }
+        if indexPath.row == 2 && !form.isStepUpload {
+            cell.userInteractionEnabled = false
+            cell.accessoryType = .None
+        }
+        return cell
+    }
 
     // MARK: - Navigation
 

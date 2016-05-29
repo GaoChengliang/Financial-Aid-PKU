@@ -14,7 +14,8 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let barItem =  UIBarButtonItem(title: NSLocalizedString("Save", comment: "save button item"),
-                                       style: .Done, target: self, action: #selector(EditProfileViewController.saveEdit))
+                                       style: .Done, target: self,
+                                       action: #selector(EditProfileViewController.saveEdit))
         self.navigationItem.rightBarButtonItem = barItem
         textField.delegate = self
         textField.text = value
