@@ -14,7 +14,8 @@ class ChangePwdViewController: UIViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("Change password", comment: "change password")
         let barItem =  UIBarButtonItem(title: NSLocalizedString("Save", comment: "save button item"),
-                                       style: .Done, target: self, action: #selector(ChangePwdViewController.changePwdAction))
+                                       style: .Done, target: self,
+                                       action: #selector(ChangePwdViewController.changePwdAction))
         self.navigationItem.rightBarButtonItem = barItem
 
         oldPwd.delegate = self

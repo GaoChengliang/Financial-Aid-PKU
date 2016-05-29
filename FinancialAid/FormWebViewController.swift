@@ -17,7 +17,8 @@ class FormWebViewController: UIViewController {
     var url: NSURL? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com")!))
+        print(url)
+        webView.loadRequest(NSURLRequest(URL: url!))
     }
 
     func timerCallback() {

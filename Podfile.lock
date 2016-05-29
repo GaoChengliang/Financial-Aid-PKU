@@ -34,16 +34,16 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - Alamofire
-  - ChameleonFramework/Swift
-  - CocoaLumberjack
-  - DZNEmptyDataSet
-  - KeychainAccess
-  - MJExtension
-  - OHHTTPStubs
-  - SDWebImage
-  - SVProgressHUD
-  - SwiftyJSON
+  - Alamofire (= 3.4.0)
+  - ChameleonFramework/Swift (= 2.1.0)
+  - CocoaLumberjack (= 2.3.0)
+  - DZNEmptyDataSet (= 1.8.1)
+  - KeychainAccess (= 2.3.5)
+  - MJExtension (= 3.0.10)
+  - OHHTTPStubs (= 5.0.0)
+  - SDWebImage (= 3.7.6)
+  - SVProgressHUD (= 2.0.3)
+  - SwiftyJSON (= 2.3.2)
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
@@ -57,6 +57,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 2ce426f5dacd645efeb2801136fe184184f50f12
+PODFILE CHECKSUM: 5303a341bdc05f7aba8b76c7f227cbeb741ac351
 
 COCOAPODS: 1.0.0
