@@ -26,7 +26,7 @@ class FormOptionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if indexPath.row == 0 {
-            performSegueWithIdentifier("FormFillSegue", sender: cell)
+            performSegueWithIdentifier(Constants.FillFormSegueIdentifier, sender: cell)
         }
     }
 
@@ -39,8 +39,10 @@ class FormOptionTableViewController: UITableViewController {
         switch segueIdentifer {
         case Constants.HelpSegueIdentifier:
             fwvc.title = NSLocalizedString("Tips", comment: "tips for filling the form")
+            fwvc.url = NSURL(string: form.helpPath)
         case Constants.FillFormSegueIdentifier:
             fwvc.title = NSLocalizedString("Fill form", comment: "fill the form")
+            fwvc.url = NSURL(string: form.fillPath)
         default:
             break
         }

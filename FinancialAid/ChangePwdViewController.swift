@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ChangePwdViewController: UIViewController, UITextFieldDelegate {
+class ChangePwdViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = AppConstants.ChangePwd
-        let barItem =  UIBarButtonItem(title: AppConstants.Save, style: .Done, target: self, action: #selector(ChangePwdViewController.changePwdAction))
+        self.title = NSLocalizedString("Change password", comment: "change password")
+        let barItem =  UIBarButtonItem(title: NSLocalizedString("Save", comment: "save button item"),
+                                       style: .Done, target: self, action: #selector(ChangePwdViewController.changePwdAction))
         self.navigationItem.rightBarButtonItem = barItem
 
         oldPwd.delegate = self
@@ -39,9 +40,9 @@ class ChangePwdViewController: UIViewController, UITextFieldDelegate {
     func changePwdAction() {
         //
     }
+}
 
-
-
+extension ChangePwdViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField.tag == 101 {
             newPwd.becomeFirstResponder()
@@ -55,5 +56,4 @@ class ChangePwdViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
 }

@@ -9,3 +9,19 @@
 "Network failure, please pull to refresh." = "网络错误，请刷新重试";
 "Tips" = "填表帮助";
 "Fill form" = "填写表格";
+"Me" = "我";
+"Edit portrait" = "上传头像";
+"Open camera" = "拍照";
+"Open album" = "打开相册";
+"Cancel" = "取消";
+"Save" = "保存";
+"Setup" = "设置";
+"Change password" = "修改密码";
+"Male" = "男";
+"Female" = "女";
+"Gender" = "性别";
+"Birthday" = "生日";
+"Phone number" = "电话号码";
+"Email" = "邮箱";
+
+
