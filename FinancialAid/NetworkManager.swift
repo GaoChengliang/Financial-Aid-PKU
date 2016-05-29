@@ -53,6 +53,7 @@ class NetworkManager: NSObject {
 
         static let LoginKey         = "Login"
         static let RegisterKey      = "Register"
+        static let FormListKey      = "Form List"
     }
 
     // Default network manager, timeout set to 10s
@@ -137,6 +138,7 @@ extension NetworkManager {
         // Different types of network request
         case Login(String, String)
         case Register(String, String)
+        case FormList()
 
         var URLRequest: NSMutableURLRequest {
 
@@ -149,6 +151,8 @@ extension NetworkManager {
                 case .Register(let userName, let password):
                     let params = ["username": userName, "password": password]
                     return ("/user/register", Method.POST, params)
+                case .FormList:
+                    return ("/form/list", Method.GET, [:])
                 }
             }()
 
@@ -178,5 +182,11 @@ extension NetworkManager {
         guard !NetworkManager.existPendingOperation(Constants.RegisterKey) else { return }
         let request = NetworkManager.Manager.request(Router.Register(userName, password))
         NetworkManager.executeRequestWithKey(Constants.RegisterKey, request: request, callback: callback)
+    }
+
+    func formList(callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.FormListKey) else { return }
+        let request = NetworkManager.Manager.request(Router.FormList())
+        NetworkManager.executeRequestWithKey(Constants.FormListKey, request: request, callback: callback)
     }
 }

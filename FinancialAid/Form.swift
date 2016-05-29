@@ -39,17 +39,36 @@ extension Form {
             "fillPath": "fill_path"
         ]
     }
-    
+
     override func mj_newValueFromOldValue(oldValue: AnyObject!, property: MJProperty!) -> AnyObject! {
-        print(property.name)
-        print(oldValue)
-        return oldValue
-//        switch property.name {
-//        case "ID":
-//            return NSNumber(
-//        default:
-//            <#code#>
-//        }
+        switch property.name {
+        case "active":
+            fallthrough
+        case "isStepHelp":
+            fallthrough
+        case "isStepFill":
+            fallthrough
+        case "isStepPdf":
+            fallthrough
+        case "isStepUpload":
+            return NSNumber(long: oldValue as? Int ?? 0).boolValue
+        case "startDate":
+            fallthrough
+        case "endDate":
+            let dateString = "\(oldValue)"
+            let formatter = NSDateFormatter.inputFormatter()
+            return formatter.dateFromString(dateString)
+        case "helpPath":
+            fallthrough
+        case "fillPath":
+            fallthrough
+        case "ID":
+            fallthrough
+        case "name":
+            fallthrough
+        default:
+            return oldValue
+        }
     }
 }
 
@@ -58,6 +77,9 @@ class FormList: NSObject {
     static var sharedInstance = FormList()
 
     var formList = [Form]()
+    var count: Int {
+        return formList.count
+    }
 
     subscript(index: Int) -> Form {
         get {

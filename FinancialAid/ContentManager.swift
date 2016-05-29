@@ -86,29 +86,27 @@ class ContentManager: NSObject {
         }
     }
 
-//    func courseList(block: ((error: NetworkErrorType?) -> Void)?) {
-//        NetworkManager.sharedInstance.courseList(ContentManager.UserID ?? "",
-//            token: ContentManager.Token ?? "") {
-//            (json, error) in
-//
-//            if error == nil, let json = json {
-//                DDLogInfo("Querying course list success")
-//
-//                CoreDataManager.sharedInstance.deleteAllCourses()
-//                let _ = Course.convertWithJSONArray(json["courses"].arrayValue)
-//            } else {
-//                DDLogInfo("Querying course list failed: \(error)")
-//            }
-//
-//            dispatch_async(dispatch_get_main_queue()) {
-//                block?(error: error)
-//            }
-//        }
-//    }
+    func formList(block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.formList() {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Querying form list success")
+                FormList.sharedInstance.formList = NSArray(array:
+                    Form.mj_objectArrayWithKeyValuesArray(json["data"].description)
+                ) as? [Form] ?? []
+            } else {
+                DDLogInfo("Querying form list failed: \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                block?(error: error)
+            }
+        }
+    }
 
     func saveUser(json: String, userName: String, password: String) {
         User.sharedInstance = User.mj_objectWithKeyValues(json)
-        // Inject cookies
         ContentManager.UserName = User.sharedInstance.userName
         ContentManager.Password = password
     }

@@ -16,7 +16,7 @@ class FormTableViewCell: UITableViewCell {
 
     func setupWithName(name: String, startDate: NSDate, endDate: NSDate) {
         nameLabel.text = name
-        startDateLabel.text = NSDateFormatter.defaultFormatter().stringFromDate(startDate)
-        endDateLabel.text = NSDateFormatter.defaultFormatter().stringFromDate(endDate)
+        startDateLabel.text = NSDateFormatter.outputFormatter().stringFromDate(startDate)
+        endDateLabel.text = NSDateFormatter.outputFormatter().stringFromDate(endDate)
     }
 }
