@@ -539,10 +539,10 @@
             </objects>
             <point key="canvasLocation" x="1476" y="-1"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--设置-->
         <scene sceneID="kfp-OO-bkE">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="Gd6-rc-bd3" customClass="SettingsTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="设置" hidesBottomBarWhenPushed="YES" id="Gd6-rc-bd3" customClass="SettingsTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="7FC-jf-agF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

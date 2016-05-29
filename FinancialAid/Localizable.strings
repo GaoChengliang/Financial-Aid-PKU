@@ -16,13 +16,11 @@
 "Office of Student Financial Aid" = "北京大学学生资助中心";
 "This field cannot be empty" = "此项不能为空";
 "This field is not in the correct format" = "格式有误，请重新输入";
-"Me" = "我";
 "Edit portrait" = "上传头像";
 "Open camera" = "拍照";
 "Open album" = "打开相册";
 "Cancel" = "取消";
 "Save" = "保存";
-"Setup" = "设置";
 "Change password" = "修改密码";
 "Male" = "男";
 "Female" = "女";
