@@ -39,16 +39,11 @@ class FormOptionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        if indexPath.row == 0 && !form.isStepFill {
-            cell.userInteractionEnabled = false
-            cell.accessoryType = .None
-        }
-        if indexPath.row == 1 && !form.isStepPdf {
-            cell.userInteractionEnabled = false
-            cell.accessoryType = .None
-        }
-        if indexPath.row == 2 && !form.isStepUpload {
-            cell.userInteractionEnabled = false
+        let enables = [form.isStepFill, form.isStepPdf, form.isStepUpload]
+        let enable = enables[indexPath.row]
+        cell.userInteractionEnabled = enable
+        // MARK: change color
+        if !enable {
             cell.accessoryType = .None
         }
         return cell
