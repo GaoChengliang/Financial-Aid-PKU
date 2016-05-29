@@ -13,7 +13,11 @@ import SVProgressHUD
 
 class LoginViewController: UIViewController {
 
-    let login = Login()
+    var login = Login() {
+        didSet {
+            loginTableView.reloadData()
+        }
+    }
 
     var keyboardAppeared = false {
         didSet {
@@ -181,7 +185,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
-        loginTableView.reloadData()
+        // refresh login content
+        login = Login()
     }
 
     func enableLoginButton() {

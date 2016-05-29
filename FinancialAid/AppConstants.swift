@@ -9,5 +9,5 @@
 import Foundation
 
 struct AppConstants {
-
+    static let LoginViewControllerIdentifier = "LoginViewController"
 }

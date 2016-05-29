@@ -13,121 +13,74 @@ import SwiftyJSON
 import SVProgressHUD
 
 class UserTableViewController: UITableViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUserInformation("1600016888", name: "韩梅梅", portrait: "portrait1", gender: "女",
-                             birthday: "1996-11-11", phoneNum: "13888888888", email: "hmm@pku.edu.cn")
-    }
 
-    var user = User()
-    var portrait = ""
-
-    func setupUserInformation(studentID: String, name: String, portrait: String, gender: String,
-                              birthday: String, phoneNum: String, email: String) {
-        user.userName = studentID
-        user.realName = name
-        user.gender = gender
-        user.birthday = birthday
-        user.phone = phoneNum
-        user.email = email
-        self.portrait = portrait
-        tableView.reloadData()
-    }
-
-    private struct Constants {
-        static let EditGenderSegue = "EditGenderSegue"
-        static let EditBirthdaySegue = "EditBirthdaySegue"
-        static let EditPhoneSegue = "EditPhoneSegue"
-        static let EditEmailSegue = "EditEmailSegue"
-        static let SettingSegue = "SettingSegue"
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(tableView: UITableView,
+                            cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         if indexPath.section == 0 {
-            if let cell_ = cell as? UserPortraitTableViewCell {
-                cell_.name?.text = user.realName
-                cell_.portrait?.image = UIImage(named: "DefaultPortrait")
-                cell_.studentID?.text = user.userName
-                return cell_
-            }
-        }
-        if indexPath.section == 1 {
-            switch indexPath.row {
-            case 0:
-                cell.detailTextLabel?.text = user.gender
-            case 1:
-                cell.detailTextLabel?.text = user.birthday
-            case 2:
-                cell.detailTextLabel?.text = user.phone
-            default:
-                cell.detailTextLabel?.text = user.email
-            }
+            guard let userCell = cell as? UserPortraitTableViewCell else { return cell }
+            userCell.setupWith(User.sharedInstance.userName, realName: User.sharedInstance.realName)
+        } else if indexPath.section == 1 {
+            var gender = User.sharedInstance.gender
+            gender = gender == "unknown" ? "" : gender
+            var birthday = User.sharedInstance.birthday
+            birthday = birthday == "0000-00-00" ? "" : birthday
+            cell.detailTextLabel?.text = [
+                gender,
+                birthday,
+                User.sharedInstance.phone,
+                User.sharedInstance.email
+            ][indexPath.row]
         }
         return cell
     }
 
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
-        case 0:
-            editImage()
-        case 1:
-            if indexPath.row == 0 {
-                performSegueWithIdentifier(Constants.EditGenderSegue,
-                                           sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-            if indexPath.row == 1 {
-                performSegueWithIdentifier(Constants.EditBirthdaySegue,
-                                           sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-            if indexPath.row == 2 {
-                performSegueWithIdentifier(Constants.EditPhoneSegue,
-                                           sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-            if indexPath.row == 3 {
-                performSegueWithIdentifier(Constants.EditEmailSegue,
-                                           sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-        default:
-            performSegueWithIdentifier(Constants.SettingSegue,
-                                       sender: tableView.cellForRowAtIndexPath(indexPath))
-        }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView(frame: CGRect.zero)
     }
 
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.min
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            editImage()
+        }
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            switch identifier {
-            case Constants.EditPhoneSegue:
-                if let MVC = segue.destinationViewController as? EditProfileViewController {
-                    MVC.title = NSLocalizedString("Phone number", comment: "phone number")
-                    MVC.value = user.phone
-                }
-            case Constants.EditEmailSegue:
-                if let MVC = segue.destinationViewController as? EditProfileViewController {
-                    MVC.title = NSLocalizedString("Email", comment: "email")
-                    MVC.value = user.email
-                }
-            case Constants.EditGenderSegue:
-                if let MVC = segue.destinationViewController as? EditGenderTableViewController {
-                    if user.gender == NSLocalizedString("Male", comment: "gender of user is male") {
-                        MVC.gender = 0
-                    } else {
-                        MVC.gender = 1
-                    }
-                }
-            default: break
-            }
-        }
+//        if let identifier = segue.identifier {
+//            switch identifier {
+//            case Constants.EditPhoneSegue:
+//                if let MVC = segue.destinationViewController as? EditProfileViewController {
+//                    MVC.title = NSLocalizedString("Phone number", comment: "phone number")
+//                    MVC.value = user.phone
+//                }
+//            case Constants.EditEmailSegue:
+//                if let MVC = segue.destinationViewController as? EditProfileViewController {
+//                    MVC.title = NSLocalizedString("Email", comment: "email")
+//                    MVC.value = user.email
+//                }
+//            case Constants.EditGenderSegue:
+//                if let MVC = segue.destinationViewController as? EditGenderTableViewController {
+//                    if user.gender == NSLocalizedString("Male", comment: "gender of user is male") {
+//                        MVC.gender = 0
+//                    } else {
+//                        MVC.gender = 1
+//                    }
+//                }
+//            default: break
+//            }
+//        }
     }
 }
 
 
 
 extension UserTableViewController: UIActionSheetDelegate {
+
     func editImage() {
         let alertController = UIAlertController(title: NSLocalizedString("Edit portrait", comment:
             "upload portrait of the user"), message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
@@ -159,7 +112,7 @@ extension UserTableViewController: UIActionSheetDelegate {
         alertController.addAction(alertActionAlbum)
         let alertActionCancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel upload"),
                                               style: UIAlertActionStyle.Cancel) {
-            alert in  alertController.dismissViewControllerAnimated(true, completion: nil)
+            alert in alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(alertActionCancel)
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -169,6 +122,7 @@ extension UserTableViewController: UIActionSheetDelegate {
 
 
 extension UserTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
     func imagePickerController(picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {

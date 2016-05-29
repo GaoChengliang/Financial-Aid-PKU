@@ -12,44 +12,18 @@ import SVProgressHUD
 
 class SettingsTableViewController: UITableViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView(frame: CGRect.zero)
     }
 
-    private struct Constants {
-        static let ChangePwdTableViewCell = "ChangePwdTableViewCell"
-        static let LogoutTableViewCell = "LogoutTableViewCell"
-        static let ChangePwdSegue = "ChangePwdSegue"
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.min
     }
 
-    // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
-        -> UITableViewCell {
-        var cell: UITableViewCell! = nil
-        if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCellWithIdentifier(Constants.ChangePwdTableViewCell,
-                                                               forIndexPath: indexPath)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let dest = segue.destinationViewController
+        if dest is LoginViewController {
+            ContentManager.Password = nil
         }
-        if indexPath.section == 1 {
-            cell = tableView.dequeueReusableCellWithIdentifier(Constants.LogoutTableViewCell,
-                                                               forIndexPath: indexPath)
-        }
-        return cell
-    }
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            performSegueWithIdentifier(Constants.ChangePwdSegue, sender: cell)
-        }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

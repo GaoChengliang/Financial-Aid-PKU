@@ -183,7 +183,7 @@
 		F65103CDA9B85AD1A8C7626EFD6D64A3 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0965D865516B48E5ED38EFE0594BA9 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F70C8FE2A8401181437082EF7F98F47C /* SDWebImageCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DDB326ACA22249B56F24AF7CB194A9 /* SDWebImageCompat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F852A0869AF27611809B656DACFFEABD /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D1A486A2ED4B4436F3A66FC1A248F4 /* MJPropertyType.m */; };
-		F864086F1CFB05E400AAE235 /* CocoaLumberjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F864086E1CFB05E400AAE235 /* CocoaLumberjack.swift */; };
+		F86408711CFB115800AAE235 /* CocoaLumberjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86408701CFB115800AAE235 /* CocoaLumberjack.swift */; };
 		F95A38EBBDCBB4895344DF8EE46891CC /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEB256ED4753F141E0D829A27EB3A0D /* SDWebImageManager.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FA3220E5BF47A4AF0A88802437EA8536 /* MJFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = BBAA73B980B57F3E37B1CB53BDD253B5 /* MJFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC8920E42B0A0A64BA74F312D8371476 /* UIImageView+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 259BCEF985ECC60A3987C0BE149E9EBB /* UIImageView+WebCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -485,7 +485,7 @@
 		F5DDFE74228FB6343C0EF26784AF60DE /* MJExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MJExtension.modulemap; sourceTree = "<group>"; };
 		F5DF0E473D1A96C9EBEA7C4AD0AE6059 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		F5E8AA86586ED4A9CF352BB81314C1D6 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F864086E1CFB05E400AAE235 /* CocoaLumberjack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaLumberjack.swift; path = Classes/CocoaLumberjack.swift; sourceTree = "<group>"; };
+		F86408701CFB115800AAE235 /* CocoaLumberjack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaLumberjack.swift; path = Classes/CocoaLumberjack.swift; sourceTree = "<group>"; };
 		F8696356131FE184434C7F0C312B4AD2 /* CocoaLumberjack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CocoaLumberjack.h; path = Classes/CocoaLumberjack.h; sourceTree = "<group>"; };
 		F872331EE0427FE8EF0CDEFAD15B27F6 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MultiFormat.h"; path = "SDWebImage/UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		F9BCF3D55EEEC9BC6D57FE37E7AC1BF7 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
@@ -1109,7 +1109,7 @@
 		FA267F74019B4EC0AED7E81FBCC2A6B3 /* CocoaLumberjack */ = {
 			isa = PBXGroup;
 			children = (
-				F864086E1CFB05E400AAE235 /* CocoaLumberjack.swift */,
+				F86408701CFB115800AAE235 /* CocoaLumberjack.swift */,
 				28986CAAD92E4FF24D4222B96F3E6B77 /* Core */,
 				8EB6C1F630ECFDF4F45E3582B45F2EDD /* Default */,
 				19E7B72BE8C687C940537F7BBF0245F5 /* Extensions */,
@@ -1561,7 +1561,7 @@
 				65BC6590E68D69B14D820E12A6DFF25C /* DDDispatchQueueLogFormatter.m in Sources */,
 				1F49E397D7E2D6F0F2FA74A38A1822F1 /* DDFileLogger.m in Sources */,
 				6CCB8891EC5DECF019E81CB8FFB4F00B /* DDLog.m in Sources */,
-				F864086F1CFB05E400AAE235 /* CocoaLumberjack.swift in Sources */,
+				F86408711CFB115800AAE235 /* CocoaLumberjack.swift in Sources */,
 				38F6CEBD348505552B59EAF29CFE4C9D /* DDMultiFormatter.m in Sources */,
 				069D640D4A5573C4DD5FA65A3F7AB12E /* DDTTYLogger.m in Sources */,
 			);
