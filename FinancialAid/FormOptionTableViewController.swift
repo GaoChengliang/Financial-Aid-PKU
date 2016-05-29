@@ -18,16 +18,35 @@ class FormOptionTableViewController: UITableViewController {
         static let FillFormSegueIdentifier = "FormFillSegue"
     }
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         title = form.name
+        if form.isStepHelp {
+            let barItem = UIBarButtonItem(image: UIImage(named: "FillFormGuide"),
+                                          style: .Done, target: self,
+                                          action: #selector(FormOptionTableViewController.formHelp))
+            self.navigationItem.rightBarButtonItem = barItem
+        }
+
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if indexPath.row == 0 {
-            performSegueWithIdentifier("FormFillSegue", sender: cell)
+    func formHelp() {
+        performSegueWithIdentifier(Constants.HelpSegueIdentifier, sender: self)
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        let enables = [form.isStepFill, form.isStepPdf, form.isStepUpload]
+        let enable = enables[indexPath.row]
+        cell.userInteractionEnabled = enable
+        // MARK: change color
+        if !enable {
+            cell.accessoryType = .None
         }
+        return cell
     }
 
     // MARK: - Navigation
@@ -39,8 +58,10 @@ class FormOptionTableViewController: UITableViewController {
         switch segueIdentifer {
         case Constants.HelpSegueIdentifier:
             fwvc.title = NSLocalizedString("Tips", comment: "tips for filling the form")
+            fwvc.url = NetworkManager.sharedInstance.relativeURL(form.helpPath)
         case Constants.FillFormSegueIdentifier:
             fwvc.title = NSLocalizedString("Fill form", comment: "fill the form")
+            fwvc.url = NetworkManager.sharedInstance.relativeURL(form.fillPath)
         default:
             break
         }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication,
          didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
-           -> Bool {
+            -> Bool {
         // Override point for customization after application launch.
+        CocoaLumberjack.config()
+        SVProgressHUD.config()
+        UITabBarItem.config()
+
+        guard
+            let userName = ContentManager.UserName where !userName.isEmpty,
+            let password = ContentManager.Password where !password.isEmpty,
+            let viewController = UIStoryboard.initViewControllerWithIdentifier(
+                AppConstants.LoginViewControllerIdentifier
+            ) as? LoginViewController else { return true }
+
+        viewController.shouldAutoLogin = true
+        window?.rootViewController = viewController
         return true
     }
 }

@@ -7,14 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class FormTableViewController: CloudAnimateTableViewController {
-
-    var formList = [Form]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
 
     private struct Constants {
         static let cellIdentifier = "FormTableViewCell"
@@ -29,15 +24,21 @@ class FormTableViewController: CloudAnimateTableViewController {
     }
 
     func retriveFormList() {
-//        NetworkManager.sharedInstance.
-        formList.append(Form())
-        refreshAnimationDidFinish()
+        ContentManager.sharedInstance.formList {
+            if $0 != nil {
+                SVProgressHUD.showErrorWithStatus(
+                    NSLocalizedString("Network timeout",
+                        comment: "network timeout or interruptted")
+                )
+            }
+            self.tableView.reloadData()
+            self.refreshAnimationDidFinish()
+        }
     }
 
     // MARK: - Table view data source
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return formList.count
+        return FormList.sharedInstance.count
     }
 
     override func tableView(tableView: UITableView,
@@ -46,7 +47,7 @@ class FormTableViewController: CloudAnimateTableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.cellIdentifier,
                        forIndexPath: indexPath) as? FormTableViewCell
             else { return UITableViewCell() }
-        let form = formList[indexPath.row]
+        let form = FormList.sharedInstance[indexPath.row]
         cell.setupWithName(form.name, startDate: form.startDate, endDate: form.endDate)
         return cell
     }
@@ -66,7 +67,7 @@ class FormTableViewController: CloudAnimateTableViewController {
             let indexPath = tableView.indexPathForCell(cell)
             else { return }
 
-        fotvc.form = formList[indexPath.row]
+        fotvc.form = FormList.sharedInstance[indexPath.row]
     }
 }
 

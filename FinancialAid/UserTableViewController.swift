@@ -12,105 +12,80 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-class UserTableViewController: UITableViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+class UserTableViewController: UITableViewController {
 
-    let name = [AppConstants.Gender, AppConstants.Birthday, AppConstants.PhoneNumber, AppConstants.Email]
-    let value = ["女", "1996-11-11", "13888888888", "hmm@pku.edu.cn"]
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        if section == 1 {
-            return 4
-        }
-        return 1
-    }
-
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("UserPortraitTableViewCell", forIndexPath: indexPath) as! UserPortraitTableViewCell
-            cell.portrait.image = UIImage(named: "portrait1")
-            cell.name.text = "韩梅梅"
-            cell.studentID.text = "1700017888"
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("UserInformationTableViewCell", forIndexPath: indexPath)
-            let row = indexPath.row
-            cell.textLabel?.text = name[row]
-            cell.detailTextLabel?.text = value[row]
-            return cell
-        default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingTableViewCell", forIndexPath: indexPath)
-            return cell
-        }
-    }
-
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView,
+                            cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         if indexPath.section == 0 {
-            return 80
+            guard let userCell = cell as? UserPortraitTableViewCell else { return cell }
+            userCell.setupWith(User.sharedInstance.userName, realName: User.sharedInstance.realName)
+        } else if indexPath.section == 1 {
+            var gender = User.sharedInstance.gender
+            gender = gender == "unknown" ? "" : gender
+            var birthday = User.sharedInstance.birthday
+            birthday = birthday == "0000-00-00" ? "" : birthday
+            cell.detailTextLabel?.text = [
+                gender,
+                birthday,
+                User.sharedInstance.phone,
+                User.sharedInstance.email
+            ][indexPath.row]
         }
-        return 44
+        return cell
+    }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView(frame: CGRect.zero)
+    }
+
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.min
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
-        case 0:
+        if indexPath.section == 0 {
             editImage()
-        case 1:
-            if indexPath.row == 0 {
-                performSegueWithIdentifier("EditGenderSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-
-            if indexPath.row == 1 {
-                performSegueWithIdentifier("EditBirthdaySegue", sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-
-            if indexPath.row == 2 || indexPath.row == 3 {
-                performSegueWithIdentifier("EditProfileSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
-            }
-
-        default:
-            performSegueWithIdentifier("SettingSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            switch identifier {
-            case "EditProfileSegue":
-//                let cell = sender as! UserInformationTableViewCell
-//                if let indexPath = tableView.indexPathForCell(cell) {
-//                    let MVC = segue.destinationViewController as! EditProfileViewController
-//                    MVC.title = name[indexPath.row]
-//                    MVC.index = indexPath.row
-//                    MVC.value = value[indexPath.row]
+//        if let identifier = segue.identifier {
+//            switch identifier {
+//            case Constants.EditPhoneSegue:
+//                if let MVC = segue.destinationViewController as? EditProfileViewController {
+//                    MVC.title = NSLocalizedString("Phone number", comment: "phone number")
+//                    MVC.value = user.phone
 //                }
-                fallthrough
-            case "EditGenderSegue":
-                let MVC = segue.destinationViewController as! EditGenderTableViewController
-                MVC.gender = 1
-            default: break
-            }
-        }
+//            case Constants.EditEmailSegue:
+//                if let MVC = segue.destinationViewController as? EditProfileViewController {
+//                    MVC.title = NSLocalizedString("Email", comment: "email")
+//                    MVC.value = user.email
+//                }
+//            case Constants.EditGenderSegue:
+//                if let MVC = segue.destinationViewController as? EditGenderTableViewController {
+//                    if user.gender == NSLocalizedString("Male", comment: "gender of user is male") {
+//                        MVC.gender = 0
+//                    } else {
+//                        MVC.gender = 1
+//                    }
+//                }
+//            default: break
+//            }
+//        }
     }
+}
 
+
+
+extension UserTableViewController: UIActionSheetDelegate {
 
     func editImage() {
-        let alertController = UIAlertController(title: AppConstants.EditPortrait, message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
-        let alertActionCamera = UIAlertAction(title: AppConstants.OpenCamera, style: UIAlertActionStyle.Default) {
+        let alertController = UIAlertController(title: NSLocalizedString("Edit portrait", comment:
+            "upload portrait of the user"), message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
+        let alertActionCamera = UIAlertAction(title: NSLocalizedString("Open camera", comment: "open camera"),
+                                              style: UIAlertActionStyle.Default) {
             alert in
             if UIImagePickerController.isSourceTypeAvailable(.Camera) {
                 let picker = UIImagePickerController()
@@ -122,7 +97,8 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
             }
         }
         alertController.addAction(alertActionCamera)
-        let alertActionAlbum = UIAlertAction(title: AppConstants.OpenAlbum, style: UIAlertActionStyle.Default) {
+        let alertActionAlbum = UIAlertAction(title: NSLocalizedString("Open album", comment: "open album"),
+                                             style: UIAlertActionStyle.Default) {
             alert in
             if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
                 let picker = UIImagePickerController()
@@ -134,20 +110,21 @@ class UserTableViewController: UITableViewController, UIActionSheetDelegate, UII
             }
         }
         alertController.addAction(alertActionAlbum)
-
-
-        let alertActionCancel = UIAlertAction(title: AppConstants.Cancel, style: UIAlertActionStyle.Cancel) {
-            alert in  alertController.dismissViewControllerAnimated(true, completion: nil)
+        let alertActionCancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel upload"),
+                                              style: UIAlertActionStyle.Cancel) {
+            alert in alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(alertActionCancel)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+}
 
 
 
+extension UserTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    // 打开照片 delegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             let image = pickedImage

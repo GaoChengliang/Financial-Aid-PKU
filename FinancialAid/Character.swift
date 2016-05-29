@@ -1,6 +1,6 @@
 //
 //  Character.swift
-//  iBeaconToy
+//  FinancialAid
 //
 //  Created by PengZhao on 15/12/29.
 //  Copyright © 2015年 pku. All rights reserved.

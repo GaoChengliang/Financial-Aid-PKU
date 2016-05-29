@@ -6,7 +6,9 @@
 //  Copyright (c) 2015年 PKU. All rights reserved.
 //
 
+import CocoaLumberjack
 import KeychainAccess
+import MJExtension
 import SwiftyJSON
 
 class ContentManager: NSObject {
@@ -16,36 +18,17 @@ class ContentManager: NSObject {
 
     // MARK: Key chain
     private static let keychain: Keychain = {
-        let bundle = NSBundle.mainBundle()
-        let bundleIdentifier = bundle.bundleIdentifier!
+        let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier!
         return Keychain(service: bundleIdentifier)
     }()
 
-    // UserName, UserID, Token, and Password can identify an unique user
+    // UserName and Password can identify an unique user
     static var UserName: String? {
         get {
             return try? keychain.getString("name") ?? ""
         }
         set {
             setKeyChainItem(newValue, forKey: "name")
-        }
-    }
-
-    static var UserID: String? {
-        get {
-            return try? keychain.getString("_id") ?? ""
-        }
-        set {
-            setKeyChainItem(newValue, forKey: "_id")
-        }
-    }
-
-    static var Token: String? {
-        get {
-            return try? keychain.getString("token") ?? ""
-        }
-        set {
-            setKeyChainItem(newValue, forKey: "token")
         }
     }
 
@@ -69,31 +52,62 @@ class ContentManager: NSObject {
         }
     }
 
-    /**
-     Each method correspond to some kinds of data retrieval operation.
-     Basically, we first ask NetworkManager to require data from network, however it fails, we
-     will query the local database, and the callback block will be executed.
-     */
-//
-//    func courseList(block: ((error: NetworkErrorType?) -> Void)?) {
-//        NetworkManager.sharedInstance.courseList(ContentManager.UserID ?? "",
-//            token: ContentManager.Token ?? "") {
-//            (json, error) in
-//
-//            if error == nil, let json = json {
-//                DDLogInfo("Querying course list success")
-//
-//                CoreDataManager.sharedInstance.deleteAllCourses()
-//                let _ = Course.convertWithJSONArray(json["courses"].arrayValue)
-//            } else {
-//                DDLogInfo("Querying course list failed: \(error)")
-//            }
-//
-//            dispatch_async(dispatch_get_main_queue()) {
-//                block?(error: error)
-//            }
-//        }
-//    }
-//
+    func login(userName: String, password: String, block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.login(userName, password: password) {
+            (json, error) in
 
+            if error == nil, let json = json {
+                DDLogInfo("Login success \(userName)")
+                self.saveUser(json["data"].description, userName: userName, password: password)
+            } else {
+                DDLogInfo("Login failed \(userName): \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue(), {
+                block?(error: error)
+            })
+        }
+    }
+
+    func register(userName: String, password: String, block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.register(userName, password: password) {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Register success \(userName)")
+                self.saveUser(json["data"].description, userName: userName, password: password)
+            } else {
+                DDLogInfo("Register failed \(userName): \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue(), {
+                block?(error: error)
+            })
+        }
+    }
+
+    func formList(block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.formList() {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Querying form list success")
+                FormList.sharedInstance.formList = NSArray(array:
+                    Form.mj_objectArrayWithKeyValuesArray(json["data"].description)
+                ) as? [Form] ?? []
+            } else {
+                DDLogInfo("Querying form list failed: \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                block?(error: error)
+            }
+        }
+    }
+
+    func saveUser(json: String, userName: String, password: String) {
+        User.sharedInstance = User.mj_objectWithKeyValues(json)
+        ContentManager.UserName = User.sharedInstance.userName
+        ContentManager.Password = password
+    }
 }

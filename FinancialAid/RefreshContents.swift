@@ -1,6 +1,6 @@
 //
 //  RefreshContents.swift
-//  SmartClass
+//  FinancialAid
 //
 //  Created by PengZhao on 15/8/27.
 //  Copyright (c) 2015年 PKU. All rights reserved.

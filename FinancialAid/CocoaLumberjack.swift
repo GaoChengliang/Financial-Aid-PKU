@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ChameleonFramework
 import CocoaLumberjack
 
 /// Logging related functions
