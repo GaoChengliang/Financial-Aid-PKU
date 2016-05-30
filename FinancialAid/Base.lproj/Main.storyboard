@@ -44,13 +44,11 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jg5-2D-vbW">
                                             <rect key="frame" x="50" y="13" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6we-qu-YSN">
                                             <rect key="frame" x="50" y="45" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Form" translatesAutoresizingMaskIntoConstraints="NO" id="cLA-4Q-38X">
@@ -63,7 +61,6 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCB-y4-Up8">
                                             <rect key="frame" x="119" y="45" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="−" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgK-V2-s03">
@@ -253,11 +250,15 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textField" destination="yQt-lO-wbN" id="Y9b-Cn-mbI"/>
+                        <segue destination="4lC-Qv-BAA" kind="unwind" identifier="UnwindToUserCenterSegue" unwindAction="unwindToUserCenter:" id="hcv-dY-amC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="02j-XT-Rk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4lC-Qv-BAA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2191" y="-1"/>
         </scene>
@@ -320,75 +321,70 @@
                         <sections>
                             <tableViewSection id="Qjg-ie-bTV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserPortraitTableViewCell" rowHeight="80" id="PdQ-68-kxL" customClass="UserPortraitTableViewCell" customModule="FinancialAid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserPortraitTableViewCell" rowHeight="80" id="PdQ-68-kxL" customClass="UserPortraitTableViewCell" customModule="FinancialAid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="99" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdQ-68-kxL" id="Uu9-0X-exV">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultPortrait" translatesAutoresizingMaskIntoConstraints="NO" id="Itu-Vf-SEJ">
-                                                    <rect key="frame" x="8" y="7" width="66" height="66"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Itu-Vf-SEJ" secondAttribute="height" multiplier="1:1" id="6XA-q6-dKs"/>
-                                                        <constraint firstAttribute="height" constant="66" id="W0k-9D-SNd"/>
-                                                        <constraint firstAttribute="width" constant="66" id="YIR-3c-9YQ"/>
-                                                        <constraint firstAttribute="width" secondItem="Itu-Vf-SEJ" secondAttribute="height" multiplier="1:1" id="mIM-1s-HO3"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="20"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="6XA-q6-dKs"/>
-                                                            <exclude reference="YIR-3c-9YQ"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmC-4O-AbC">
-                                                    <rect key="frame" x="86" y="13" width="506" height="24"/>
+                                                    <rect key="frame" x="88" y="16" width="471" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOa-m9-tuw">
-                                                    <rect key="frame" x="86" y="45" width="506" height="21"/>
+                                                    <rect key="frame" x="88" y="48" width="471" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAP-YA-vh1">
+                                                    <rect key="frame" x="20" y="10" width="60" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="9c9-Iq-6wS"/>
+                                                        <constraint firstAttribute="width" secondItem="SAP-YA-vh1" secondAttribute="height" id="F7x-h8-Xee"/>
+                                                        <constraint firstAttribute="width" constant="60" id="hwr-78-G9u"/>
+                                                        <constraint firstAttribute="height" constant="60" id="rYf-uz-CPj"/>
+                                                    </constraints>
+                                                    <state key="normal" image="DefaultPortrait">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="F7x-h8-Xee"/>
+                                                            <exclude reference="hwr-78-G9u"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <connections>
+                                                        <action selector="editImage" destination="15R-3N-Aef" eventType="touchUpInside" id="23i-kM-2Lr"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dmC-4O-AbC" firstAttribute="top" secondItem="Itu-Vf-SEJ" secondAttribute="top" constant="6" id="6Lb-LN-saz"/>
-                                                <constraint firstItem="YOa-m9-tuw" firstAttribute="leading" secondItem="Itu-Vf-SEJ" secondAttribute="trailing" constant="8" symbolic="YES" id="7hc-Ch-wCh"/>
                                                 <constraint firstItem="YOa-m9-tuw" firstAttribute="leading" secondItem="dmC-4O-AbC" secondAttribute="leading" id="8tM-fv-kPp"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="YOa-m9-tuw" secondAttribute="trailing" id="AiI-8j-amz"/>
-                                                <constraint firstItem="Itu-Vf-SEJ" firstAttribute="centerX" secondItem="Uu9-0X-exV" secondAttribute="centerX" id="CBV-gP-4Is"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Itu-Vf-SEJ" secondAttribute="bottom" id="EHl-vf-Ubc"/>
-                                                <constraint firstItem="dmC-4O-AbC" firstAttribute="leading" secondItem="Itu-Vf-SEJ" secondAttribute="trailing" constant="12" id="Qmq-HT-yFM"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="Itu-Vf-SEJ" secondAttribute="leading" id="TFU-by-jGi"/>
-                                                <constraint firstAttribute="topMargin" secondItem="Itu-Vf-SEJ" secondAttribute="top" id="YX8-vN-cC4"/>
-                                                <constraint firstItem="Itu-Vf-SEJ" firstAttribute="centerY" secondItem="Uu9-0X-exV" secondAttribute="centerY" id="aFD-7a-XjC"/>
+                                                <constraint firstItem="dmC-4O-AbC" firstAttribute="leading" secondItem="SAP-YA-vh1" secondAttribute="trailing" constant="8" symbolic="YES" id="DGr-0d-CX3"/>
+                                                <constraint firstItem="SAP-YA-vh1" firstAttribute="leading" secondItem="Uu9-0X-exV" secondAttribute="leading" constant="20" symbolic="YES" id="E0k-jb-bik"/>
+                                                <constraint firstItem="dmC-4O-AbC" firstAttribute="top" secondItem="SAP-YA-vh1" secondAttribute="top" constant="6" id="G6l-tw-hsw"/>
+                                                <constraint firstItem="SAP-YA-vh1" firstAttribute="centerY" secondItem="Uu9-0X-exV" secondAttribute="centerY" id="J8x-Fw-tB0"/>
                                                 <constraint firstAttribute="topMargin" secondItem="dmC-4O-AbC" secondAttribute="top" id="kdS-73-eEx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="dmC-4O-AbC" secondAttribute="trailing" id="xZ6-LZ-GPl"/>
                                                 <constraint firstItem="YOa-m9-tuw" firstAttribute="top" secondItem="dmC-4O-AbC" secondAttribute="bottom" constant="8" symbolic="YES" id="zau-33-ZdA"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="CBV-gP-4Is"/>
-                                                    <exclude reference="EHl-vf-Ubc"/>
-                                                    <exclude reference="YX8-vN-cC4"/>
                                                     <exclude reference="kdS-73-eEx"/>
-                                                    <exclude reference="7hc-Ch-wCh"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="name" destination="dmC-4O-AbC" id="YZU-Mh-p6y"/>
-                                            <outlet property="portrait" destination="Itu-Vf-SEJ" id="Lx3-xn-FO0"/>
+                                            <outlet property="portrait" destination="SAP-YA-vh1" id="baB-Hz-TXU"/>
                                             <outlet property="studentID" destination="YOa-m9-tuw" id="LIU-WS-7As"/>
+                                            <segue destination="NcJ-SB-E67" kind="show" id="IB2-Qy-lfL"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -574,7 +570,7 @@
                         <sections>
                             <tableViewSection id="V8P-cQ-Lp0">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangePwdTableViewCell" textLabel="Woz-8e-118" imageView="hHO-gh-uvx" style="IBUITableViewCellStyleDefault" id="S6b-2j-IfQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangePwdTableViewCell" textLabel="Woz-8e-118" imageView="hHO-gh-uvx" style="IBUITableViewCellStyleDefault" id="S6b-2j-IfQ">
                                         <rect key="frame" x="0.0" y="99" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S6b-2j-IfQ" id="HIm-gC-yYh">
@@ -599,7 +595,7 @@
                             </tableViewSection>
                             <tableViewSection id="el2-DW-QC4">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogoutTableViewCell" textLabel="9Rg-pU-mwd" imageView="1Rf-t7-IcD" style="IBUITableViewCellStyleDefault" id="2nk-yK-oVw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LogoutTableViewCell" textLabel="9Rg-pU-mwd" imageView="1Rf-t7-IcD" style="IBUITableViewCellStyleDefault" id="2nk-yK-oVw">
                                         <rect key="frame" x="0.0" y="179" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2nk-yK-oVw" id="tO1-1z-FFu">
@@ -789,10 +785,10 @@
             </objects>
             <point key="canvasLocation" x="2191" y="729"/>
         </scene>
-        <!--Edit Gender Table View Controller-->
+        <!--性别-->
         <scene sceneID="1mq-B7-keo">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="R4v-ov-TVL" customClass="EditGenderTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="性别" hidesBottomBarWhenPushed="YES" id="R4v-ov-TVL" customClass="EditGenderTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="wFa-Ep-B0m">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1005,7 +1001,7 @@
         <image name="Birthday" width="28" height="28"/>
         <image name="ChangePwd" width="28" height="28"/>
         <image name="Date" width="28" height="28"/>
-        <image name="DefaultPortrait" width="58" height="58"/>
+        <image name="DefaultPortrait" width="72" height="72"/>
         <image name="Email" width="28" height="28"/>
         <image name="Form" width="28" height="28"/>
         <image name="Gender" width="28" height="28"/>
@@ -1019,6 +1015,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3dX-Lk-kPu"/>
-        <segue reference="RLQ-lw-It3"/>
+        <segue reference="IB2-Qy-lfL"/>
     </inferredMetricsTieBreakers>
 </document>

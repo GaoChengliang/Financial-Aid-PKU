@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class FormOptionTableViewController: UITableViewController {
 
@@ -18,7 +19,6 @@ class FormOptionTableViewController: UITableViewController {
         static let FillFormSegueIdentifier = "FormFillSegue"
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -29,7 +29,6 @@ class FormOptionTableViewController: UITableViewController {
                                           action: #selector(FormOptionTableViewController.formHelp))
             self.navigationItem.rightBarButtonItem = barItem
         }
-
     }
 
     func formHelp() {
@@ -42,11 +41,52 @@ class FormOptionTableViewController: UITableViewController {
         let enables = [form.isStepFill, form.isStepPdf, form.isStepUpload]
         let enable = enables[indexPath.row]
         cell.userInteractionEnabled = enable
-        // MARK: change color
         if !enable {
+            cell.textLabel?.textColor = .lightGrayColor()
             cell.accessoryType = .None
+        } else {
+            cell.textLabel?.textColor = .blackColor()
+            cell.accessoryType = .DisclosureIndicator
         }
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath == NSIndexPath(forRow: 1, inSection: 0) {
+            ContentManager.sharedInstance.getPDF("\(form.ID)", email: User.sharedInstance.email) {
+                (error) in
+                if let error = error {
+                    if case NetworkErrorType.NetworkUnreachable(_) = error {
+                        SVProgressHUD.showErrorWithStatus(
+                            NSLocalizedString("Network timeout",
+                                comment: "network timeout or interruptted")
+                        )
+                    } else if case NetworkErrorType.NetworkWrongParameter(_, let errno) = error {
+                        if errno == 201 {
+                            SVProgressHUD.showErrorWithStatus(
+                                NSLocalizedString("You have not filled the form",
+                                    comment: "form not filled")
+                            )
+                        } else if errno == 203 {
+                            SVProgressHUD.showErrorWithStatus(
+                                NSLocalizedString(
+                                    "Email address is not valid, please update in personal center",
+                                    comment: "email address is not valid")
+                            )
+                        } else {
+                            SVProgressHUD.showErrorWithStatus(
+                                NSLocalizedString("Server error occurred",
+                                    comment: "unknown error")
+                            )
+                        }
+                    }
+                } else {
+                    SVProgressHUD.showSuccessWithStatus(
+                        NSLocalizedString("The PDF is sent to your email address", comment: "Get PDF success")
+                    )
+                }
+            }
+        }
     }
 
     // MARK: - Navigation

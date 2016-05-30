@@ -18,7 +18,7 @@ enum NetworkErrorType: ErrorType, CustomStringConvertible {
     case NetworkUnauthenticated(String) // 401 or 403
     case NetworkServerError(String) // 5XX
     case NetworkForbiddenAccess(String) // 400 or 404
-    case NetworkWrongParameter(String) // 422
+    case NetworkWrongParameter(String, Int) // 200 but with errno
 
     var description: String {
         get {
@@ -31,8 +31,8 @@ enum NetworkErrorType: ErrorType, CustomStringConvertible {
                 return "NetworkServerError - \(message)"
             case .NetworkForbiddenAccess(let message):
                 return "NetworkForbiddenAccess - \(message)"
-            case .NetworkWrongParameter(let message):
-                return "NetworkWrongParameter - \(message)"
+            case .NetworkWrongParameter(let message, let errno):
+                return "NetworkWrongParameter - \(message) \(errno)"
             }
         }
     }
@@ -46,14 +46,11 @@ class NetworkManager: NSObject {
      *  Unique key for each network request for caching each request
      */
     private struct Constants {
-        static let BadRequestStatusCode = 400
-        static let UnauthorizedStatusCode = 401
-        static let ForbiddenStatusCode = 403
-        static let NotFoundStatusCode = 404
-
         static let LoginKey         = "Login"
         static let RegisterKey      = "Register"
         static let FormListKey      = "Form List"
+        static let EditUserInfoKey  = "Edit User"
+        static let PDFKey           = "Get PDF"
     }
 
     // Default network manager, timeout set to 10s
@@ -98,9 +95,10 @@ class NetworkManager: NSObject {
 
             if result.isSuccess && (statusCode >= 200 && statusCode < 300) {
                 let value = JSON(result.value!)
+                let errno = value["error"].int ?? 1
                 json = value
-                if (value["error"].int ?? 1) > 0 {
-                    error = NetworkErrorType.NetworkWrongParameter("Bad request")
+                if errno > 0 {
+                    error = NetworkErrorType.NetworkWrongParameter("Bad request", errno)
                 }
             } else {
                 if result.isFailure {
@@ -131,6 +129,8 @@ extension NetworkManager {
         case Login(String, String)
         case Register(String, String)
         case FormList()
+        case EditUserInfo([String: String])
+        case GetPDF(String, String)
 
         var URLRequest: NSMutableURLRequest {
 
@@ -145,6 +145,11 @@ extension NetworkManager {
                     return ("/user/register", Method.POST, params)
                 case .FormList:
                     return ("/form/list", Method.GET, [:])
+                case .EditUserInfo(let params):
+                    return ("/user", Method.PUT, params)
+                case .GetPDF(let formID, let email):
+                    let params = ["email": email]
+                    return ("/form/\(formID)/pdf", Method.POST, params)
                 }
             }()
 
@@ -185,5 +190,17 @@ extension NetworkManager {
         guard !NetworkManager.existPendingOperation(Constants.FormListKey) else { return }
         let request = NetworkManager.Manager.request(Router.FormList())
         NetworkManager.executeRequestWithKey(Constants.FormListKey, request: request, callback: callback)
+    }
+
+    func editUserInfo(editInfo: [String: String], callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.EditUserInfoKey) else { return }
+        let request = NetworkManager.Manager.request(Router.EditUserInfo(editInfo))
+        NetworkManager.executeRequestWithKey(Constants.EditUserInfoKey, request: request, callback: callback)
+    }
+
+    func getPDF(formID: String, email: String, callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.PDFKey) else { return }
+        let request = NetworkManager.Manager.request(Router.GetPDF(formID, email))
+        NetworkManager.executeRequestWithKey(Constants.PDFKey, request: request, callback: callback)
     }
 }

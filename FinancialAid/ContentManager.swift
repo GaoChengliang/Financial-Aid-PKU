@@ -105,6 +105,39 @@ class ContentManager: NSObject {
         }
     }
 
+    func editUserInfo(editInfo: [String: String], block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.editUserInfo(editInfo) {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Edit user info success")
+                User.sharedInstance = User.mj_objectWithKeyValues(json["data"].description)
+            } else {
+                DDLogInfo("Edit user info failed: \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                block?(error: error)
+            }
+        }
+    }
+
+    func getPDF(formID: String, email: String, block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.getPDF(formID, email: email) {
+            (json, error) in
+
+            if error == nil && json != nil {
+                DDLogInfo("Send PDF success")
+            } else {
+                DDLogInfo("Send PDF failed: \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                block?(error: error)
+            }
+        }
+    }
+
     func saveUser(json: String, userName: String, password: String) {
         User.sharedInstance = User.mj_objectWithKeyValues(json)
         ContentManager.UserName = User.sharedInstance.userName
