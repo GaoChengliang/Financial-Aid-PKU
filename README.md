@@ -24,3 +24,7 @@ swiftlint autocorrect
 ```
 Run Xcode release build
 ```
+
+### Postman collections
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/2e3746607a42108ae25f)
