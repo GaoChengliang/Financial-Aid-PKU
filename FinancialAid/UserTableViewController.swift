@@ -8,30 +8,26 @@
 
 import UIKit
 import MobileCoreServices
-import Alamofire
-import SwiftyJSON
 import SVProgressHUD
 
 class UserTableViewController: UITableViewController {
+
+    var userCenter = UserCenter() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     override func tableView(tableView: UITableView,
                             cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        let contents = userCenter.contents(indexPath)
         if indexPath.section == 0 {
             guard let userCell = cell as? UserPortraitTableViewCell else { return cell }
-            userCell.setupWith(User.sharedInstance.userName, realName: User.sharedInstance.realName)
+            userCell.setupWith(contents[0], realName: contents[1])
         } else if indexPath.section == 1 {
-            var gender = User.sharedInstance.gender
-            gender = gender == "unknown" ? "" : gender
-            var birthday = User.sharedInstance.birthday
-            birthday = birthday == "0000-00-00" ? "" : birthday
-            cell.detailTextLabel?.text = [
-                gender,
-                birthday,
-                User.sharedInstance.phone,
-                User.sharedInstance.email
-            ][indexPath.row]
+            cell.detailTextLabel?.text = contents[0]
         }
         return cell
     }
@@ -44,44 +40,29 @@ class UserTableViewController: UITableViewController {
         return CGFloat.min
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
-            editImage()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard
+            let cell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPathForCell(cell)
+        else { return }
+
+        let dest = segue.destinationViewController
+        let tuple = userCenter.tuples(indexPath)
+        if let epvc = dest as? EditProfileViewController {
+            epvc.title = tuple.title
+            epvc.key = tuple.key
+            epvc.originalContent = tuple.content.last
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if let identifier = segue.identifier {
-//            switch identifier {
-//            case Constants.EditPhoneSegue:
-//                if let MVC = segue.destinationViewController as? EditProfileViewController {
-//                    MVC.title = NSLocalizedString("Phone number", comment: "phone number")
-//                    MVC.value = user.phone
-//                }
-//            case Constants.EditEmailSegue:
-//                if let MVC = segue.destinationViewController as? EditProfileViewController {
-//                    MVC.title = NSLocalizedString("Email", comment: "email")
-//                    MVC.value = user.email
-//                }
-//            case Constants.EditGenderSegue:
-//                if let MVC = segue.destinationViewController as? EditGenderTableViewController {
-//                    if user.gender == NSLocalizedString("Male", comment: "gender of user is male") {
-//                        MVC.gender = 0
-//                    } else {
-//                        MVC.gender = 1
-//                    }
-//                }
-//            default: break
-//            }
-//        }
+    @IBAction func unwindToUserCenter(segue: UIStoryboardSegue) {
+        userCenter = UserCenter()
     }
 }
 
-
-
 extension UserTableViewController: UIActionSheetDelegate {
 
-    func editImage() {
+    @IBAction func editImage() {
         let alertController = UIAlertController(title: NSLocalizedString("Edit portrait", comment:
             "upload portrait of the user"), message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
         let alertActionCamera = UIAlertAction(title: NSLocalizedString("Open camera", comment: "open camera"),
