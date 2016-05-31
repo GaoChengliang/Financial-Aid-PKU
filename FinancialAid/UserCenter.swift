@@ -9,7 +9,6 @@
 import Foundation
 
 class UserCenter: NSObject {
-
     let userCenter = [
         NSIndexPath(forRow: 0, inSection: 0): [
             "content": [
@@ -21,7 +20,18 @@ class UserCenter: NSObject {
         ],
         NSIndexPath(forRow: 0, inSection: 1): [
             "content": [
-                User.sharedInstance.gender == "unknown" ? "" : User.sharedInstance.gender
+                ({
+                        switch User.sharedInstance.gender {
+                        case "female":
+                                return NSLocalizedString("Female", comment: "gender is female")
+                        case "male":
+                            return NSLocalizedString("Male", comment: "gender is male")
+                        default:
+                            return ""
+                        }
+                    }()
+                )
+
             ],
             "key": "gender",
             "title": NSLocalizedString("Gender", comment: "giving gender info")

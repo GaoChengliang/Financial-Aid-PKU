@@ -13,7 +13,7 @@ extension NSDateFormatter {
     class func outputFormatter() -> NSDateFormatter {
         let formatter = NSDateFormatter()
         formatter.locale = NSCalendar.currentCalendar().locale
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }
     class func inputFormatter() -> NSDateFormatter {
