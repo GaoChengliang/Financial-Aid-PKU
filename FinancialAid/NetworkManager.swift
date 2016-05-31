@@ -54,13 +54,14 @@ class NetworkManager: NSObject {
     }
 
     // Default network manager, timeout set to 10s
-    private static let Manager: Alamofire.Manager = {
+    internal static let Manager: Alamofire.Manager = {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 10.0
         configuration.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         configuration.HTTPCookieAcceptPolicy = .Always
         return Alamofire.Manager(configuration: configuration, serverTrustPolicyManager: nil)
     }()
+
 
     /**
      Caching dictionary
@@ -202,5 +203,24 @@ extension NetworkManager {
         guard !NetworkManager.existPendingOperation(Constants.PDFKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetPDF(formID, email))
         NetworkManager.executeRequestWithKey(Constants.PDFKey, request: request, callback: callback)
+    }
+
+    func uploadImage(formID: Int, imageData: NSData, callback: Response<AnyObject, NSError> -> Void) {
+        let mutableURLRequest = NSMutableURLRequest(
+            URL: NetworkManager.sharedInstance.relativeURL("/form/\(formID)/image"))
+        mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue
+        let boundaryConstant = "RandomBoundary";     // 分割线
+        let contentType = "multipart/form-data;boundary="+boundaryConstant
+        mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        let uploadData = NSMutableData()
+        uploadData.appendData("\r\n--\(boundaryConstant)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        uploadData.appendData("Content-Disposition: form-data; name=\"image\"; filename=\"file.png\"\r\n"
+            .dataUsingEncoding(NSUTF8StringEncoding)!)
+        uploadData.appendData("Content-Type: image/png\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        uploadData.appendData(imageData)
+        uploadData.appendData("\r\n--\(boundaryConstant)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        NetworkManager.Manager.upload(Alamofire.ParameterEncoding.URL.encode(mutableURLRequest,
+            parameters: nil).0, data: uploadData).responseJSON(completionHandler: callback)
+
     }
 }

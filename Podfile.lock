@@ -11,6 +11,11 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
+  - DKImagePickerController (3.2.1):
+    - DKImagePickerController/Camera (= 3.2.1)
+    - DKImagePickerController/ImageManager (= 3.2.1)
+  - DKImagePickerController/Camera (3.2.1)
+  - DKImagePickerController/ImageManager (3.2.1)
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (2.3.5)
   - MJExtension (3.0.10)
@@ -37,6 +42,7 @@ DEPENDENCIES:
   - Alamofire (= 3.4.0)
   - ChameleonFramework/Swift (= 2.1.0)
   - CocoaLumberjack (= 2.3.0)
+  - DKImagePickerController (= 3.2.1)
   - DZNEmptyDataSet (= 1.8.1)
   - KeychainAccess (= 2.3.5)
   - MJExtension (= 3.0.10)
@@ -49,6 +55,7 @@ SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  DKImagePickerController: 8fd00d31c1688dce35d5fce15d3231a79ac2d38c
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
@@ -57,6 +64,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 5303a341bdc05f7aba8b76c7f227cbeb741ac351
+PODFILE CHECKSUM: 0516513fd09bef88499905ecdd0470b03f34b3bb
 
 COCOAPODS: 1.0.0

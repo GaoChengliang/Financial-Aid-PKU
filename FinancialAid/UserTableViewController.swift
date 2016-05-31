@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import DKImagePickerController
 import SVProgressHUD
 
 class UserTableViewController: UITableViewController {
@@ -55,74 +56,23 @@ class UserTableViewController: UITableViewController {
         }
     }
 
+    @IBAction func editImage() {
+        let pickerController = DKImagePickerController()
+        pickerController.maxSelectableCount = 1
+        pickerController.allowMultipleTypes = false
+        pickerController.assetType = .AllPhotos
+        pickerController.showsEmptyAlbums = false
+        pickerController.autoDownloadWhenAssetIsInCloud = false
+        pickerController.showsCancelButton = true
+//        pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
+//            for asset in assets {
+//
+//            }
+//        }
+        self.presentViewController(pickerController, animated: true) {}
+    }
+
     @IBAction func unwindToUserCenter(segue: UIStoryboardSegue) {
         userCenter = UserCenter()
     }
-}
-
-extension UserTableViewController: UIActionSheetDelegate {
-
-    @IBAction func editImage() {
-        let alertController = UIAlertController(title: NSLocalizedString("Edit portrait", comment:
-            "upload portrait of the user"), message: nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
-        let alertActionCamera = UIAlertAction(title: NSLocalizedString("Open camera", comment: "open camera"),
-                                              style: UIAlertActionStyle.Default) {
-            alert in
-            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-                let picker = UIImagePickerController()
-                picker.sourceType = .Camera
-                picker.mediaTypes = [String(kUTTypeImage)]
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.presentViewController(picker, animated: true, completion: nil)
-            }
-        }
-        alertController.addAction(alertActionCamera)
-        let alertActionAlbum = UIAlertAction(title: NSLocalizedString("Open album", comment: "open album"),
-                                             style: UIAlertActionStyle.Default) {
-            alert in
-            if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-                let picker = UIImagePickerController()
-                picker.sourceType = .PhotoLibrary
-                picker.mediaTypes = [String(kUTTypeImage)]
-                picker.delegate = self
-                picker.allowsEditing = true
-                self.presentViewController(picker, animated: true, completion: nil)
-            }
-        }
-        alertController.addAction(alertActionAlbum)
-        let alertActionCancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel upload"),
-                                              style: UIAlertActionStyle.Cancel) {
-            alert in alertController.dismissViewControllerAnimated(true, completion: nil)
-        }
-        alertController.addAction(alertActionCancel)
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-}
-
-
-
-extension UserTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    func imagePickerController(picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-
-            let image = pickedImage
-            /* while(image.size.height > 200){    // 压缩图片到200以下 100以上
-             let newSize = CGSize(width: image.size.width/2, height: image.size.height/2)
-             UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-             image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-             image = UIGraphicsGetImageFromCurrentImageContext()
-             UIGraphicsEndImageContext()
-             }*/
-            let _ = UIImageJPEGRepresentation(image, 1)
-            dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
 }
