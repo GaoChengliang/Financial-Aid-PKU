@@ -20,7 +20,7 @@ class FormOptionTableViewController: UITableViewController {
     private struct Constants {
         static let HelpSegueIdentifier = "FormGuideSegue"
         static let FillFormSegueIdentifier = "FormFillSegue"
-        static let ShowImageSegue = "ShowImageSegue"
+        static let UploadImageSegueIdentifier = "UploadImageSegue"
     }
 
     override func viewDidLoad() {
@@ -93,23 +93,7 @@ class FormOptionTableViewController: UITableViewController {
         }
 
         if indexPath == NSIndexPath(forRow: 2, inSection: 0) {
-            let pickerController = DKImagePickerController()
-            pickerController.maxSelectableCount = 1
-            pickerController.allowMultipleTypes = false
-            pickerController.assetType = .AllPhotos
-            pickerController.showsEmptyAlbums = false
-            pickerController.autoDownloadWhenAssetIsInCloud = false
-            pickerController.showsCancelButton = true
-            pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
-                for asset in assets {
-                    asset.fetchFullScreenImageWithCompleteBlock {
-                        (image: UIImage?, _) in
-                            self.image = image
-                            self.performSegueWithIdentifier(Constants.ShowImageSegue, sender: self)
-                    }
-                }
-            }
-            self.presentViewController(pickerController, animated: true) {}
+            self.performSegueWithIdentifier(Constants.UploadImageSegueIdentifier, sender: self)
         }
     }
 
@@ -130,9 +114,8 @@ class FormOptionTableViewController: UITableViewController {
                 fwvc.title = NSLocalizedString("Fill form", comment: "fill the form")
                 fwvc.url = NetworkManager.sharedInstance.relativeURL(form.fillPath)
             }
-        case Constants.ShowImageSegue:
-            if let uivc = segue.destinationViewController as? UploadImageViewController {
-                uivc.image = self.image
+        case Constants.UploadImageSegueIdentifier:
+            if let uivc = segue.destinationViewController as? UploadImageCollectionViewController {
                 uivc.formID = form.ID
             }
         default:

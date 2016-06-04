@@ -138,6 +138,22 @@ class ContentManager: NSObject {
         }
     }
 
+    func deleteImage(formID: String, block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.deleteImage(formID) {
+            (json, error) in
+
+            if error == nil && json != nil {
+                DDLogInfo("Delete Image success")
+            } else {
+                DDLogInfo("Delete Image failed: \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                block?(error: error)
+            }
+        }
+    }
+
     func saveUser(json: String, userName: String, password: String) {
         User.sharedInstance = User.mj_objectWithKeyValues(json)
         ContentManager.UserName = User.sharedInstance.userName

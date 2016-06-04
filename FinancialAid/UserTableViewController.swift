@@ -66,7 +66,10 @@ class UserTableViewController: UITableViewController {
         pickerController.showsCancelButton = true
 //        pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
 //            for asset in assets {
+//                asset.fetchImageWithSize(CGSize(width: 400, height: 800)) {
+//                    (image: UIImage?, _) in
 //
+//                }
 //            }
 //        }
         self.presentViewController(pickerController, animated: true) {}

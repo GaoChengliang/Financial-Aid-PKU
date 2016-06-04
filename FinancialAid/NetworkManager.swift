@@ -51,6 +51,8 @@ class NetworkManager: NSObject {
         static let FormListKey      = "Form List"
         static let EditUserInfoKey  = "Edit User"
         static let PDFKey           = "Get PDF"
+        static let ImageList        = "Image List"
+        static let DeleteImage      = "Delete Image"
     }
 
     // Default network manager, timeout set to 10s
@@ -132,6 +134,8 @@ extension NetworkManager {
         case FormList()
         case EditUserInfo([String: String])
         case GetPDF(String, String)
+        case GetImageList(String)
+        case DeleteImage(String)
 
         var URLRequest: NSMutableURLRequest {
 
@@ -151,6 +155,11 @@ extension NetworkManager {
                 case .GetPDF(let formID, let email):
                     let params = ["email": email]
                     return ("/form/\(formID)/pdf", Method.POST, params)
+                case .GetImageList(let formID):
+                    return ("/form/\(formID)/image", Method.GET, [:])
+                case .DeleteImage(let formID):
+                    return ("/image/\(formID)", Method.DELETE, [:])
+
                 }
             }()
 
@@ -203,6 +212,18 @@ extension NetworkManager {
         guard !NetworkManager.existPendingOperation(Constants.PDFKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetPDF(formID, email))
         NetworkManager.executeRequestWithKey(Constants.PDFKey, request: request, callback: callback)
+    }
+
+    func getImageList(formID: String, callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.ImageList) else { return }
+        let request = NetworkManager.Manager.request(Router.GetImageList(formID))
+        NetworkManager.executeRequestWithKey(Constants.ImageList, request: request, callback: callback)
+    }
+
+    func deleteImage(formID: String, callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.DeleteImage) else { return }
+        let request = NetworkManager.Manager.request(Router.DeleteImage(formID))
+        NetworkManager.executeRequestWithKey(Constants.DeleteImage, request: request, callback: callback)
     }
 
     func uploadImage(formID: Int, imageData: NSData, callback: Response<AnyObject, NSError> -> Void) {

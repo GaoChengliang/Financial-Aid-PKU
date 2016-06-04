@@ -9,6 +9,7 @@
 import UIKit
 import MobileCoreServices
 import SVProgressHUD
+import SDWebImage
 
 class SettingsTableViewController: UITableViewController {
 
@@ -18,6 +19,18 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat.min
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 1 {
+            let imageCache = SDImageCache.sharedImageCache()
+            imageCache.clearMemory()
+            imageCache.clearDiskOnCompletion() {
+                SVProgressHUD.showSuccessWithStatus(
+                    NSLocalizedString("Clear cache success", comment: "clear cache success")
+                )
+            }
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
