@@ -1,5 +1,5 @@
 //
-//  ImageViewController.swift
+//  ShowImageViewController.swift
 //  FinancialAid
 //
 //  Created by GaoChengliang on 16/5/31.
@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 import SwiftyJSON
 
-class UploadImageViewController: UIViewController {
+class ShowUploadImageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +19,10 @@ class UploadImageViewController: UIViewController {
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+
+    private struct Constants {
+        static let UnwindToUploadImageIdentifier = "UnwindToUploadImage"
     }
 
     var image: UIImage?
@@ -47,7 +51,8 @@ class UploadImageViewController: UIViewController {
                                         NSLocalizedString("Upload image success",
                                             comment: "upload image success")
                             )
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                            self.performSegueWithIdentifier(Constants
+                                .UnwindToUploadImageIdentifier, sender: self)
                         } else if error == 201 {
                             SVProgressHUD.showErrorWithStatus(
                                                NSLocalizedString("You have not filled the form",
@@ -71,7 +76,7 @@ class UploadImageViewController: UIViewController {
     }
 }
 
-extension UploadImageViewController: UIScrollViewDelegate {
+extension ShowUploadImageViewController: UIScrollViewDelegate {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }
