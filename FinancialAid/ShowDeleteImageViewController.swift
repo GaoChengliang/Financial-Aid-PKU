@@ -34,8 +34,8 @@ class ShowDeleteImageViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
 
     func deleteAlert() {
-        let alert = UIAlertController(title: "", message: NSLocalizedString("Confirm delete",
-            comment: "confirm delete image"), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Confirm delete",
+            comment: "confirm delete image"), message: "", preferredStyle: .Alert)
         let confirmAction = UIAlertAction(title: NSLocalizedString("Delete",
             comment: "delete image"), style: .Default) {
                 action in self.deleteImage()
