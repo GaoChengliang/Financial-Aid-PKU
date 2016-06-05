@@ -39,3 +39,5 @@
 "Privilege error" = "您没有权限";
 "Can not find image" = "找不到照片";
 "Clear cache success" = "清理缓存成功";
+"Delete" = "删除";
+"Confirm delete" = "确认删除此照片？";
