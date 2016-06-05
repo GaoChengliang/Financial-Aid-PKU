@@ -14,12 +14,13 @@ class ShowDeleteImageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Delete",
+            comment: "delete image"), style: .Done, target: self,
+                action: #selector(ShowDeleteImageViewController.deleteAlert))
+
+
         scrollView.delegate = self
         imageView.sd_setImageWithURL(NSURL(string: (idImage.imageUrl)))
-    }
-
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
 
     private struct Constants {
@@ -31,11 +32,27 @@ class ShowDeleteImageViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+
+    func deleteAlert() {
+        let alert = UIAlertController(title: "", message: NSLocalizedString("Confirm delete",
+            comment: "confirm delete image"), preferredStyle: .Alert)
+        let confirmAction = UIAlertAction(title: NSLocalizedString("Delete",
+            comment: "delete image"), style: .Default) {
+                action in self.deleteImage()
+        }
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel",
+            comment: "cancel delete image"), style: .Cancel) {
+            action in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    @IBAction func deleteImage(sender: UIBarButtonItem) {
+    func deleteImage() {
         ContentManager.sharedInstance.deleteImage("\(idImage.ID)") {
             (error) in
             if let error = error {

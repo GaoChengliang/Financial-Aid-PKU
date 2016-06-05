@@ -27,8 +27,8 @@ class EditGenderTableViewController: UITableViewController {
         }
     }
     private struct Constants {
-        static let EditGenderTableViewCellChecked = "EditGenderTableViewCellChecked"
-        static let EditGenderTableViewCellUnchecked = "EditGenderTableViewCellUnchecked"
+        static let EditGenderTableViewCellCheckedIdentifier = "EditGenderTableViewCellChecked"
+        static let EditGenderTableViewCellUncheckedIdentifier = "EditGenderTableViewCellUnchecked"
         static let unwindSegueIdentifier = "UnwindToUserCenterSegue"
     }
 
@@ -47,11 +47,11 @@ class EditGenderTableViewController: UITableViewController {
 
             var cell: UITableViewCell! = nil
             if gender == "male" && indexPath.row == 0 || gender == "female" && indexPath.row == 1 {
-                cell = tableView.dequeueReusableCellWithIdentifier(Constants.EditGenderTableViewCellChecked,
-                                                                   forIndexPath: indexPath)
+                cell = tableView.dequeueReusableCellWithIdentifier(
+                    Constants.EditGenderTableViewCellCheckedIdentifier, forIndexPath: indexPath)
             } else {
-                cell = tableView.dequeueReusableCellWithIdentifier(Constants.EditGenderTableViewCellUnchecked,
-                                                                   forIndexPath: indexPath)
+                cell = tableView.dequeueReusableCellWithIdentifier(
+                    Constants.EditGenderTableViewCellUncheckedIdentifier, forIndexPath: indexPath)
             }
 
             if indexPath.row == 0 {

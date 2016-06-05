@@ -1027,10 +1027,10 @@
             </objects>
             <point key="canvasLocation" x="-799" y="-331"/>
         </scene>
-        <!--已传照片-->
+        <!--上传照片-->
         <scene sceneID="rW7-76-lJ1">
             <objects>
-                <collectionViewController title="已传照片" id="L4z-cu-r11" customClass="UploadImageCollectionViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="上传照片" id="L4z-cu-r11" customClass="UploadImageCollectionViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jZX-Gd-e7b">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1097,7 +1097,7 @@
                     </collectionView>
                     <connections>
                         <segue destination="o3G-by-cRa" kind="presentation" identifier="ShowUploadImageSegue" modalTransitionStyle="crossDissolve" id="Yfe-tz-bjh"/>
-                        <segue destination="wnq-h0-0DT" kind="presentation" identifier="ShowDeleteImageSegue" modalTransitionStyle="crossDissolve" id="ih9-9p-9LN"/>
+                        <segue destination="wnq-h0-0DT" kind="show" identifier="ShowDeleteImageSegue" id="sVq-UI-ZmI"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baI-uP-GOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1182,10 +1182,10 @@
             </objects>
             <point key="canvasLocation" x="3739" y="-1278"/>
         </scene>
-        <!--Show Delete Image View Controller-->
+        <!--照片-->
         <scene sceneID="7ke-xx-gQW">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wnq-h0-0DT" customClass="ShowDeleteImageViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="照片" automaticallyAdjustsScrollViewInsets="NO" id="wnq-h0-0DT" customClass="ShowDeleteImageViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aCJ-Rf-EOq"/>
                         <viewControllerLayoutGuide type="bottom" id="Lxt-07-TAw"/>
@@ -1194,32 +1194,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eB-Mw-JIJ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="C0H-Ze-fhD"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="照片" id="3FU-q7-oqQ">
-                                        <barButtonItem key="leftBarButtonItem" title="  关闭" style="done" id="ue8-r4-01C">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="cancel:" destination="wnq-h0-0DT" id="FgU-kL-LXS"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="删除 " style="done" id="LUM-XF-nWi">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="deleteImage:" destination="wnq-h0-0DT" id="4Ew-ee-Jby"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="xHo-Ca-lB7">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
@@ -1239,16 +1213,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xHo-Ca-lB7" firstAttribute="top" secondItem="6eB-Mw-JIJ" secondAttribute="bottom" id="1dy-d3-Aet"/>
-                            <constraint firstItem="6eB-Mw-JIJ" firstAttribute="top" secondItem="aCJ-Rf-EOq" secondAttribute="bottom" constant="-20" id="IGg-im-OPz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6eB-Mw-JIJ" secondAttribute="trailing" constant="-20" id="OcP-4O-vBM"/>
+                            <constraint firstItem="xHo-Ca-lB7" firstAttribute="top" secondItem="aCJ-Rf-EOq" secondAttribute="bottom" id="04H-GJ-rGK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xHo-Ca-lB7" secondAttribute="trailing" constant="-20" id="Xkt-eu-ddR"/>
-                            <constraint firstItem="6eB-Mw-JIJ" firstAttribute="leading" secondItem="53w-8y-a37" secondAttribute="leadingMargin" constant="-20" id="dvW-7r-MQs"/>
                             <constraint firstItem="xHo-Ca-lB7" firstAttribute="leading" secondItem="53w-8y-a37" secondAttribute="leadingMargin" constant="-20" id="ouw-W6-Sps"/>
                             <constraint firstItem="Lxt-07-TAw" firstAttribute="top" secondItem="xHo-Ca-lB7" secondAttribute="bottom" id="vXp-AJ-XgJ"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="419-P9-P9I" id="pnj-qG-NQU"/>
                         <outlet property="scrollView" destination="xHo-Ca-lB7" id="BGD-tI-fjy"/>
