@@ -6,7 +6,8 @@ target :FinancialAid do
 	pod 'DZNEmptyDataSet', '1.8.1'
 	pod 'SVProgressHUD', '2.0.3'
 	pod 'ChameleonFramework/Swift', '2.1.0'
-    pod 'DKImagePickerController', '3.2.1'
+        pod 'DKImagePickerController', '3.2.1'
+        pod 'SDCycleScrollView', '1.64'
 
 	# Model related
 	pod 'SwiftyJSON', '2.3.2'

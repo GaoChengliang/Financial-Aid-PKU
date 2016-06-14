@@ -64,7 +64,8 @@ class UserTableViewController: UITableViewController {
         pickerController.showsEmptyAlbums = false
         pickerController.autoDownloadWhenAssetIsInCloud = false
         pickerController.showsCancelButton = true
-        pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
+        pickerController.didSelectAssets = {
+            assets in
             for asset in assets {
                 asset.fetchImageWithSize(CGSize(width: 400, height: 800)) {
                     (image: UIImage?, _) in

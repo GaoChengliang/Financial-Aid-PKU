@@ -26,6 +26,7 @@
 		DC4C6CD6B829F97D1474FF5A /* Pods_FinancialAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3404DBB50C7F94BD8F2CD996 /* Pods_FinancialAid.framework */; };
 		F80162701CF9AF8100C6C582 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801626F1CF9AF8100C6C582 /* User.swift */; };
 		F80162721CF9B08A00C6C582 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80162711CF9B08A00C6C582 /* ProgressView.swift */; };
+		F82615C01D10478C006A93F4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82615BF1D10478C006A93F4 /* HomeViewController.swift */; };
 		F847226A1CEAC6D600B99F03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84722691CEAC6D600B99F03 /* AppDelegate.swift */; };
 		F847226F1CEAC6D600B99F03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F847226D1CEAC6D600B99F03 /* Main.storyboard */; };
 		F84722721CEAC6D600B99F03 /* FinancialAid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F84722701CEAC6D600B99F03 /* FinancialAid.xcdatamodeld */; };
@@ -100,6 +101,7 @@
 		6AE135451CFD7A0D0006324B /* ShowUploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowUploadImageViewController.swift; path = FinancialAid/ShowUploadImageViewController.swift; sourceTree = "<group>"; };
 		F801626F1CF9AF8100C6C582 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = FinancialAid/User.swift; sourceTree = "<group>"; };
 		F80162711CF9B08A00C6C582 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressView.swift; path = FinancialAid/ProgressView.swift; sourceTree = "<group>"; };
+		F82615BF1D10478C006A93F4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = FinancialAid/HomeViewController.swift; sourceTree = "<group>"; };
 		F84722661CEAC6D600B99F03 /* FinancialAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinancialAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84722691CEAC6D600B99F03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F847226E1CEAC6D600B99F03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				6A320E2F1CF6C4AB00E1F751 /* EditGenderTableViewController.swift */,
 				6A320E2D1CF6BA9000E1F751 /* EditBirthdayViewController.swift */,
 				6A01A93D1CEB590E00D106AA /* SettingsTableViewController.swift */,
+				F82615BF1D10478C006A93F4 /* HomeViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				F869E9BF1CEB3D5A001A9D03 /* CGFloat.swift in Sources */,
 				F85238BC1CFC0E4E0010D88B /* UserCenter.swift in Sources */,
 				F878B6921CF5EF0B00A3CC01 /* EditProfileViewController.swift in Sources */,
+				F82615C01D10478C006A93F4 /* HomeViewController.swift in Sources */,
 				F869E9BE1CEB3D5A001A9D03 /* String.swift in Sources */,
 				F80162721CF9B08A00C6C582 /* ProgressView.swift in Sources */,
 				F878B68E1CF5E16100A3CC01 /* RefreshContents.swift in Sources */,

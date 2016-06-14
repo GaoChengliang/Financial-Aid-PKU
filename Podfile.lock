@@ -32,6 +32,8 @@ PODS:
   - OHHTTPStubs/NSURLSession (5.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (5.0.0)
+  - SDCycleScrollView (1.64):
+    - SDWebImage (~> 3.7)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -47,6 +49,7 @@ DEPENDENCIES:
   - KeychainAccess (= 2.3.5)
   - MJExtension (= 3.0.10)
   - OHHTTPStubs (= 5.0.0)
+  - SDCycleScrollView (= 1.64)
   - SDWebImage (= 3.7.6)
   - SVProgressHUD (= 2.0.3)
   - SwiftyJSON (= 2.3.2)
@@ -60,10 +63,11 @@ SPEC CHECKSUMS:
   KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   OHHTTPStubs: a5d2e9eea07869d42ec03338325f398bc520e159
+  SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 0516513fd09bef88499905ecdd0470b03f34b3bb
+PODFILE CHECKSUM: f5d647ae410a680b1172d9cf9b0631a808b5d780
 
 COCOAPODS: 1.0.0
