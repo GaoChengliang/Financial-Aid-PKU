@@ -17,10 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
          didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
             -> Bool {
+
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(
+            UIApplicationBackgroundFetchIntervalMinimum)
+
         // Override point for customization after application launch.
         CocoaLumberjack.config()
         SVProgressHUD.config()
         UITabBarItem.config()
+        LocationCellularManager.sharedInstance.getLocationCellular(nil)
 
         guard
             let userName = ContentManager.UserName where !userName.isEmpty,
@@ -32,5 +37,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewController.shouldAutoLogin = true
         window?.rootViewController = viewController
         return true
+    }
+
+    func applicationDidEnterBackground(application: UIApplication) {
+        LocationCellularManager.sharedInstance.stopGetLocationCellular()
+    }
+
+    func applicationWillEnterForeground(application: UIApplication) {
+        LocationCellularManager.sharedInstance.getLocationCellular(nil)
+    }
+
+    func application(application: UIApplication, performFetchWithCompletionHandler
+        completionHandler: (UIBackgroundFetchResult) -> Void) {
+        LocationCellularManager.sharedInstance.getLocationCellular {
+            completionHandler(.NewData)
+        }
     }
 }

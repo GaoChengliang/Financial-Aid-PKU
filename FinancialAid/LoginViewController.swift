@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import CocoaLumberjack
 import SVProgressHUD
 
@@ -67,12 +66,12 @@ class LoginViewController: UIViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector:
-                                                         #selector(LoginViewController.scrollTableView),
+            #selector(LoginViewController.scrollTableView),
                                                          name: UIKeyboardDidShowNotification,
                                                          object: true)
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector:
-                                                         #selector(LoginViewController.scrollTableView),
+            #selector(LoginViewController.scrollTableView),
                                                          name: UIKeyboardWillHideNotification,
                                                          object: false)
     }

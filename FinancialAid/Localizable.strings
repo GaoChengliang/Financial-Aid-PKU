@@ -40,4 +40,6 @@
 "Can not find image" = "找不到照片";
 "Clear cache success" = "清理缓存成功";
 "Delete" = "删除";
+"Set" = "设置";
 "Confirm delete" = "确认删除此照片？";
+"Open location" = "开启定位以获得更好的服务？";
