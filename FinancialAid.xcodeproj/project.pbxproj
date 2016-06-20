@@ -22,6 +22,7 @@
 		6AB154221CF5C645007191DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541D1CF5C645007191DB /* LoginViewController.swift */; };
 		6ACCF48F1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACCF48E1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift */; };
 		6ACCF4911CF5DBB700025AA0 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACCF4901CF5DBB700025AA0 /* UserTableViewController.swift */; };
+		6ACDECCB1D12BAFB00400C5D /* LocationCellularManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACDECCA1D12BAFB00400C5D /* LocationCellularManager.swift */; };
 		6AE135461CFD7A0D0006324B /* ShowUploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE135451CFD7A0D0006324B /* ShowUploadImageViewController.swift */; };
 		DC4C6CD6B829F97D1474FF5A /* Pods_FinancialAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3404DBB50C7F94BD8F2CD996 /* Pods_FinancialAid.framework */; };
 		F80162701CF9AF8100C6C582 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801626F1CF9AF8100C6C582 /* User.swift */; };
@@ -98,6 +99,7 @@
 		6AB1541D1CF5C645007191DB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = FinancialAid/LoginViewController.swift; sourceTree = "<group>"; };
 		6ACCF48E1CF5DA3400025AA0 /* UserPortraitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPortraitTableViewCell.swift; path = FinancialAid/UserPortraitTableViewCell.swift; sourceTree = "<group>"; };
 		6ACCF4901CF5DBB700025AA0 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewController.swift; path = FinancialAid/UserTableViewController.swift; sourceTree = "<group>"; };
+		6ACDECCA1D12BAFB00400C5D /* LocationCellularManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationCellularManager.swift; path = FinancialAid/LocationCellularManager.swift; sourceTree = "<group>"; };
 		6AE135451CFD7A0D0006324B /* ShowUploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowUploadImageViewController.swift; path = FinancialAid/ShowUploadImageViewController.swift; sourceTree = "<group>"; };
 		F801626F1CF9AF8100C6C582 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = FinancialAid/User.swift; sourceTree = "<group>"; };
 		F80162711CF9B08A00C6C582 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressView.swift; path = FinancialAid/ProgressView.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				F869E99E1CEB3CCC001A9D03 /* Observable.swift */,
 				F869E99A1CEB3C68001A9D03 /* ContentManager.swift */,
 				F869E99B1CEB3C68001A9D03 /* NetworkManager.swift */,
+				6ACDECCA1D12BAFB00400C5D /* LocationCellularManager.swift */,
 				F869E9C21CEB3D8F001A9D03 /* Wrapper */,
 			);
 			name = Utility;
@@ -292,8 +295,9 @@
 			children = (
 				F878B68B1CF5E11E00A3CC01 /* CloudAnimateTableViewController.swift */,
 				F869E9A41CEB3D5A001A9D03 /* TabBarController.swift */,
-				6AB1541D1CF5C645007191DB /* LoginViewController.swift */,
 				F8DA6FDF1CFB013B00078A83 /* NavigationController.swift */,
+				6AB1541D1CF5C645007191DB /* LoginViewController.swift */,
+				F82615BF1D10478C006A93F4 /* HomeViewController.swift */,
 				6A01A93C1CEB590E00D106AA /* FormTableViewController.swift */,
 				6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */,
 				6AB1541C1CF5C645007191DB /* FormWebViewController.swift */,
@@ -305,7 +309,6 @@
 				6A320E2F1CF6C4AB00E1F751 /* EditGenderTableViewController.swift */,
 				6A320E2D1CF6BA9000E1F751 /* EditBirthdayViewController.swift */,
 				6A01A93D1CEB590E00D106AA /* SettingsTableViewController.swift */,
-				F82615BF1D10478C006A93F4 /* HomeViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -408,6 +411,11 @@
 					F84722651CEAC6D600B99F03 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = Y5NE6X87LM;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					F847227C1CEAC6D600B99F03 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -555,6 +563,7 @@
 				F869E9B61CEB3D5A001A9D03 /* UIViewController.swift in Sources */,
 				6A1ACB501D02A293000715A6 /* UploadImageCollectionViewCell.swift in Sources */,
 				6A1ACB4A1D028506000715A6 /* UploadImageCollectionViewController.swift in Sources */,
+				6ACDECCB1D12BAFB00400C5D /* LocationCellularManager.swift in Sources */,
 				6AB1541F1CF5C645007191DB /* AppConstants.swift in Sources */,
 				6A1ACB521D02F50A000715A6 /* ShowDeleteImageViewController.swift in Sources */,
 				6AB154211CF5C645007191DB /* FormWebViewController.swift in Sources */,
