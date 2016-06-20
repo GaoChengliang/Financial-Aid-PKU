@@ -13,6 +13,7 @@ class IDImage: NSObject {
 
     var ID = ""
     var imageUrl = ""
+    var thumbnailUrl = ""
 }
 
 extension IDImage {
@@ -20,6 +21,7 @@ extension IDImage {
         return [
             "ID" : "id",
             "imageUrl" : "url",
+            "thumbnailUrl" : "thumbnail",
         ]
     }
 }

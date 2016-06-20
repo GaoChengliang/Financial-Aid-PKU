@@ -38,6 +38,7 @@
 "Delete image success" = "删除照片成功";
 "Privilege error" = "您没有权限";
 "Can not find image" = "找不到照片";
+"Image download error" = "图片加载失败，请检查网络稍后再试";
 "Clear cache success" = "清理缓存成功";
 "Delete" = "删除";
 "Set" = "设置";

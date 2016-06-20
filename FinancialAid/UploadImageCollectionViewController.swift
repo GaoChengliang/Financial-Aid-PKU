@@ -113,7 +113,7 @@ extension UploadImageCollectionViewController {
                 Constants.ImageCollectionViewCellIdentifier, forIndexPath: indexPath)
                 as? ImageCollectionViewCell {
                 cell.imageView.sd_setImageWithURL(NSURL(string:
-                    idImages[indexPath.item].imageUrl), placeholderImage: UIImage(named: "Loading"))
+                    idImages[indexPath.item].thumbnailUrl), placeholderImage: UIImage(named: "Loading"))
                 return cell
             }
         }
