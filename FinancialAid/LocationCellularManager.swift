@@ -53,11 +53,13 @@ class LocationCellularManager: NSObject, CLLocationManagerDelegate {
 
     func startGetLocationCellular() {
         locationManager.startUpdatingLocation()
-        let name = carrier.carrierName
-        let isoCode = carrier.isoCountryCode
-        let countryCode = carrier.mobileCountryCode
-        let networkCode = carrier.mobileNetworkCode
-        DDLogInfo("Get cellular success, \(name) \(isoCode) \(countryCode) \(networkCode)")
+        if carrier != nil {
+            let name = carrier.carrierName
+            let isoCode = carrier.isoCountryCode
+            let countryCode = carrier.mobileCountryCode
+            let networkCode = carrier.mobileNetworkCode
+            DDLogInfo("Get cellular success, \(name) \(isoCode) \(countryCode) \(networkCode)")
+        }
     }
 
     func stopGetLocationCellular() {

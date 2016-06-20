@@ -14,13 +14,29 @@ class ShowDeleteImageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Delete",
-            comment: "delete image"), style: .Done, target: self,
-                action: #selector(ShowDeleteImageViewController.deleteAlert))
-
-
         scrollView.delegate = self
-        imageView.sd_setImageWithURL(NSURL(string: (idImage.imageUrl)))
+        SVProgressHUD.show()
+        imageView.sd_setImageWithURL(NSURL(string: (idImage.imageUrl))) {
+            (_, error, _, _) in
+            if error == nil {
+                SVProgressHUD.dismiss()
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Delete",
+                    comment: "delete image"), style: .Done, target: self,
+                                              action: #selector(ShowDeleteImageViewController.deleteAlert))
+            } else {
+                SVProgressHUD.showErrorWithStatus(
+                    NSLocalizedString("Image download error",
+                        comment: "image download error")
+                )
+            }
+        }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        let imageCache = SDImageCache.sharedImageCache()
+        imageCache.clearMemory()
+        imageCache.clearDisk()
     }
 
     private struct Constants {
