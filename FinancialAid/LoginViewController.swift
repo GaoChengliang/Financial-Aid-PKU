@@ -21,11 +21,8 @@ class LoginViewController: UIViewController {
     var keyboardAppeared = false {
         didSet {
             guard oldValue != keyboardAppeared else { return }
-            print(oldValue)
-            print(keyboardAppeared)
             var offset = loginTableView.contentOffset
             offset.y = keyboardAppeared ? Constants.HeaderHeight : 0
-            print(offset)
             loginTableView.setContentOffset(offset, animated: true)
         }
     }
@@ -67,15 +64,14 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:
-            #selector(LoginViewController.scrollTableView(_:)),
-                                                         name: UIKeyboardDidShowNotification,
-                                                         object: true)
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector:
-            #selector(LoginViewController.scrollTableView),
-                                                         name: UIKeyboardWillHideNotification,
-                                                         object: false)
+                                                         #selector(LoginViewController.scrollUpTableView),
+                                                         name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector:
+                                                         #selector(LoginViewController.scrollDownTableView),
+                                                         name: UIKeyboardWillHideNotification, object: nil)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -107,12 +103,14 @@ class LoginViewController: UIViewController {
         toggleButton.setTitle("\(name)\(!status)", forState: .Normal)
     }
 
-    func scrollTableView(notification: NSNotification) {
 
-        let appeared = notification.object as? Bool ?? false
-        keyboardAppeared = appeared
+    func scrollUpTableView() {
+        keyboardAppeared = true
     }
 
+    func scrollDownTableView() {
+        keyboardAppeared = false
+    }
 
     func dismissKeyboard() {
         view.endEditing(true)
