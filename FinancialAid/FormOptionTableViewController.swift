@@ -16,6 +16,9 @@ class FormOptionTableViewController: UITableViewController {
     // Inited from prepare for segue
     var form: Form!
     var image: UIImage?
+    var options = [Int]()
+
+    var tableViewCellIdentifiers = ["FillFormTableViewCell", "PDFTableViewCell", "UploadImageTableViewCell"]
 
     private struct Constants {
         static let HelpSegueIdentifier = "FormGuideSegue"
@@ -27,6 +30,15 @@ class FormOptionTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         title = form.name
+        if form.isStepFill {
+            options.append(0)
+        }
+        if form.isStepPdf {
+            options.append(1)
+        }
+        if form.isStepUpload {
+            options.append(2)
+        }
         if form.isStepHelp {
             let barItem = UIBarButtonItem(image: UIImage(named: "FillFormGuide"),
                                           style: .Done, target: self,
@@ -39,24 +51,21 @@ class FormOptionTableViewController: UITableViewController {
         performSegueWithIdentifier(Constants.HelpSegueIdentifier, sender: self)
     }
 
+    // MARK: - Table view data source
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return options.count
+    }
+
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        let enables = [form.isStepFill, form.isStepPdf, form.isStepUpload]
-        let enable = enables[indexPath.row]
-        cell.userInteractionEnabled = enable
-        if !enable {
-            cell.textLabel?.textColor = .lightGrayColor()
-            cell.accessoryType = .None
-        } else {
-            cell.textLabel?.textColor = .blackColor()
-            cell.accessoryType = .DisclosureIndicator
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier(
+            tableViewCellIdentifiers[options[indexPath.row]], forIndexPath: indexPath)
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath == NSIndexPath(forRow: 1, inSection: 0) {
+        if options[indexPath.row] == 1 {
             ContentManager.sharedInstance.getPDF("\(form.ID)", email: User.sharedInstance.email) {
                 (error) in
                 if let error = error {
@@ -90,10 +99,6 @@ class FormOptionTableViewController: UITableViewController {
                     )
                 }
             }
-        }
-
-        if indexPath == NSIndexPath(forRow: 2, inSection: 0) {
-            self.performSegueWithIdentifier(Constants.UploadImageSegueIdentifier, sender: self)
         }
     }
 

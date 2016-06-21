@@ -12,6 +12,7 @@ import MJExtension
 class Form: NSObject {
     var ID: Int = 0
     var name = ""
+    var status = -1
     var active = false
     var isStepHelp = false
     var isStepFill = false
@@ -36,7 +37,8 @@ extension Form {
             "startDate": "start_at",
             "endDate": "end_at",
             "helpPath": "help_path",
-            "fillPath": "fill_path"
+            "fillPath": "fill_path",
+            "status": "status"
         ]
     }
 
@@ -65,6 +67,8 @@ extension Form {
         case "ID":
             fallthrough
         case "name":
+            fallthrough
+        case "status":
             fallthrough
         default:
             return oldValue
