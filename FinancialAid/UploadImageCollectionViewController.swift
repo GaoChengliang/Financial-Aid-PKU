@@ -50,6 +50,7 @@ class UploadImageCollectionViewController: UICollectionViewController {
                             self.idImages.append(IDImage.mj_objectWithKeyValues(idImage.description))
                             self.collectionView?.reloadData()
                         }
+                        self.collectionView?.reloadData()
                     }
                 }
             } else {
