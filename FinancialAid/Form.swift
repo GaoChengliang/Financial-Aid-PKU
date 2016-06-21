@@ -12,7 +12,8 @@ import MJExtension
 class Form: NSObject {
     var ID: Int = 0
     var name = ""
-    var status = -1
+    var status = 0
+    var sortWeight = 0
     var active = false
     var isStepHelp = false
     var isStepFill = false
@@ -38,7 +39,8 @@ extension Form {
             "endDate": "end_at",
             "helpPath": "help_path",
             "fillPath": "fill_path",
-            "status": "status"
+            "status": "status",
+            "sortWeight": "sort_weight"
         ]
     }
 
@@ -80,7 +82,13 @@ class FormList: NSObject {
 
     static var sharedInstance = FormList()
 
-    var formList = [Form]()
+    var formList = [Form]() {
+        didSet {
+            formList.sortInPlace {
+                $0.sortWeight > $1.sortWeight
+            }
+        }
+    }
     var count: Int {
         return formList.count
     }
