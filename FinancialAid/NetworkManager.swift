@@ -49,6 +49,7 @@ class NetworkManager: NSObject {
         static let LoginKey         = "Login"
         static let RegisterKey      = "Register"
         static let FormListKey      = "Form List"
+        static let GetUserInfoKey   = "Get User"
         static let EditUserInfoKey  = "Edit User"
         static let PDFKey           = "Get PDF"
         static let ImageList        = "Image List"
@@ -132,6 +133,7 @@ extension NetworkManager {
         case Login(String, String)
         case Register(String, String)
         case FormList()
+        case GetUserInfo()
         case EditUserInfo([String: String])
         case GetPDF(String, String)
         case GetImageList(String)
@@ -150,6 +152,8 @@ extension NetworkManager {
                     return ("/user/register", Method.POST, params)
                 case .FormList:
                     return ("/form/list", Method.GET, [:])
+                case .GetUserInfo:
+                    return ("/user", Method.GET, [:])
                 case .EditUserInfo(let params):
                     return ("/user", Method.PUT, params)
                 case .GetPDF(let formID, let email):
@@ -200,6 +204,12 @@ extension NetworkManager {
         guard !NetworkManager.existPendingOperation(Constants.FormListKey) else { return }
         let request = NetworkManager.Manager.request(Router.FormList())
         NetworkManager.executeRequestWithKey(Constants.FormListKey, request: request, callback: callback)
+    }
+
+    func getUserInfo(callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.GetUserInfoKey) else { return }
+        let request = NetworkManager.Manager.request(Router.GetUserInfo())
+        NetworkManager.executeRequestWithKey(Constants.GetUserInfoKey, request: request, callback: callback)
     }
 
     func editUserInfo(editInfo: [String: String], callback: NetworkCallbackBlock) {

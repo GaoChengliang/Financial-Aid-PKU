@@ -19,6 +19,19 @@ class UserTableViewController: UITableViewController {
         }
     }
 
+    func retrieveUser() {
+        ContentManager.sharedInstance.getUserInfo {
+            if $0 == nil {
+                self.userCenter = UserCenter()
+            }
+        }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveUser()
+    }
+
     override func tableView(tableView: UITableView,
                             cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {

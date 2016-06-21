@@ -105,6 +105,23 @@ class ContentManager: NSObject {
         }
     }
 
+    func getUserInfo(block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.getUserInfo {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Get user information success")
+                User.sharedInstance = User.mj_objectWithKeyValues(json["data"].description)
+            } else {
+                DDLogInfo("Get user information failed: \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                block?(error: error)
+            }
+        }
+    }
+
     func editUserInfo(editInfo: [String: String], block: ((error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.editUserInfo(editInfo) {
             (json, error) in
