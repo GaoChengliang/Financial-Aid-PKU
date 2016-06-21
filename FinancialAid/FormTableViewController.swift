@@ -47,7 +47,7 @@ class FormTableViewController: CloudAnimateTableViewController {
                        forIndexPath: indexPath) as? FormTableViewCell
             else { return UITableViewCell() }
         let form = FormList.sharedInstance[indexPath.row]
-        cell.setupWithName(form.name, startDate: form.startDate, endDate: form.endDate)
+        cell.setupWithName(form.name, startDate: form.startDate, endDate: form.endDate, status: form.status)
         return cell
     }
 
