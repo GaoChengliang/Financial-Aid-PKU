@@ -21,8 +21,11 @@ class LoginViewController: UIViewController {
     var keyboardAppeared = false {
         didSet {
             guard oldValue != keyboardAppeared else { return }
+            print(oldValue)
+            print(keyboardAppeared)
             var offset = loginTableView.contentOffset
             offset.y = keyboardAppeared ? Constants.HeaderHeight : 0
+            print(offset)
             loginTableView.setContentOffset(offset, animated: true)
         }
     }
@@ -64,9 +67,8 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector:
-            #selector(LoginViewController.scrollTableView),
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:
+            #selector(LoginViewController.scrollTableView(_:)),
                                                          name: UIKeyboardDidShowNotification,
                                                          object: true)
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -106,6 +108,7 @@ class LoginViewController: UIViewController {
     }
 
     func scrollTableView(notification: NSNotification) {
+
         let appeared = notification.object as? Bool ?? false
         keyboardAppeared = appeared
     }

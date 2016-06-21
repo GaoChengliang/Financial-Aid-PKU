@@ -44,3 +44,7 @@
 "Set" = "设置";
 "Confirm delete" = "确认删除此照片？";
 "Open location" = "开启定位以获得更好的服务？";
+"Input empty error" = "输入不能为空";
+"Check new password error" = "新密码不一致，请检查";
+"Check old password error" = "原密码错误，请检查";
+"Edit password success" = "修改密码成功,请重新登录";
