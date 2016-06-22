@@ -19,8 +19,35 @@ class FormTableViewController: CloudAnimateTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        // MARK: Request location
+        //        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
+        //            showAlert()
+        //        }
         retriveFormList()
     }
+
+    func showAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Open location",
+            comment: "request open location"), message: "", preferredStyle: .Alert)
+        let confirmAction = UIAlertAction(title: NSLocalizedString("Set",
+            comment: "go to set"), style: .Default) {
+                action in
+                if let setURL = NSURL(string: UIApplicationOpenSettingsURLString) {
+                    UIApplication.sharedApplication().openURL(setURL)
+                }
+        }
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel",
+            comment: "cancel set"), style: .Cancel) {
+                action in
+                alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
 
     func retriveFormList() {
         ContentManager.sharedInstance.formList {
