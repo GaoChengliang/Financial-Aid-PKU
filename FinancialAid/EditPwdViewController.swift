@@ -51,26 +51,34 @@ class EditPwdViewController: UIViewController {
                     )
                     return
                 }
-                if oldPwdStr != ContentManager.Password {
-                    SVProgressHUD.showErrorWithStatus(
-                        NSLocalizedString("Check old password error",
-                            comment: "old password is wrong")
-                    )
-                    return
-                }
 
-                ContentManager.sharedInstance.editUserInfo(["password": newPwdStr]) {
-                    if $0 != nil {
-                        SVProgressHUD.showErrorWithStatus(
-                            NSLocalizedString("Server error occurred",
-                                comment: "network error in editing password")
-                        )
+                ContentManager.sharedInstance.editUserInfo(["old_password": oldPwdStr,
+                    "password": newPwdStr]) {
+                    (error) in
+                    if let error = error {
+                        if case NetworkErrorType.NetworkUnreachable(_) = error {
+                            SVProgressHUD.showErrorWithStatus(
+                                NSLocalizedString("Network timeout",
+                                    comment: "network timeout or interruptted")
+                            )
+                        } else if case NetworkErrorType.NetworkWrongParameter(_, let errno) = error {
+                            if errno == 101 {
+                                SVProgressHUD.showErrorWithStatus(
+                                    NSLocalizedString("Check old password error",
+                                        comment: "old password is wrong")
+                                )
+                            } else {
+                                SVProgressHUD.showErrorWithStatus(
+                                    NSLocalizedString("Server error occurred",
+                                        comment: "unknown error")
+                                )
+                            }
+                        }
                     } else {
                         SVProgressHUD.showSuccessWithStatus(
                             NSLocalizedString("Edit password success",
                                 comment: "edit password success")
                         )
-
                         ContentManager.Password = nil
                         self.performSegueWithIdentifier(Constants.segueIdentifier, sender: self)
                     }

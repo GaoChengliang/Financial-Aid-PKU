@@ -66,6 +66,14 @@ class FormOptionTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if options[indexPath.row] == 1 {
+            if !User.sharedInstance.email.isEmail() {
+                SVProgressHUD.showErrorWithStatus(
+                    NSLocalizedString(
+                        "Email address is not valid, please update in personal center",
+                        comment: "email address is not valid")
+                )
+                return
+            }
             ContentManager.sharedInstance.getPDF("\(form.ID)", email: User.sharedInstance.email) {
                 (error) in
                 if let error = error {
