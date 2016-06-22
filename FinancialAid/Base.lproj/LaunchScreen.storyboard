@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinancialAid" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-k7-k7t">
-                                <rect key="frame" x="193" y="174" width="214" height="173"/>
+                                <rect key="frame" x="-22" y="1" width="643" height="519"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北大资助" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohs-g2-nz2">
-                                <rect key="frame" x="204" y="355" width="192" height="56"/>
+                                <rect key="frame" x="204" y="528" width="192" height="56"/>
                                 <fontDescription key="fontDescription" name="MicrosoftYaHei" family="Microsoft YaHei" pointSize="48"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -41,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FinancialAid" width="214" height="173"/>
+        <image name="FinancialAid" width="643" height="519"/>
     </resources>
 </document>

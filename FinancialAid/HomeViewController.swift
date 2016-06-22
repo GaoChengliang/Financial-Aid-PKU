@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillDisappear(animated)
+
         textView.scrollRectToVisible(CGRect.zero, animated: true)
     }
 
@@ -22,9 +23,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         // MARK: Request location
-        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
-            showAlert()
-        }
+//        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
+//            showAlert()
+//        }
     }
 
     func showAlert() {
