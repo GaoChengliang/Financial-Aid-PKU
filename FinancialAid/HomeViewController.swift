@@ -13,12 +13,6 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        textView.scrollRectToVisible(CGRect.zero, animated: true)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
