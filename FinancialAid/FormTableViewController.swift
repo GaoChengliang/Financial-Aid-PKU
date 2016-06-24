@@ -92,7 +92,7 @@ class FormTableViewController: CloudAnimateTableViewController {
             let cell = sender as? UITableViewCell,
             let indexPath = tableView.indexPathForCell(cell)
             else { return }
-
+        fotvc.formViewController = self
         fotvc.form = FormList.sharedInstance[indexPath.row]
     }
 }
