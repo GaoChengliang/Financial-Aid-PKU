@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,23 +18,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinancialAid" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-k7-k7t">
-                                <rect key="frame" x="-22" y="1" width="643" height="519"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="Fiu-Zi-DQd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北大资助" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohs-g2-nz2">
-                                <rect key="frame" x="204" y="528" width="192" height="56"/>
-                                <fontDescription key="fontDescription" name="MicrosoftYaHei" family="Microsoft YaHei" pointSize="48"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinancialLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="h2Z-0F-Fpj">
+                                <rect key="frame" x="220" y="105" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="Xt9-jT-AVO"/>
+                                    <constraint firstAttribute="width" secondItem="h2Z-0F-Fpj" secondAttribute="height" multiplier="1:1" id="zmk-cV-DPg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京大学学生资助中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzi-Mc-Qyv">
+                                <rect key="frame" x="20" y="295" width="560" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让每位燕园学子成为有用之才" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUc-nM-cil">
+                                <rect key="frame" x="20" y="332" width="560" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OhS-k7-k7t" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="Hd4-YU-bha"/>
-                            <constraint firstItem="OhS-k7-k7t" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="P7M-Xc-25O"/>
-                            <constraint firstItem="ohs-g2-nz2" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="u54-FK-hVs"/>
-                            <constraint firstItem="ohs-g2-nz2" firstAttribute="top" secondItem="OhS-k7-k7t" secondAttribute="bottom" constant="8" id="xUX-Q2-PBq"/>
+                            <constraint firstItem="Fiu-Zi-DQd" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="Dmw-e2-hTo"/>
+                            <constraint firstItem="kzi-Mc-Qyv" firstAttribute="top" secondItem="h2Z-0F-Fpj" secondAttribute="bottom" constant="30" id="FM7-Qd-FWr"/>
+                            <constraint firstItem="h2Z-0F-Fpj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NBc-Ao-azf"/>
+                            <constraint firstItem="HUc-nM-cil" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="P0W-na-ckn"/>
+                            <constraint firstItem="Fiu-Zi-DQd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="Tg3-3u-dMg"/>
+                            <constraint firstItem="HUc-nM-cil" firstAttribute="top" secondItem="kzi-Mc-Qyv" secondAttribute="bottom" constant="8" symbolic="YES" id="ZLJ-P5-IqL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fiu-Zi-DQd" secondAttribute="trailing" constant="-20" id="c1U-To-OYP"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Fiu-Zi-DQd" secondAttribute="bottom" id="lb8-8g-heI"/>
+                            <constraint firstItem="kzi-Mc-Qyv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pOH-0e-6zV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kzi-Mc-Qyv" secondAttribute="trailing" id="wLr-Pk-TSJ"/>
+                            <constraint firstItem="h2Z-0F-Fpj" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="85" id="xnM-rQ-jPW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HUc-nM-cil" secondAttribute="trailing" id="yq9-WG-CXw"/>
+                            <constraint firstItem="kzi-Mc-Qyv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="z5G-F2-XMs"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pOH-0e-6zV"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -41,6 +70,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FinancialAid" width="643" height="519"/>
+        <image name="FinancialLogoWhite" width="512" height="512"/>
+        <image name="Welcome" width="720" height="1280"/>
     </resources>
 </document>
