@@ -51,6 +51,22 @@ class FormOptionTableViewController: UITableViewController {
         performSegueWithIdentifier(Constants.HelpSegueIdentifier, sender: self)
     }
 
+    func showPdfAlert() {
+        let alertView = UIAlertView()
+        alertView.title =  NSLocalizedString(
+            "Please input the email",
+            comment: "email address where user wants to send the pdf")
+        alertView.alertViewStyle = .PlainTextInput
+        alertView.addButtonWithTitle(NSLocalizedString(
+            "Confirm",
+            comment: "confirm the email address"))
+        alertView.addButtonWithTitle(NSLocalizedString(
+            "Cancel",
+            comment: "cancel send pdf"))
+        alertView.delegate = self
+        alertView.show()
+    }
+
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
@@ -66,47 +82,7 @@ class FormOptionTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if options[indexPath.row] == 1 {
-            if !User.sharedInstance.email.isEmail() {
-                SVProgressHUD.showErrorWithStatus(
-                    NSLocalizedString(
-                        "Email address is not valid, please update in personal center",
-                        comment: "email address is not valid")
-                )
-                return
-            }
-            ContentManager.sharedInstance.getPDF("\(form.ID)", email: User.sharedInstance.email) {
-                (error) in
-                if let error = error {
-                    if case NetworkErrorType.NetworkUnreachable(_) = error {
-                        SVProgressHUD.showErrorWithStatus(
-                            NSLocalizedString("Network timeout",
-                                comment: "network timeout or interruptted")
-                        )
-                    } else if case NetworkErrorType.NetworkWrongParameter(_, let errno) = error {
-                        if errno == 201 {
-                            SVProgressHUD.showErrorWithStatus(
-                                NSLocalizedString("You have not filled the form",
-                                    comment: "form not filled")
-                            )
-                        } else if errno == 203 {
-                            SVProgressHUD.showErrorWithStatus(
-                                NSLocalizedString(
-                                    "Email address is not valid, please update in personal center",
-                                    comment: "email address is not valid")
-                            )
-                        } else {
-                            SVProgressHUD.showErrorWithStatus(
-                                NSLocalizedString("Server error occurred",
-                                    comment: "unknown error")
-                            )
-                        }
-                    }
-                } else {
-                    SVProgressHUD.showSuccessWithStatus(
-                        NSLocalizedString("The PDF is sent to your email address", comment: "Get PDF success")
-                    )
-                }
-            }
+            showPdfAlert()
         }
     }
 
@@ -133,6 +109,60 @@ class FormOptionTableViewController: UITableViewController {
             }
         default:
             break
+        }
+    }
+}
+
+// MARK: UIAlertViewDelegate
+extension FormOptionTableViewController : UIAlertViewDelegate {
+
+    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+
+        if buttonIndex == 0 {
+            if let email = alertView.textFieldAtIndex(0)?.text {
+                if !email.isEmail() {
+                    SVProgressHUD.showErrorWithStatus(
+                        NSLocalizedString(
+                            "Email address is not valid, please update in personal center",
+                            comment: "email address is not valid")
+                    )
+                    return
+                }
+                ContentManager.sharedInstance.getPDF("\(form.ID)", email: email) {
+                    (error) in
+                    if let error = error {
+                        if case NetworkErrorType.NetworkUnreachable(_) = error {
+                            SVProgressHUD.showErrorWithStatus(
+                                NSLocalizedString("Network timeout",
+                                    comment: "network timeout or interruptted")
+                            )
+                        } else if case NetworkErrorType.NetworkWrongParameter(_, let errno) = error {
+                            if errno == 201 {
+                                SVProgressHUD.showErrorWithStatus(
+                                    NSLocalizedString("You have not filled the form",
+                                        comment: "form not filled")
+                                )
+                            } else if errno == 203 {
+                                SVProgressHUD.showErrorWithStatus(
+                                    NSLocalizedString(
+                                        "Email address is not valid, please update in personal center",
+                                        comment: "email address is not valid")
+                                )
+                            } else {
+                                SVProgressHUD.showErrorWithStatus(
+                                    NSLocalizedString("Server error occurred",
+                                        comment: "unknown error")
+                                )
+                            }
+                        }
+                    } else {
+                        SVProgressHUD.showSuccessWithStatus(
+                            NSLocalizedString("The PDF is sent to your email address",
+                                comment: "Get PDF success")
+                        )
+                    }
+                }
+            }
         }
     }
 }
