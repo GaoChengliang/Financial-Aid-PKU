@@ -17,7 +17,6 @@ class FormOptionTableViewController: UITableViewController {
     var form: Form!
     var image: UIImage?
     var options = [Int]()
-    weak var formViewController: UITableViewController?
 
     var tableViewCellIdentifiers = ["FillFormTableViewCell", "PDFTableViewCell", "UploadImageTableViewCell"]
 
@@ -45,20 +44,6 @@ class FormOptionTableViewController: UITableViewController {
                                           style: .Done, target: self,
                                           action: #selector(FormOptionTableViewController.formHelp))
             self.navigationItem.rightBarButtonItem = barItem
-        }
-    }
-
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        if parent == nil {
-            ContentManager.sharedInstance.formList {
-                if $0 != nil {
-                    SVProgressHUD.showErrorWithStatus(
-                        NSLocalizedString("Network timeout",
-                            comment: "network timeout or interruptted")
-                    )
-                }
-                self.formViewController?.tableView.reloadData()
-            }
         }
     }
 
