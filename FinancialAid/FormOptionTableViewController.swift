@@ -57,6 +57,7 @@ class FormOptionTableViewController: UITableViewController {
             "Please input the email",
             comment: "email address where user wants to send the pdf")
         alertView.alertViewStyle = .PlainTextInput
+        alertView.textFieldAtIndex(0)?.text = User.sharedInstance.email
         alertView.addButtonWithTitle(NSLocalizedString(
             "Confirm",
             comment: "confirm the email address"))
