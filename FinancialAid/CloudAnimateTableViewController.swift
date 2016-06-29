@@ -168,4 +168,8 @@ extension CloudAnimateTableViewController: DZNEmptyDataSetDelegate {
     func emptyDataSetShouldAllowTouch(scrollView: UIScrollView!) -> Bool {
         return false
     }
+
+    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+        return -80
+    }
 }

@@ -91,7 +91,6 @@ class FormOptionTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-       // guard let fwvc = segue.destinationViewController as? FormWebViewController else { return }
         guard let segueIdentifer = segue.identifier else { return }
         switch segueIdentifer {
         case Constants.HelpSegueIdentifier:

@@ -48,12 +48,14 @@ class NetworkManager: NSObject {
     private struct Constants {
         static let LoginKey         = "Login"
         static let RegisterKey      = "Register"
+        static let VersionKey       = "Version"
         static let FormListKey      = "Form List"
         static let GetUserInfoKey   = "Get User"
         static let EditUserInfoKey  = "Edit User"
         static let PDFKey           = "Get PDF"
-        static let ImageList        = "Image List"
-        static let DeleteImage      = "Delete Image"
+        static let ImageListKey     = "Image List"
+        static let DeleteImageKey   = "Delete Image"
+        static let GetNewsKey       = "Get News"
     }
 
     // Default network manager, timeout set to 10s
@@ -138,6 +140,8 @@ extension NetworkManager {
         case GetPDF(String, String)
         case GetImageList(String)
         case DeleteImage(String)
+        case GetVersion()
+        case GetNews()
 
         var URLRequest: NSMutableURLRequest {
 
@@ -163,7 +167,10 @@ extension NetworkManager {
                     return ("/form/\(formID)/image", Method.GET, [:])
                 case .DeleteImage(let formID):
                     return ("/image/\(formID)", Method.DELETE, [:])
-
+                case .GetVersion:
+                    return ("/version", Method.GET, [:])
+                case .GetNews:
+                    return ("/news", Method.GET, [:])
                 }
             }()
 
@@ -225,16 +232,29 @@ extension NetworkManager {
     }
 
     func getImageList(formID: String, callback: NetworkCallbackBlock) {
-        guard !NetworkManager.existPendingOperation(Constants.ImageList) else { return }
+        guard !NetworkManager.existPendingOperation(Constants.ImageListKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetImageList(formID))
-        NetworkManager.executeRequestWithKey(Constants.ImageList, request: request, callback: callback)
+        NetworkManager.executeRequestWithKey(Constants.ImageListKey, request: request, callback: callback)
     }
 
     func deleteImage(formID: String, callback: NetworkCallbackBlock) {
-        guard !NetworkManager.existPendingOperation(Constants.DeleteImage) else { return }
+        guard !NetworkManager.existPendingOperation(Constants.DeleteImageKey) else { return }
         let request = NetworkManager.Manager.request(Router.DeleteImage(formID))
-        NetworkManager.executeRequestWithKey(Constants.DeleteImage, request: request, callback: callback)
+        NetworkManager.executeRequestWithKey(Constants.DeleteImageKey, request: request, callback: callback)
     }
+
+    func getVersion(callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.VersionKey) else { return }
+        let request = NetworkManager.Manager.request(Router.GetVersion())
+        NetworkManager.executeRequestWithKey(Constants.VersionKey, request: request, callback: callback)
+    }
+
+    func getNews(callback: NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.GetNewsKey) else { return }
+        let request = NetworkManager.Manager.request(Router.GetNews())
+        NetworkManager.executeRequestWithKey(Constants.GetNewsKey, request: request, callback: callback)
+    }
+
 
     func uploadImage(formID: Int, imageData: NSData, callback: Response<AnyObject, NSError> -> Void) {
         let mutableURLRequest = NSMutableURLRequest(

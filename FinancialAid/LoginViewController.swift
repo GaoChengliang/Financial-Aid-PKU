@@ -43,10 +43,7 @@ class LoginViewController: UIViewController {
 
     private struct Constants {
         static let FormListSegueIdentifier       = "FormListSegue"
-        static let HeaderHeight: CGFloat         = 100.0
-        static let FooterHeight: CGFloat         = 72.0
-        static let LoginTableViewHeight: CGFloat = 304.0
-        static let LoginButtonHeight: CGFloat    = 34.0
+        static let HeaderHeight: CGFloat         = 210.0
     }
 
     override func viewDidLoad() {

@@ -34,15 +34,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让每位燕园学子成为有用之才" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUc-nM-cil">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Office of Student Financial Aid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUc-nM-cil">
                                 <rect key="frame" x="20" y="332" width="560" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让每一位燕园学子成为有用之才" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRp-ct-WSe">
+                                <rect key="frame" x="20" y="376" width="560" height="26"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FRp-ct-WSe" firstAttribute="top" secondItem="HUc-nM-cil" secondAttribute="bottom" constant="20" id="34L-Ys-vr0"/>
                             <constraint firstItem="Fiu-Zi-DQd" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="Dmw-e2-hTo"/>
                             <constraint firstItem="kzi-Mc-Qyv" firstAttribute="top" secondItem="h2Z-0F-Fpj" secondAttribute="bottom" constant="30" id="FM7-Qd-FWr"/>
                             <constraint firstItem="h2Z-0F-Fpj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NBc-Ao-azf"/>
@@ -50,9 +57,11 @@
                             <constraint firstItem="Fiu-Zi-DQd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="Tg3-3u-dMg"/>
                             <constraint firstItem="HUc-nM-cil" firstAttribute="top" secondItem="kzi-Mc-Qyv" secondAttribute="bottom" constant="8" symbolic="YES" id="ZLJ-P5-IqL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fiu-Zi-DQd" secondAttribute="trailing" constant="-20" id="c1U-To-OYP"/>
+                            <constraint firstItem="FRp-ct-WSe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="jns-JI-A7y"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Fiu-Zi-DQd" secondAttribute="bottom" id="lb8-8g-heI"/>
                             <constraint firstItem="kzi-Mc-Qyv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pOH-0e-6zV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kzi-Mc-Qyv" secondAttribute="trailing" id="wLr-Pk-TSJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FRp-ct-WSe" secondAttribute="trailing" id="xHs-g1-gSQ"/>
                             <constraint firstItem="h2Z-0F-Fpj" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="85" id="xnM-rQ-jPW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HUc-nM-cil" secondAttribute="trailing" id="yq9-WG-CXw"/>
                             <constraint firstItem="kzi-Mc-Qyv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="z5G-F2-XMs"/>

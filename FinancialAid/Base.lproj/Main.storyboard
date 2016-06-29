@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--北京大学学生资助中心-->
+        <!--填表-->
         <scene sceneID="FYj-es-tY2">
             <objects>
                 <tableViewController id="oV5-EI-lGU" customClass="FormTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
@@ -118,7 +118,7 @@
                             <outlet property="delegate" destination="oV5-EI-lGU" id="9EB-hE-a4I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="北京大学学生资助中心" id="4Id-3F-t8M">
+                    <navigationItem key="navigationItem" title="填表" id="4Id-3F-t8M">
                         <barButtonItem key="backBarButtonItem" title="目录" id="Qpt-1z-Dxv"/>
                     </navigationItem>
                     <connections>
@@ -209,7 +209,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8t-Iu-AgC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2191" y="-1515"/>
+            <point key="canvasLocation" x="2191" y="-1547"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="60e-fl-W3y">
@@ -306,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H66-c9-SgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2895" y="-1515"/>
+            <point key="canvasLocation" x="2983" y="-1547"/>
         </scene>
         <!--我-->
         <scene sceneID="E8O-pA-Yk2">
@@ -689,6 +689,7 @@
                         <color key="tintColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Jty-Jc-N8b" kind="relationship" relationship="viewControllers" id="HPj-5x-SNe"/>
                         <segue destination="Vj2-jN-KGV" kind="relationship" relationship="viewControllers" id="OkV-Po-wVl"/>
                         <segue destination="ifz-ep-Elx" kind="relationship" relationship="viewControllers" id="167-x6-xdB"/>
                     </connections>
@@ -709,8 +710,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhx-vS-1Ei">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinancialAid" translatesAutoresizingMaskIntoConstraints="NO" id="lUp-uT-aU6">
+                                <rect key="frame" x="228" y="79" width="144" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lUp-uT-aU6" secondAttribute="height" multiplier="6:5" id="FWi-Ls-AIS"/>
+                                    <constraint firstAttribute="height" constant="120" id="sS1-lH-r5t"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京大学学生资助中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GE-JT-u1J">
+                                <rect key="frame" x="20" y="207" width="560" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Office of Student Financial Aid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21Q-g3-2Sp">
+                                <rect key="frame" x="20" y="237" width="560" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhx-vS-1Ei">
+                                <rect key="frame" x="0.0" y="267" width="600" height="333"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">       北京大学围绕国家“促进贫困家庭学生文明生活、健康成才，促进和谐校园建设”的主题，专门成立学生资助中心，为构建“资助”与“育人”相结合的资助体系搭建平台，促进学生的全面发展。学生资助中心为挂靠在学生工作部的副处级实体单位，统一管理全校贫困家庭学生的资助工作。2006年1月7日下午，北京大学学生资助中心正式挂牌成立。 
 　　学生资助中心成立后，将按照“四专目标”，即专门机构、专职人员、专业背景、专项经费，搭建服务平台直接面向贫困家庭学生服务，为贫困家庭学生提供各项经济资助，做贫困家庭学生的贴心人。  </string>
@@ -722,25 +742,38 @@
                         <constraints>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="top" secondItem="dc9-01-pGb" secondAttribute="bottom" id="3hX-Cm-X7W"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="centerX" secondItem="L73-m0-ZfH" secondAttribute="centerX" id="5ip-Kg-abW"/>
+                            <constraint firstItem="21Q-g3-2Sp" firstAttribute="leading" secondItem="L73-m0-ZfH" secondAttribute="leadingMargin" id="AnJ-9h-XdF"/>
+                            <constraint firstItem="7GE-JT-u1J" firstAttribute="centerX" secondItem="L73-m0-ZfH" secondAttribute="centerX" id="C6S-NV-ec3"/>
+                            <constraint firstItem="Nhx-vS-1Ei" firstAttribute="top" secondItem="21Q-g3-2Sp" secondAttribute="bottom" constant="10" id="DVH-jy-GxO"/>
+                            <constraint firstItem="lUp-uT-aU6" firstAttribute="top" secondItem="dc9-01-pGb" secondAttribute="bottom" constant="15" id="ESQ-27-c2w"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="centerY" secondItem="L73-m0-ZfH" secondAttribute="centerY" id="GvR-lP-GHq"/>
                             <constraint firstAttribute="trailing" secondItem="Nhx-vS-1Ei" secondAttribute="trailing" id="HNZ-vE-n5M"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Nhx-vS-1Ei" secondAttribute="bottom" id="HWW-6e-K8o"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="centerY" secondItem="L73-m0-ZfH" secondAttribute="centerY" id="JP8-4S-yrp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="21Q-g3-2Sp" secondAttribute="trailing" id="O5T-7L-m14"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="width" secondItem="L73-m0-ZfH" secondAttribute="width" id="Osj-AB-WYf"/>
+                            <constraint firstItem="7GE-JT-u1J" firstAttribute="top" secondItem="lUp-uT-aU6" secondAttribute="bottom" constant="8" symbolic="YES" id="TQv-fP-T9q"/>
+                            <constraint firstItem="7GE-JT-u1J" firstAttribute="leading" secondItem="L73-m0-ZfH" secondAttribute="leadingMargin" id="Vb8-XH-paU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7GE-JT-u1J" secondAttribute="trailing" id="XiW-dD-Ryp"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="centerX" secondItem="L73-m0-ZfH" secondAttribute="centerX" id="fE9-3w-dlf"/>
+                            <constraint firstItem="lUp-uT-aU6" firstAttribute="centerX" secondItem="L73-m0-ZfH" secondAttribute="centerX" id="gZo-La-DTt"/>
                             <constraint firstItem="TgE-VY-mw0" firstAttribute="top" secondItem="Nhx-vS-1Ei" secondAttribute="bottom" id="iDg-ex-9Ji"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="height" secondItem="L73-m0-ZfH" secondAttribute="height" id="kxd-2b-dK1"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="width" secondItem="L73-m0-ZfH" secondAttribute="width" id="r5M-Of-qII"/>
+                            <constraint firstItem="21Q-g3-2Sp" firstAttribute="top" secondItem="7GE-JT-u1J" secondAttribute="bottom" constant="8" symbolic="YES" id="sqJ-xB-T9X"/>
                             <constraint firstItem="Nhx-vS-1Ei" firstAttribute="leading" secondItem="L73-m0-ZfH" secondAttribute="leading" id="yc4-jo-Mh6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="3hX-Cm-X7W"/>
                                 <exclude reference="5ip-Kg-abW"/>
                                 <exclude reference="GvR-lP-GHq"/>
                                 <exclude reference="JP8-4S-yrp"/>
                                 <exclude reference="Osj-AB-WYf"/>
                                 <exclude reference="fE9-3w-dlf"/>
                                 <exclude reference="kxd-2b-dK1"/>
+                                <exclude reference="r5M-Of-qII"/>
+                                <exclude reference="C6S-NV-ec3"/>
                                 <exclude reference="iDg-ex-9Ji"/>
                             </mask>
                         </variation>
@@ -941,24 +974,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="kPN-IT-Bw2">
-                                <rect key="frame" x="0.0" y="20" width="600" height="304"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="380"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="304" id="F2O-Gu-7gp"/>
-                                    <constraint firstAttribute="height" constant="304" id="mnf-Sf-HbA"/>
+                                    <constraint firstAttribute="height" constant="380" id="mnf-Sf-HbA"/>
                                 </constraints>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="VmF-6S-fgK">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="220"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资助中心" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jy2-iz-ldQ">
-                                            <rect key="frame" x="236" y="20" width="128" height="45"/>
-                                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="32"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinancialAid" translatesAutoresizingMaskIntoConstraints="NO" id="ebR-El-D7L">
+                                            <rect key="frame" x="228" y="20" width="144" height="120"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ebR-El-D7L" secondAttribute="height" multiplier="1.2:1" id="gkW-X3-ugA"/>
+                                                <constraint firstAttribute="height" constant="120" id="nv7-qf-Qm0"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京大学学生资助中心" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jy2-iz-ldQ">
+                                            <rect key="frame" x="210" y="148" width="180" height="26"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="18"/>
                                             <color key="textColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让每位燕园学子成为有用之才" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFY-3y-9Sc">
-                                            <rect key="frame" x="196" y="73" width="208" height="23"/>
-                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Office of Student Financial Aid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFY-3y-9Sc">
+                                            <rect key="frame" x="190" y="182" width="220" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -967,12 +1007,20 @@
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="EFY-3y-9Sc" secondAttribute="centerX" id="50d-pr-zxV"/>
                                         <constraint firstItem="EFY-3y-9Sc" firstAttribute="top" secondItem="jy2-iz-ldQ" secondAttribute="bottom" constant="8" symbolic="YES" id="F9b-E4-Pzj"/>
+                                        <constraint firstItem="jy2-iz-ldQ" firstAttribute="top" secondItem="ebR-El-D7L" secondAttribute="bottom" constant="8" symbolic="YES" id="P5a-6M-ow1"/>
+                                        <constraint firstItem="ebR-El-D7L" firstAttribute="top" secondItem="VmF-6S-fgK" secondAttribute="top" constant="20" symbolic="YES" id="UG1-k0-T9o"/>
                                         <constraint firstItem="jy2-iz-ldQ" firstAttribute="top" secondItem="VmF-6S-fgK" secondAttribute="top" constant="20" symbolic="YES" id="bg3-IN-1Sd"/>
+                                        <constraint firstItem="ebR-El-D7L" firstAttribute="centerX" secondItem="VmF-6S-fgK" secondAttribute="centerX" id="cMS-iN-diQ"/>
                                         <constraint firstAttribute="centerX" secondItem="jy2-iz-ldQ" secondAttribute="centerX" id="qXU-pF-n9y"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="bg3-IN-1Sd"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="QqP-gl-3Yn">
-                                    <rect key="frame" x="0.0" y="260" width="600" height="72"/>
+                                    <rect key="frame" x="0.0" y="330" width="600" height="72"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmF-7Y-FO6">
@@ -1005,7 +1053,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Text" id="Dh8-3O-rnI" customClass="TextFieldCell" customModule="FinancialAid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="172" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="242" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dh8-3O-rnI" id="kec-XD-KsO">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1047,7 +1095,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Empty" id="7dw-eH-ZNs">
-                                        <rect key="frame" x="0.0" y="216" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="286" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7dw-eH-ZNs" id="KAn-4r-jJY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1067,7 +1115,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaB-4k-duM">
-                                <rect key="frame" x="228" y="360" width="144" height="34"/>
+                                <rect key="frame" x="228" y="436" width="144" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Isu-j8-B8S"/>
                                 </constraints>
@@ -1255,7 +1303,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXb-GW-eUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="f6f-7C-SwV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3635" y="-1515"/>
+            <point key="canvasLocation" x="3751" y="-1547"/>
         </scene>
         <!--照片-->
         <scene sceneID="7ke-xx-gQW">
@@ -1305,7 +1353,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4B-UE-iJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="nzW-zG-9Dh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3635" y="-824"/>
+            <point key="canvasLocation" x="2983" y="-824"/>
         </scene>
         <!--修改密码-->
         <scene sceneID="BmF-IV-lYp">
@@ -1397,6 +1445,125 @@
             </objects>
             <point key="canvasLocation" x="2191" y="1471"/>
         </scene>
+        <!--首页-->
+        <scene sceneID="bOr-YE-Uij">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jty-Jc-N8b" customClass="NavigationController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="首页" image="Home" selectedImage="HomeSelected" id="fJW-yI-7uB"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0mP-ay-lNA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jbh-UW-a2j" kind="relationship" relationship="rootViewController" id="eT9-j7-zTC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P3e-55-BhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="733" y="-2230"/>
+        </scene>
+        <!--北京大学学生资助中心-->
+        <scene sceneID="hG6-Hh-nCO">
+            <objects>
+                <tableViewController id="Jbh-UW-a2j" customClass="HomeTableViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CZG-1C-Myb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="gjh-ba-HNS" customClass="SDCycleScrollView">
+                            <rect key="frame" x="0.0" y="64" width="600" height="180"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTitleCell" textLabel="rNo-bC-0EX" imageView="JWN-Ih-isc" style="IBUITableViewCellStyleDefault" id="kPz-0i-pzq">
+                                <rect key="frame" x="0.0" y="272" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kPz-0i-pzq" id="B5Z-zo-7Wn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="新闻动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rNo-bC-0EX">
+                                            <rect key="frame" x="37" y="0.0" width="548" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Redbar" id="JWN-Ih-isc">
+                                            <rect key="frame" x="15" y="0.0" width="7" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NewsCell" rowHeight="60" id="vln-9Q-tqv" customClass="NewsTableViewCell" customModule="FinancialAid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="316" width="600" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vln-9Q-tqv" id="CzX-Tx-0Q9">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Azk-1Z-PgL">
+                                            <rect key="frame" x="8" y="5" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="X7S-tX-JSA"/>
+                                                <constraint firstAttribute="width" secondItem="Azk-1Z-PgL" secondAttribute="height" multiplier="1:1" id="g10-69-mCf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABf-ha-nNg">
+                                            <rect key="frame" x="66" y="19" width="493" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Azk-1Z-PgL" firstAttribute="width" secondItem="CzX-Tx-0Q9" secondAttribute="height" multiplier="1:1" id="38F-XD-IBK"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ABf-ha-nNg" secondAttribute="trailing" id="7lv-PB-9Bx"/>
+                                        <constraint firstItem="ABf-ha-nNg" firstAttribute="centerY" secondItem="Azk-1Z-PgL" secondAttribute="centerY" id="Sam-5K-A15"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="Azk-1Z-PgL" secondAttribute="leading" id="Si1-CG-G0S"/>
+                                        <constraint firstItem="ABf-ha-nNg" firstAttribute="leading" secondItem="Azk-1Z-PgL" secondAttribute="trailing" constant="8" symbolic="YES" id="WaI-a6-uGY"/>
+                                        <constraint firstItem="Azk-1Z-PgL" firstAttribute="centerY" secondItem="CzX-Tx-0Q9" secondAttribute="centerY" id="c6E-J9-de8"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="38F-XD-IBK"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="newsImageView" destination="Azk-1Z-PgL" id="ruf-cz-ydd"/>
+                                    <outlet property="title" destination="ABf-ha-nNg" id="ugi-yb-sO6"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Jbh-UW-a2j" id="iD6-aO-1bk"/>
+                            <outlet property="delegate" destination="Jbh-UW-a2j" id="R6V-0B-KKl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="北京大学学生资助中心" id="fqf-UK-Sl6">
+                        <barButtonItem key="backBarButtonItem" title="首页" id="eLb-Df-fkM"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cycleBanner" destination="gjh-ba-HNS" id="Qmq-l6-Z2A"/>
+                        <segue destination="Gox-aM-BjW" kind="show" identifier="NewsDetailSegue" id="YKI-6Z-845"/>
+                        <segue destination="Gox-aM-BjW" kind="show" identifier="BannerNewsDetailSegue" id="Rke-ze-TVU"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jN0-d7-0fS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1476" y="-2230"/>
+        </scene>
     </scenes>
     <resources>
         <image name="About" width="28" height="28"/>
@@ -1406,10 +1573,14 @@
         <image name="Date" width="28" height="28"/>
         <image name="DefaultPortrait" width="72" height="72"/>
         <image name="Email" width="28" height="28"/>
+        <image name="FinancialAid" width="643" height="519"/>
         <image name="Form" width="28" height="28"/>
         <image name="Gender" width="28" height="28"/>
+        <image name="Home" width="28" height="28"/>
+        <image name="HomeSelected" width="28" height="28"/>
         <image name="Logout" width="28" height="28"/>
         <image name="PhoneNum" width="28" height="28"/>
+        <image name="Redbar" width="12" height="72"/>
         <image name="Setting" width="28" height="28"/>
         <image name="TabForm" width="28" height="28"/>
         <image name="TabFormSelected" width="28" height="28"/>
@@ -1418,7 +1589,7 @@
         <image name="UploadImage" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3dX-Lk-kPu"/>
         <segue reference="IB2-Qy-lfL"/>
+        <segue reference="Rke-ze-TVU"/>
     </inferredMetricsTieBreakers>
 </document>

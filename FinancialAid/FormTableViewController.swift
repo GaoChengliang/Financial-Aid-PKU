@@ -63,8 +63,12 @@ class FormTableViewController: CloudAnimateTableViewController {
     }
 
     // MARK: - Table view data source
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return FormList.sharedInstance.count
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
 
     override func tableView(tableView: UITableView,
@@ -73,7 +77,7 @@ class FormTableViewController: CloudAnimateTableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.cellIdentifier,
                        forIndexPath: indexPath) as? FormTableViewCell
             else { return UITableViewCell() }
-        let form = FormList.sharedInstance[indexPath.row]
+        let form = FormList.sharedInstance[indexPath.section]
         cell.setupWithName(form.name, startDate: form.startDate, endDate: form.endDate, status: form.status)
         return cell
     }
@@ -83,7 +87,10 @@ class FormTableViewController: CloudAnimateTableViewController {
                                    sender: tableView.cellForRowAtIndexPath(indexPath))
     }
 
-    // MARK: - Navigation
+    // MARK: - Table view delegate
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 8
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -92,7 +99,7 @@ class FormTableViewController: CloudAnimateTableViewController {
             let cell = sender as? UITableViewCell,
             let indexPath = tableView.indexPathForCell(cell)
             else { return }
-        fotvc.form = FormList.sharedInstance[indexPath.row]
+        fotvc.form = FormList.sharedInstance[indexPath.section]
     }
 }
 

@@ -37,6 +37,7 @@ PODS:
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
+  - Siren (0.9.2)
   - SVProgressHUD (2.0.3)
   - SwiftyJSON (2.3.2)
 
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - OHHTTPStubs (= 5.0.0)
   - SDCycleScrollView (= 1.64)
   - SDWebImage (= 3.7.6)
+  - Siren (= 0.9.2)
   - SVProgressHUD (= 2.0.3)
   - SwiftyJSON (= 2.3.2)
 
@@ -65,9 +67,10 @@ SPEC CHECKSUMS:
   OHHTTPStubs: a5d2e9eea07869d42ec03338325f398bc520e159
   SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  Siren: acee4d2839e3cc232d8c4a4a4e2e99208403f6e0
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: f5d647ae410a680b1172d9cf9b0631a808b5d780
+PODFILE CHECKSUM: dcd9e6be89b24ca0522900c1890310e76062b7ff
 
 COCOAPODS: 1.0.0

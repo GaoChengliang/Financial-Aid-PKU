@@ -171,6 +171,23 @@ class ContentManager: NSObject {
         }
     }
 
+    func getVersion(block: ((error: NetworkErrorType?) -> Void)?) {
+        NetworkManager.sharedInstance.getVersion {
+            (json, error) in
+
+            if error == nil, let json = json {
+                DDLogInfo("Get version information success")
+                Version.sharedInstance = Version.mj_objectWithKeyValues(json["data"]["ios"].description)
+            } else {
+                DDLogInfo("Get version information failed: \(error)")
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                block?(error: error)
+            }
+        }
+    }
+
     func saveUser(json: String, userName: String, password: String) {
         User.sharedInstance = User.mj_objectWithKeyValues(json)
         ContentManager.UserName = User.sharedInstance.userName

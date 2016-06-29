@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A01A93F1CEB590E00D106AA /* FormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A01A93C1CEB590E00D106AA /* FormTableViewController.swift */; };
 		6A01A9401CEB590E00D106AA /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A01A93D1CEB590E00D106AA /* SettingsTableViewController.swift */; };
+		6A1461F61D229ADA00186C8A /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1461F51D229ADA00186C8A /* Version.swift */; };
 		6A1ACB4A1D028506000715A6 /* UploadImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1ACB491D028506000715A6 /* UploadImageCollectionViewController.swift */; };
 		6A1ACB4C1D0294BF000715A6 /* IDImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1ACB4B1D0294BF000715A6 /* IDImage.swift */; };
 		6A1ACB4E1D029C5D000715A6 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1ACB4D1D029C5D000715A6 /* ImageCollectionViewCell.swift */; };
@@ -16,6 +17,9 @@
 		6A1ACB521D02F50A000715A6 /* ShowDeleteImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1ACB511D02F50A000715A6 /* ShowDeleteImageViewController.swift */; };
 		6A320E2E1CF6BA9000E1F751 /* EditBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A320E2D1CF6BA9000E1F751 /* EditBirthdayViewController.swift */; };
 		6A320E301CF6C4AB00E1F751 /* EditGenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A320E2F1CF6C4AB00E1F751 /* EditGenderTableViewController.swift */; };
+		6A5289A71D23695F004C8A1B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5289A61D23695F004C8A1B /* News.swift */; };
+		6A5289A91D236DFC004C8A1B /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5289A81D236DFC004C8A1B /* HomeTableViewController.swift */; };
+		6A5289AB1D23A3E2004C8A1B /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5289AA1D23A3E2004C8A1B /* NewsTableViewCell.swift */; };
 		6AB1541F1CF5C645007191DB /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541A1CF5C645007191DB /* AppConstants.swift */; };
 		6AB154201CF5C645007191DB /* FormOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */; };
 		6AB154211CF5C645007191DB /* FormWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1541C1CF5C645007191DB /* FormWebViewController.swift */; };
@@ -87,6 +91,7 @@
 		3E5AB523C4F1BC80121E5A06 /* Pods-FinancialAid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialAid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinancialAid/Pods-FinancialAid.debug.xcconfig"; sourceTree = "<group>"; };
 		6A01A93C1CEB590E00D106AA /* FormTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormTableViewController.swift; path = FinancialAid/FormTableViewController.swift; sourceTree = "<group>"; };
 		6A01A93D1CEB590E00D106AA /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = FinancialAid/SettingsTableViewController.swift; sourceTree = "<group>"; };
+		6A1461F51D229ADA00186C8A /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Version.swift; path = FinancialAid/Version.swift; sourceTree = "<group>"; };
 		6A1ACB491D028506000715A6 /* UploadImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadImageCollectionViewController.swift; path = FinancialAid/UploadImageCollectionViewController.swift; sourceTree = "<group>"; };
 		6A1ACB4B1D0294BF000715A6 /* IDImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IDImage.swift; path = FinancialAid/IDImage.swift; sourceTree = "<group>"; };
 		6A1ACB4D1D029C5D000715A6 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCollectionViewCell.swift; path = FinancialAid/ImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +99,9 @@
 		6A1ACB511D02F50A000715A6 /* ShowDeleteImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowDeleteImageViewController.swift; path = FinancialAid/ShowDeleteImageViewController.swift; sourceTree = "<group>"; };
 		6A320E2D1CF6BA9000E1F751 /* EditBirthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditBirthdayViewController.swift; path = FinancialAid/EditBirthdayViewController.swift; sourceTree = "<group>"; };
 		6A320E2F1CF6C4AB00E1F751 /* EditGenderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditGenderTableViewController.swift; path = FinancialAid/EditGenderTableViewController.swift; sourceTree = "<group>"; };
+		6A5289A61D23695F004C8A1B /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = News.swift; path = FinancialAid/News.swift; sourceTree = "<group>"; };
+		6A5289A81D236DFC004C8A1B /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = FinancialAid/HomeTableViewController.swift; sourceTree = "<group>"; };
+		6A5289AA1D23A3E2004C8A1B /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsTableViewCell.swift; path = FinancialAid/NewsTableViewCell.swift; sourceTree = "<group>"; };
 		6AB1541A1CF5C645007191DB /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConstants.swift; path = FinancialAid/AppConstants.swift; sourceTree = "<group>"; };
 		6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormOptionTableViewController.swift; path = FinancialAid/FormOptionTableViewController.swift; sourceTree = "<group>"; };
 		6AB1541C1CF5C645007191DB /* FormWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormWebViewController.swift; path = FinancialAid/FormWebViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +282,8 @@
 				F8B76FB41CFAAEE9007A4CE0 /* Login.swift */,
 				F85238BB1CFC0E4E0010D88B /* UserCenter.swift */,
 				6A1ACB4B1D0294BF000715A6 /* IDImage.swift */,
+				6A1461F51D229ADA00186C8A /* Version.swift */,
+				6A5289A61D23695F004C8A1B /* News.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -288,6 +298,7 @@
 				F8B76FB61CFAB987007A4CE0 /* TextFieldCell.swift */,
 				6A1ACB4D1D029C5D000715A6 /* ImageCollectionViewCell.swift */,
 				6A1ACB4F1D02A293000715A6 /* UploadImageCollectionViewCell.swift */,
+				6A5289AA1D23A3E2004C8A1B /* NewsTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -299,6 +310,7 @@
 				F869E9A41CEB3D5A001A9D03 /* TabBarController.swift */,
 				F8DA6FDF1CFB013B00078A83 /* NavigationController.swift */,
 				6AB1541D1CF5C645007191DB /* LoginViewController.swift */,
+				6A5289A81D236DFC004C8A1B /* HomeTableViewController.swift */,
 				6A01A93C1CEB590E00D106AA /* FormTableViewController.swift */,
 				6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */,
 				6AB1541C1CF5C645007191DB /* FormWebViewController.swift */,
@@ -560,15 +572,18 @@
 				F869E9BC1CEB3D5A001A9D03 /* CocoaLumberjack.swift in Sources */,
 				6AB154221CF5C645007191DB /* LoginViewController.swift in Sources */,
 				F869E9B71CEB3D5A001A9D03 /* UITabBarItem.swift in Sources */,
+				6A5289AB1D23A3E2004C8A1B /* NewsTableViewCell.swift in Sources */,
 				F878B68A1CF5DF2000A3CC01 /* FormTableViewCell.swift in Sources */,
 				6A320E2E1CF6BA9000E1F751 /* EditBirthdayViewController.swift in Sources */,
 				F8B76FB51CFAAEE9007A4CE0 /* Login.swift in Sources */,
 				F869E9B61CEB3D5A001A9D03 /* UIViewController.swift in Sources */,
+				6A5289A71D23695F004C8A1B /* News.swift in Sources */,
 				6A1ACB501D02A293000715A6 /* UploadImageCollectionViewCell.swift in Sources */,
 				6A1ACB4A1D028506000715A6 /* UploadImageCollectionViewController.swift in Sources */,
 				6ACDECCB1D12BAFB00400C5D /* LocationCellularManager.swift in Sources */,
 				6AB1541F1CF5C645007191DB /* AppConstants.swift in Sources */,
 				6A1ACB521D02F50A000715A6 /* ShowDeleteImageViewController.swift in Sources */,
+				6A5289A91D236DFC004C8A1B /* HomeTableViewController.swift in Sources */,
 				6AB154211CF5C645007191DB /* FormWebViewController.swift in Sources */,
 				6AE135461CFD7A0D0006324B /* ShowUploadImageViewController.swift in Sources */,
 				F8B76FB71CFAB987007A4CE0 /* TextFieldCell.swift in Sources */,
@@ -592,6 +607,7 @@
 				F878B6881CF5DCF800A3CC01 /* Form.swift in Sources */,
 				F878B68C1CF5E11E00A3CC01 /* CloudAnimateTableViewController.swift in Sources */,
 				6A320E301CF6C4AB00E1F751 /* EditGenderTableViewController.swift in Sources */,
+				6A1461F61D229ADA00186C8A /* Version.swift in Sources */,
 				F869E9BD1CEB3D5A001A9D03 /* SVProgressHUD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

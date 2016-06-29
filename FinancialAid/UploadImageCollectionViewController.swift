@@ -12,7 +12,7 @@ import SwiftyJSON
 import SVProgressHUD
 import SDWebImage
 
-private let reuseIdentifier = "Cell"
+//private let reuseIdentifier = "Cell"
 
 class UploadImageCollectionViewController: UICollectionViewController {
 

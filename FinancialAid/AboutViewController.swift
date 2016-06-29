@@ -12,4 +12,8 @@ import CoreLocation
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+
+    override func viewDidLayoutSubviews() {
+        self.textView.setContentOffset(CGPoint.zero, animated: false)
+    }
 }

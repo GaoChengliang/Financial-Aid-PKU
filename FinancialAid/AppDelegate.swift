@@ -8,16 +8,18 @@
 
 import UIKit
 import SVProgressHUD
+import Siren
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var siren: Siren!
 
     func application(application: UIApplication,
          didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
             -> Bool {
-
+        sleep(2)
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(
             UIApplicationBackgroundFetchIntervalMinimum)
 
@@ -25,8 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CocoaLumberjack.config()
         SVProgressHUD.config()
         UITabBarItem.config()
-//        LocationCellularManager.sharedInstance.getLocationCellular(nil)
-
+        // LocationCellularManager.sharedInstance.getLocationCellular(nil)
         guard
             let userName = ContentManager.UserName where !userName.isEmpty,
             let password = ContentManager.Password where !password.isEmpty,
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         viewController.shouldAutoLogin = true
         window?.rootViewController = viewController
+        setSiren()
         return true
     }
 
@@ -47,10 +49,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        LocationCellularManager.sharedInstance.getLocationCellular(nil)
     }
 
+
     func application(application: UIApplication, performFetchWithCompletionHandler
         completionHandler: (UIBackgroundFetchResult) -> Void) {
 //        LocationCellularManager.sharedInstance.getLocationCellular {
 //            completionHandler(.NewData)
 //        }
+    }
+
+    func setSiren() {
+        siren = Siren.sharedInstance
+        siren.majorUpdateAlertType = .Force
+        siren.minorUpdateAlertType = .Skip
+        siren.checkVersion(.Immediately)
     }
 }
