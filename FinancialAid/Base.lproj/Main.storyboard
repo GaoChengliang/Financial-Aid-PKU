@@ -272,6 +272,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndc-TL-kHl">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Gox-aM-BjW" id="QFh-ZJ-ny9"/>
+                                </connections>
+                            </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biT-Lf-w3T" customClass="ProgressView" customModule="FinancialAid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="3"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -279,24 +286,23 @@
                                     <constraint firstAttribute="height" constant="3" id="5kk-AI-ZYV"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndc-TL-kHl">
-                                <rect key="frame" x="0.0" y="67" width="600" height="533"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Gox-aM-BjW" id="QFh-ZJ-ny9"/>
-                                </connections>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="biT-Lf-w3T" firstAttribute="top" secondItem="ttV-lv-jfi" secondAttribute="bottom" id="Ovu-Wq-9Gf"/>
                             <constraint firstItem="Ndc-TL-kHl" firstAttribute="top" secondItem="biT-Lf-w3T" secondAttribute="bottom" id="T1f-zJ-p8O"/>
                             <constraint firstAttribute="trailing" secondItem="Ndc-TL-kHl" secondAttribute="trailing" id="aKX-WO-fc1"/>
+                            <constraint firstItem="Ndc-TL-kHl" firstAttribute="top" secondItem="ttV-lv-jfi" secondAttribute="bottom" id="eVJ-FD-S5Q"/>
                             <constraint firstItem="biT-Lf-w3T" firstAttribute="leading" secondItem="Odw-fF-Dsy" secondAttribute="leading" id="fs0-Xu-wHP"/>
                             <constraint firstItem="Ndc-TL-kHl" firstAttribute="leading" secondItem="Odw-fF-Dsy" secondAttribute="leading" id="h31-TA-Ugm"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Ndc-TL-kHl" secondAttribute="bottom" id="pPc-oo-kos"/>
                             <constraint firstAttribute="trailing" secondItem="biT-Lf-w3T" secondAttribute="trailing" id="u6e-qx-EE7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="T1f-zJ-p8O"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -765,6 +771,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="C6S-NV-ec3"/>
                                 <exclude reference="3hX-Cm-X7W"/>
                                 <exclude reference="5ip-Kg-abW"/>
                                 <exclude reference="GvR-lP-GHq"/>
@@ -773,7 +780,6 @@
                                 <exclude reference="fE9-3w-dlf"/>
                                 <exclude reference="kxd-2b-dK1"/>
                                 <exclude reference="r5M-Of-qII"/>
-                                <exclude reference="C6S-NV-ec3"/>
                                 <exclude reference="iDg-ex-9Ji"/>
                             </mask>
                         </variation>
@@ -1478,35 +1484,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="gjh-ba-HNS" customClass="SDCycleScrollView">
-                            <rect key="frame" x="0.0" y="64" width="600" height="180"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTitleCell" textLabel="rNo-bC-0EX" imageView="JWN-Ih-isc" style="IBUITableViewCellStyleDefault" id="kPz-0i-pzq">
-                                <rect key="frame" x="0.0" y="272" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kPz-0i-pzq" id="B5Z-zo-7Wn">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="新闻动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rNo-bC-0EX">
-                                            <rect key="frame" x="37" y="0.0" width="548" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Redbar" id="JWN-Ih-isc">
-                                            <rect key="frame" x="15" y="0.0" width="7" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NewsCell" rowHeight="60" id="vln-9Q-tqv" customClass="NewsTableViewCell" customModule="FinancialAid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="316" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vln-9Q-tqv" id="CzX-Tx-0Q9">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="59"/>
@@ -1555,7 +1535,6 @@
                         <barButtonItem key="backBarButtonItem" title="首页" id="eLb-Df-fkM"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="cycleBanner" destination="gjh-ba-HNS" id="Qmq-l6-Z2A"/>
                         <segue destination="Gox-aM-BjW" kind="show" identifier="NewsDetailSegue" id="YKI-6Z-845"/>
                         <segue destination="Gox-aM-BjW" kind="show" identifier="BannerNewsDetailSegue" id="Rke-ze-TVU"/>
                     </connections>
@@ -1580,7 +1559,6 @@
         <image name="HomeSelected" width="28" height="28"/>
         <image name="Logout" width="28" height="28"/>
         <image name="PhoneNum" width="28" height="28"/>
-        <image name="Redbar" width="12" height="72"/>
         <image name="Setting" width="28" height="28"/>
         <image name="TabForm" width="28" height="28"/>
         <image name="TabFormSelected" width="28" height="28"/>

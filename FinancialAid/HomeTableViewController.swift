@@ -18,29 +18,56 @@ class HomeTableViewController: CloudAnimateTableViewController {
     var bannerImageUrls = [String]()
     var bannerTitles = [String]()
     var bannerIndex = 0
+    var cycleBanner: SDCycleScrollView!
 
     private struct Constants {
         static let newsCellIdentifier = "NewsCell"
-        static let newsTitleCellIdentifier = "NewsTitleCell"
         static let newsDetailSegueIdentifier = "NewsDetailSegue"
         static let bannerNewsDetailSegueIdentifier = "BannerNewsDetailSegue"
     }
 
-    @IBOutlet weak var cycleBanner: SDCycleScrollView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        cycleBanner.delegate = self
-        cycleBanner.placeholderImage = UIImage(named: "Loading")
+//        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
+//            showAlert()
+//        }
+        let rect = CGRect(x: 0, y: 0, width: tableView.bounds.width,
+                          height: (tableView.bounds.width * 0.5625))
+        cycleBanner = SDCycleScrollView(frame: rect, delegate: self,
+                                        placeholderImage: UIImage(named: "Loading"))
         cycleBanner.backgroundColor = UIColor.whiteColor()
         cycleBanner.bannerImageViewContentMode = .ScaleAspectFit
         cycleBanner.showPageControl = true
         cycleBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight
         cycleBanner.currentPageDotColor = UIColor.redColor()
         cycleBanner.pageDotColor = UIColor.whiteColor()
-        cycleBanner.autoScrollTimeInterval = 4
+        cycleBanner.autoScrollTimeInterval = 5
+        tableView.tableHeaderView = UIView(frame: rect)
+        tableView.tableHeaderView?.addSubview(self.cycleBanner)
         getNewsList()
+    }
+
+    func showAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Open location",
+            comment: "request open location"), message: "", preferredStyle: .Alert)
+        let confirmAction = UIAlertAction(title: NSLocalizedString("Set",
+            comment: "go to set"), style: .Default) {
+                action in
+                if let setURL = NSURL(string: UIApplicationOpenSettingsURLString) {
+                    UIApplication.sharedApplication().openURL(setURL)
+                }
+        }
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel",
+            comment: "cancel set"), style: .Cancel) {
+                action in
+                alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func getNewsList() {
@@ -88,37 +115,29 @@ class HomeTableViewController: CloudAnimateTableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        return listNews.count
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 4
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)
         -> CGFloat {
-        if indexPath.section == 0 {
-            return 44
-        }
-        return 60
+            return 60
     }
 
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return listNews.count
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(
-                Constants.newsTitleCellIdentifier, forIndexPath: indexPath)
-            return cell
-        }
 
         if let cell = tableView.dequeueReusableCellWithIdentifier(
             Constants.newsCellIdentifier, forIndexPath: indexPath) as? NewsTableViewCell {
-            let news = listNews[indexPath.row]
+            let news = listNews[indexPath.section]
             cell.title.text = news.title
             cell.newsImageView.sd_setImageWithURL(NSURL(string: news.imageUrl)!)
             return cell
@@ -127,10 +146,9 @@ class HomeTableViewController: CloudAnimateTableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            performSegueWithIdentifier(Constants.newsDetailSegueIdentifier,
-                                       sender: tableView.cellForRowAtIndexPath(indexPath))
-        }
+        performSegueWithIdentifier(Constants.newsDetailSegueIdentifier,
+                                    sender: tableView.cellForRowAtIndexPath(indexPath))
+
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -140,8 +158,8 @@ class HomeTableViewController: CloudAnimateTableViewController {
             if let fwvc = segue.destinationViewController as? FormWebViewController {
                 if let cell = sender as? NewsTableViewCell {
                     let indexPath = tableView.indexPathForCell(cell)
-                    fwvc.title = listNews[(indexPath?.row)!].title
-                    fwvc.url = NSURL(string: listNews[(indexPath?.row)!].url)
+                    fwvc.title = listNews[(indexPath?.section)!].title
+                    fwvc.url = NSURL(string: listNews[(indexPath?.section)!].url)
                 }
             }
         case Constants.bannerNewsDetailSegueIdentifier:

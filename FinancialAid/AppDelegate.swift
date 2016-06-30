@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
          didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
             -> Bool {
-        sleep(2)
+        sleep(1)
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(
             UIApplicationBackgroundFetchIntervalMinimum)
 
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CocoaLumberjack.config()
         SVProgressHUD.config()
         UITabBarItem.config()
-        // LocationCellularManager.sharedInstance.getLocationCellular(nil)
+//        LocationCellularManager.sharedInstance.getLocationCellular(nil)
         guard
             let userName = ContentManager.UserName where !userName.isEmpty,
             let password = ContentManager.Password where !password.isEmpty,
@@ -41,21 +41,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+//    func applicationDidEnterBackground(application: UIApplication) {
 //        LocationCellularManager.sharedInstance.stopGetLocationCellular()
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
+//    }
+//
+//    func applicationWillEnterForeground(application: UIApplication) {
 //        LocationCellularManager.sharedInstance.getLocationCellular(nil)
-    }
+//    }
 
 
-    func application(application: UIApplication, performFetchWithCompletionHandler
-        completionHandler: (UIBackgroundFetchResult) -> Void) {
+//    func application(application: UIApplication, performFetchWithCompletionHandler
+//        completionHandler: (UIBackgroundFetchResult) -> Void) {
 //        LocationCellularManager.sharedInstance.getLocationCellular {
 //            completionHandler(.NewData)
 //        }
-    }
+//    }
 
     func setSiren() {
         siren = Siren.sharedInstance
