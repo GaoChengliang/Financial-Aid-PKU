@@ -80,6 +80,6 @@
     </scenes>
     <resources>
         <image name="FinancialLogoWhite" width="512" height="512"/>
-        <image name="Welcome" width="720" height="1280"/>
+        <image name="Welcome" width="1080" height="1920"/>
     </resources>
 </document>

@@ -34,8 +34,8 @@ class HomeTableViewController: CloudAnimateTableViewController {
 //        }
         let rect = CGRect(x: 0, y: 0, width: tableView.bounds.width,
                           height: (tableView.bounds.width * 0.5625))
-        cycleBanner = SDCycleScrollView(frame: rect, delegate: self,
-                                        placeholderImage: UIImage(named: "Loading"))
+        cycleBanner = SDCycleScrollView(frame: rect)
+        cycleBanner.delegate = self
         cycleBanner.backgroundColor = UIColor.whiteColor()
         cycleBanner.bannerImageViewContentMode = .ScaleAspectFit
         cycleBanner.showPageControl = true
