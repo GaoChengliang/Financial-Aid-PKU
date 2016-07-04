@@ -425,7 +425,7 @@
 				TargetAttributes = {
 					F84722651CEAC6D600B99F03 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = Y5NE6X87LM;
+						DevelopmentTeam = 54LS9MM6F9;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -760,7 +760,7 @@
 				INFOPLIST_FILE = FinancialAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAid;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAidaaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -777,7 +777,7 @@
 				INFOPLIST_FILE = FinancialAid/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAid;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAidaaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

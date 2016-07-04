@@ -37,10 +37,11 @@ class HomeTableViewController: CloudAnimateTableViewController {
         cycleBanner = SDCycleScrollView(frame: rect)
         cycleBanner.delegate = self
         cycleBanner.backgroundColor = UIColor.whiteColor()
-        cycleBanner.bannerImageViewContentMode = .ScaleAspectFit
+        cycleBanner.bannerImageViewContentMode = .ScaleAspectFill
         cycleBanner.showPageControl = true
         cycleBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight
-        cycleBanner.currentPageDotColor = UIColor.redColor()
+        cycleBanner.currentPageDotColor = UIColor(red: 148.0/255.0,
+                                                  green: 7.0/255.0, blue: 10.0/255.0, alpha: 1.0)
         cycleBanner.pageDotColor = UIColor.whiteColor()
         cycleBanner.autoScrollTimeInterval = 5
         tableView.tableHeaderView = UIView(frame: rect)
