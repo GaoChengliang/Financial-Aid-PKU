@@ -129,7 +129,7 @@ extension NetworkManager {
     private enum Router: URLRequestConvertible {
 
         // Server URL
-        static let APIURLString = "http://zzzx.zakelly.com"
+        static let APIURLString = "https://app.pku.edu.cn/zzzx"
 
         // Different types of network request
         case Login(String, String)

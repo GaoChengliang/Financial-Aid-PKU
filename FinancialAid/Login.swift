@@ -58,8 +58,8 @@ struct Login {
     private let cellIDs = ["Text", "Text"]
 
     private let placeholders = [
-        NSLocalizedString("Please input your name", comment: "user's name"),
-        NSLocalizedString("Please input your password", comment: "password")
+        NSLocalizedString("Please input your SID", comment: "user's SID"),
+        NSLocalizedString("Default password is birthday", comment: "default password")
     ]
 
     private let contents = [

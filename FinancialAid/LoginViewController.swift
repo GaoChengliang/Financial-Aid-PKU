@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var toggleButton: UIButton!
+    // @IBOutlet weak var toggleButton: UIButton!
     @IBOutlet weak var loginTableView: UITableView!
 
     private struct Constants {
@@ -93,11 +93,11 @@ class LoginViewController: UIViewController {
     }
 
     func setupButton() {
-        let name = NSLocalizedString("Office of Student Financial Aid",
-                                     comment: "name of financial aid center")
+        // let name = NSLocalizedString("Office of Student Financial Aid",
+        //                             comment: "name of financial aid center")
 
         loginButton.setTitle("\(status)", forState: .Normal)
-        toggleButton.setTitle("\(name)\(!status)", forState: .Normal)
+        // toggleButton.setTitle("\(name)\(!status)", forState: .Normal)
     }
 
 
@@ -187,9 +187,9 @@ class LoginViewController: UIViewController {
         }
     }
 
-    @IBAction func toggleTableView(sender: UIButton) {
-        status = !status
-    }
+//    @IBAction func toggleTableView(sender: UIButton) {
+//        status = !status
+//    }
 
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
         // refresh login content

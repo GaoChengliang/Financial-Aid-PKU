@@ -9,8 +9,8 @@
 "Network failure, please pull to refresh." = "网络错误，请刷新重试";
 "Tips" = "填表帮助";
 "Fill form" = "填写表格";
-"Please input your name" = "请输入用户名";
-"Please input your password" = "请输入密码";
+"Please input your SID" = "请输入学号";
+"Default password is birthday" = "初始密码为8位生日";
 "Login" = "登录";
 "Register" = "注册";
 "Office of Student Financial Aid" = "北京大学学生资助中心";
