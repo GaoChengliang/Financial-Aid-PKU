@@ -22,6 +22,11 @@ class FormTableViewController: CloudAnimateTableViewController {
         retriveFormList()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        retriveFormList()
+    }
+
     func retriveFormList() {
         ContentManager.sharedInstance.formList {
             if $0 != nil {

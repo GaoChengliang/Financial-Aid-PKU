@@ -96,12 +96,12 @@ class FormOptionTableViewController: UITableViewController {
         case Constants.HelpSegueIdentifier:
             if let fwvc = segue.destinationViewController as? FormWebViewController {
                 fwvc.title = NSLocalizedString("Tips", comment: "tips for filling the form")
-                fwvc.url = NetworkManager.sharedInstance.relativeURL(form.helpPath)
+                fwvc.url = NSURL(string: form.helpPath)
             }
         case Constants.FillFormSegueIdentifier:
             if let fwvc = segue.destinationViewController as? FormWebViewController {
                 fwvc.title = NSLocalizedString("Fill form", comment: "fill the form")
-                fwvc.url = NetworkManager.sharedInstance.relativeURL(form.fillPath)
+                fwvc.url = NSURL(string: form.fillPath)
             }
         case Constants.UploadImageSegueIdentifier:
             if let uivc = segue.destinationViewController as? UploadImageCollectionViewController {
@@ -141,6 +141,12 @@ extension FormOptionTableViewController : UIAlertViewDelegate {
                                 SVProgressHUD.showErrorWithStatus(
                                     NSLocalizedString("You have not filled the form",
                                         comment: "form not filled")
+                                )
+                            } else if errno == 202 {
+                                SVProgressHUD.showErrorWithStatus(
+                                    NSLocalizedString(
+                                        "The form is not filled, please fill the form first",
+                                        comment: "the form is not filled")
                                 )
                             } else if errno == 203 {
                                 SVProgressHUD.showErrorWithStatus(
