@@ -123,7 +123,7 @@ extension FormOptionTableViewController : UIAlertViewDelegate {
                 if !email.isEmail() {
                     SVProgressHUD.showErrorWithStatus(
                         NSLocalizedString(
-                            "Email address is not valid, please update in personal center",
+                            "Email address is not valid",
                             comment: "email address is not valid")
                     )
                     return
@@ -144,14 +144,13 @@ extension FormOptionTableViewController : UIAlertViewDelegate {
                                 )
                             } else if errno == 202 {
                                 SVProgressHUD.showErrorWithStatus(
-                                    NSLocalizedString(
-                                        "The form is not filled, please fill the form first",
-                                        comment: "the form is not filled")
+                                    NSLocalizedString("You have not filled the form",
+                                        comment: "form not filled")
                                 )
                             } else if errno == 203 {
                                 SVProgressHUD.showErrorWithStatus(
                                     NSLocalizedString(
-                                        "Email address is not valid, please update in personal center",
+                                        "Email address is not valid",
                                         comment: "email address is not valid")
                                 )
                             } else {

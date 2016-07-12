@@ -165,7 +165,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="生成PDF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FKZ-n7-87x">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="生成文件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FKZ-n7-87x">
                                             <rect key="frame" x="15" y="0.0" width="570" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1552,7 +1552,7 @@
         <image name="UploadImage" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="KXJ-Bt-xbx"/>
         <segue reference="IB2-Qy-lfL"/>
-        <segue reference="Rke-ze-TVU"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,11 +32,10 @@
 "Phone number" = "电话号码";
 "Email" = "邮箱";
 "Server error occurred" = "网络错误";
-"You have not filled the form" = "您尚未完成表格";
+"You have not filled the form" = "您尚未完成表格，请先填表";
 "Please input the email" = "请输入要发送的邮箱";
-"The form is not filled, please fill the form first" = "此表格尚未填写完成，请先填表";
-"Email address is not valid, please update in personal center" = "邮箱不合法，请重新输入";
-"The PDF is sent to your email address" = "PDF已发送至您的邮箱，请查收";
+"Email address is not valid" = "邮箱不合法，请重新输入";
+"The PDF is sent to your email address" = "表格文件已发送至您的邮箱，请查收";
 "Upload image success" = "照片上传成功";
 "Delete image success" = "删除照片成功";
 "Privilege error" = "您没有权限";
