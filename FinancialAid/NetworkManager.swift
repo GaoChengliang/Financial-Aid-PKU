@@ -64,6 +64,9 @@ class NetworkManager: NSObject {
         configuration.timeoutIntervalForRequest = 10.0
         configuration.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         configuration.HTTPCookieAcceptPolicy = .Always
+        configuration.HTTPAdditionalHeaders = [
+            "X-Requested-With": "XMLHttpRequest"
+        ]
         return Alamofire.Manager(configuration: configuration, serverTrustPolicyManager: nil)
     }()
 
