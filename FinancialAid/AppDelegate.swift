@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import Siren
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -38,6 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewController.shouldAutoLogin = true
         window?.rootViewController = viewController
         setSiren()
+
+
+        AVOSCloud.registerForRemoteNotification()
         return true
     }
 

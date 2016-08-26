@@ -153,6 +153,7 @@
 		F8B76FB41CFAAEE9007A4CE0 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = FinancialAid/Login.swift; sourceTree = "<group>"; };
 		F8B76FB61CFAB987007A4CE0 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldCell.swift; path = FinancialAid/TextFieldCell.swift; sourceTree = "<group>"; };
 		F8B76FBB1CFAC20A007A4CE0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F8C22D561D70166B00C27377 /* FinancialAid-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FinancialAid-Bridging-Header.h"; sourceTree = "<group>"; };
 		F8DA6FDF1CFB013B00078A83 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = FinancialAid/NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,6 +237,7 @@
 				F84722751CEAC6D600B99F03 /* LaunchScreen.storyboard */,
 				F84722781CEAC6D600B99F03 /* Info.plist */,
 				F84722701CEAC6D600B99F03 /* FinancialAid.xcdatamodeld */,
+				F8C22D561D70166B00C27377 /* FinancialAid-Bridging-Header.h */,
 			);
 			name = "Supporting files";
 			path = FinancialAid;
@@ -755,6 +757,7 @@
 			baseConfigurationReference = 3E5AB523C4F1BC80121E5A06 /* Pods-FinancialAid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FinancialAid/Info.plist;
@@ -763,6 +766,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FinancialAid/FinancialAid-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -772,6 +777,7 @@
 			baseConfigurationReference = 04CA7012B1E9A0EE3F045675 /* Pods-FinancialAid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FinancialAid/Info.plist;
@@ -780,6 +786,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FinancialAid/FinancialAid-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

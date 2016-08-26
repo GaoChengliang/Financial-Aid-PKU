@@ -227,6 +227,7 @@
 		F3015B3D06F13F36E624A4E8B591E529 /* NSObject+MJClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDCE01551B49F7BC79B0196073D5A01 /* NSObject+MJClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F65103CDA9B85AD1A8C7626EFD6D64A3 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = AB45F43F8DB19AB6CD94D722ABC737FF /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F852A0869AF27611809B656DACFFEABD /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = E66DA0F1CACF7C990708FC2F47F6636C /* MJPropertyType.m */; };
+		F8C22D5A1D70189400C27377 /* CocoaLumberjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C22D591D70189400C27377 /* CocoaLumberjack.swift */; };
 		F9B58B8930234B003BCCB682BBD59097 /* DKPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2712F67E74D461C44C88F7C7EC86CC /* DKPermissionView.swift */; };
 		FA3220E5BF47A4AF0A88802437EA8536 /* MJFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = DCEA2C6FC6FD5669E435BCE9DE74CFCF /* MJFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF4A8EFE1154C1FFD58B48E978298871 /* NSArray+Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = 47FA5B4A34E1A61AE10A9E5A4799B3B7 /* NSArray+Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -643,6 +644,7 @@
 		F5C89019F9BFEF751420CC6317BF9C73 /* AVObject+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AVObject+Subclass.h"; sourceTree = "<group>"; };
 		F754AA02CB30586176A9F8BCC1F75955 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7749265FC58AA3DCBFAB71DFD0C14AC /* SDWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SDWebImage.modulemap; sourceTree = "<group>"; };
+		F8C22D591D70189400C27377 /* CocoaLumberjack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaLumberjack.swift; path = Classes/CocoaLumberjack.swift; sourceTree = "<group>"; };
 		FCAD6D10EF2E3C748F15B9C495184876 /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDContextFilterLogFormatter.h; path = Classes/Extensions/DDContextFilterLogFormatter.h; sourceTree = "<group>"; };
 		FDDA6DC0CBA17B9E41DF75097EC9E3AA /* AVQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVQuery.h; sourceTree = "<group>"; };
 		FE1AF7F813161162BC5B171B70109A40 /* AVAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AVAnalytics.h; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 		33C48A8484711A7C67196F53667438CA /* CocoaLumberjack */ = {
 			isa = PBXGroup;
 			children = (
+				F8C22D591D70189400C27377 /* CocoaLumberjack.swift */,
 				60109E36DCC2DDEBC58B444B977C6C3F /* Core */,
 				4622F9A2CA8D7C307595F7119D1C1293 /* Default */,
 				CEA22E527F482A53FC117B1583DB4F4F /* Extensions */,
@@ -2054,6 +2057,7 @@
 				65BC6590E68D69B14D820E12A6DFF25C /* DDDispatchQueueLogFormatter.m in Sources */,
 				1F49E397D7E2D6F0F2FA74A38A1822F1 /* DDFileLogger.m in Sources */,
 				6CCB8891EC5DECF019E81CB8FFB4F00B /* DDLog.m in Sources */,
+				F8C22D5A1D70189400C27377 /* CocoaLumberjack.swift in Sources */,
 				38F6CEBD348505552B59EAF29CFE4C9D /* DDMultiFormatter.m in Sources */,
 				069D640D4A5573C4DD5FA65A3F7AB12E /* DDTTYLogger.m in Sources */,
 			);
@@ -2487,6 +2491,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63B0BD350E9802E189093751C82D5BF4 /* CocoaLumberjack.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3202,6 +3207,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63B0BD350E9802E189093751C82D5BF4 /* CocoaLumberjack.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -3221,6 +3227,7 @@
 				PRODUCT_NAME = CocoaLumberjack;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
