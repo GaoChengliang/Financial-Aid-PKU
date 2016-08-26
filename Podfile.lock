@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.4.0)
+  - AVOSCloud (3.3.5)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -43,6 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 3.4.0)
+  - AVOSCloud
   - ChameleonFramework/Swift (= 2.1.0)
   - CocoaLumberjack (= 2.3.0)
   - DKImagePickerController (= 3.2.1)
@@ -58,6 +60,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   DKImagePickerController: 8fd00d31c1688dce35d5fce15d3231a79ac2d38c
@@ -71,6 +74,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: dcd9e6be89b24ca0522900c1890310e76062b7ff
+PODFILE CHECKSUM: 83226a96ade1475dd52c821893868559a8368484
 
 COCOAPODS: 1.0.0
