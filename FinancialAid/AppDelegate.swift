@@ -10,7 +10,6 @@ import UIKit
 import SVProgressHUD
 import Siren
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
          didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
             -> Bool {
+
         sleep(2)
+
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(
             UIApplicationBackgroundFetchIntervalMinimum)
 
@@ -38,10 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         viewController.shouldAutoLogin = true
         window?.rootViewController = viewController
+
         setSiren()
 
+        setAVOSCloud()
 
-        AVOSCloud.registerForRemoteNotification()
+        UIApplication.sharedApplication().registerUserNotificationSettings(
+            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+
         return true
     }
 
@@ -60,6 +65,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            completionHandler(.NewData)
 //        }
 //    }
+
+    func application(application: UIApplication,
+                     didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+
+    func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let currentInstallation = AVInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackground()
+    }
+
+    func setAVOSCloud() {
+        AVOSCloud.setApplicationId("PwegrNKdHfruoACosS41mbJx-gzGzoHsz", clientKey: "H5o09ExYrpbnGyPf7WbG8ELI")
+        AVOSCloud.registerForRemoteNotification()
+    }
 
     func setSiren() {
         siren = Siren.sharedInstance
