@@ -36,10 +36,6 @@ public class DKImageResource {
 		return stretchImgFromMiddle(imageForResource("checked_background"))
     }
     
-    class func checkedImage_1() -> UIImage {
-        return stretchImgFromMiddle(imageForResource("checked_background1"))
-    }
-    
     class func blueTickImage() -> UIImage {
         return imageForResource("tick_blue")
     }

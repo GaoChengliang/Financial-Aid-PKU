@@ -10,7 +10,6 @@
 #import "SDWebImageOperation.h"
 #import "SDWebImagePrefetcher.h"
 #import "UIButton+WebCache.h"
-#import "UIImage+GIF.h"
 #import "UIImage+MultiFormat.h"
 #import "UIImageView+HighlightedWebCache.h"
 #import "UIImageView+WebCache.h"

@@ -17,7 +17,7 @@ public extension CGSize {
 }
 
 /**
-	An `DKAsset` object represents a photo or a video managed by the `DKImagePickerController`.
+ An `DKAsset` object represents a photo or a video managed by the `DKImagePickerController`.
 */
 public class DKAsset: NSObject {
 
@@ -32,7 +32,7 @@ public class DKAsset: NSObject {
 	
 	public private(set) var originalAsset: PHAsset?
 		
-	init(originalAsset: PHAsset) {
+	public init(originalAsset: PHAsset) {
 		super.init()
 		
 		self.originalAsset = originalAsset
@@ -83,10 +83,10 @@ public class DKAsset: NSObject {
 	}
 	
 	/**
-		Fetch an image with the current screen size.
-	
-		- parameter sync:          If true, the method blocks the calling thread until image is ready or an error occurs.
-		- parameter completeBlock: The block is executed when the image download is complete.
+     Fetch an image with the current screen size.
+     
+     - parameter sync:          If true, the method blocks the calling thread until image is ready or an error occurs.
+     - parameter completeBlock: The block is executed when the image download is complete.
 	*/
 	public func fetchFullScreenImage(sync: Bool, completeBlock: (image: UIImage?, info: [NSObject : AnyObject]?) -> Void) {
 		if let (image, info) = self.fullScreenImage {
@@ -96,7 +96,7 @@ public class DKAsset: NSObject {
 			
 			let options = PHImageRequestOptions()
 			options.deliveryMode = .HighQualityFormat
-			options.resizeMode = .Exact;
+			options.resizeMode = .Exact
 			options.synchronous = sync
 
 			getImageManager().fetchImageForAsset(self, size: screenSize.toPixel(), options: options, contentMode: .AspectFit) { [weak self] image, info in
@@ -113,10 +113,10 @@ public class DKAsset: NSObject {
 	}
 	
 	/**
-		Fetch an image with the original size.
-	
-		- parameter sync:          If true, the method blocks the calling thread until image is ready or an error occurs.
-		- parameter completeBlock: The block is executed when the image download is complete.
+     Fetch an image with the original size.
+     
+     - parameter sync:          If true, the method blocks the calling thread until image is ready or an error occurs.
+     - parameter completeBlock: The block is executed when the image download is complete.
 	*/
 	public func fetchOriginalImage(sync: Bool, completeBlock: (image: UIImage?, info: [NSObject : AnyObject]?) -> Void) {
 		let options = PHImageRequestOptions()
@@ -129,23 +129,23 @@ public class DKAsset: NSObject {
 		})
 	}
 	
-	/**
-		Fetch an AVAsset with a completeBlock.
+    /**
+     Fetch an AVAsset with a completeBlock.
 	*/
 	public func fetchAVAssetWithCompleteBlock(completeBlock: (AVAsset: AVAsset?, info: [NSObject : AnyObject]?) -> Void) {
 		self.fetchAVAsset(nil, completeBlock: completeBlock)
 	}
 	
-	/**
-		Fetch an AVAsset with a completeBlock and PHVideoRequestOptions.
-	*/
+    /**
+     Fetch an AVAsset with a completeBlock and PHVideoRequestOptions.
+     */
 	public func fetchAVAsset(options: PHVideoRequestOptions?, completeBlock: (AVAsset: AVAsset?, info: [NSObject : AnyObject]?) -> Void) {
 		getImageManager().fetchAVAsset(self, options: options, completeBlock: completeBlock)
 	}
 	
-	/**
-		Sync fetch an AVAsset with a completeBlock and PHVideoRequestOptions.
-	*/
+    /**
+     Sync fetch an AVAsset with a completeBlock and PHVideoRequestOptions.
+     */
 	public func fetchAVAsset(sync: Bool, options: PHVideoRequestOptions?, completeBlock: (AVAsset: AVAsset?, info: [NSObject : AnyObject]?) -> Void) {
 		if sync {
 			let semaphore = dispatch_semaphore_create(0)
@@ -159,12 +159,19 @@ public class DKAsset: NSObject {
 		}
 	}
 	
-	static let writeQueue: NSOperationQueue = {
-		let queue = NSOperationQueue()
-		queue.name = "DKAsset_Write_Queue"
-		queue.maxConcurrentOperationCount = 5
-		return queue
-	}()
+}
+
+public extension DKAsset {
+	
+	struct DKAssetWriter {
+		static let writeQueue: NSOperationQueue = {
+			let queue = NSOperationQueue()
+			queue.name = "DKAsset_Write_Queue"
+			queue.maxConcurrentOperationCount = 5
+			return queue
+		}()
+	}
+	
 	
 	/**
 		Writes the image in the receiver to the file specified by a given path.
@@ -174,7 +181,7 @@ public class DKAsset: NSObject {
 		options.version = .Current
 		
 		getImageManager().fetchImageDataForAsset(self, options: options, completeBlock: { (data, _) in
-			DKAsset.writeQueue.addOperationWithBlock({
+			DKAssetWriter.writeQueue.addOperationWithBlock({
 				if let imageData = data {
 					imageData.writeToFile(path, atomically: true)
 					completeBlock(success: true)
@@ -192,7 +199,7 @@ public class DKAsset: NSObject {
 	*/
 	public func writeAVToFile(path: String, presetName: String, completeBlock: (success: Bool) -> Void) {
 		self.fetchAVAsset(nil) { (AVAsset, _) in
-			DKAsset.writeQueue.addOperationWithBlock({
+			DKAssetWriter.writeQueue.addOperationWithBlock({
 				if let exportSession = AVAssetExportSession(asset: AVAsset!, presetName: presetName) {
 					exportSession.outputFileType = AVFileTypeQuickTimeMovie
 					exportSession.outputURL = NSURL(fileURLWithPath: path)
@@ -206,5 +213,32 @@ public class DKAsset: NSObject {
 			})
 		}
 	}
+}
+
+public extension AVAsset {
 	
+	public func calculateFileSize() -> Float {
+		if let URLAsset = self as? AVURLAsset {
+			var size: AnyObject?
+			try! URLAsset.URL.getResourceValue(&size, forKey: NSURLFileSizeKey)
+			if let size = size as? NSNumber {
+				return size.floatValue
+			} else {
+				return 0
+			}
+		} else if let _ = self as? AVComposition {
+			var estimatedSize: Float = 0.0
+			var duration: Float = 0.0
+			for track in self.tracks {
+				let rate = track.estimatedDataRate / 8.0
+				let seconds = Float(CMTimeGetSeconds(track.timeRange.duration))
+				duration += seconds
+				estimatedSize += seconds * rate
+			}
+			return estimatedSize
+		} else {
+			return 0
+		}
+	}
+    
 }
