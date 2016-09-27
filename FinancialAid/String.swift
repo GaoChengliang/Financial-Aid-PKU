@@ -10,12 +10,12 @@ import Foundation
 
 extension String {
 
-    func matchRegex(pattern: String) -> Bool {
+    func matchRegex(_ pattern: String) -> Bool {
         guard
-            let searchResults = rangeOfString(pattern, options: .RegularExpressionSearch)
+            let searchResults = range(of: pattern, options: .regularExpression)
         else { return false }
 
-        return searchResults.startIndex == startIndex && searchResults.count == characters.count
+        return searchResults.lowerBound == startIndex && searchResults.count == characters.count
     }
 
     func isStudentNo() -> Bool {
@@ -32,8 +32,8 @@ extension String {
 
     func isNonEmpty() -> Bool {
         return !(self as NSString)
-            .stringByTrimmingCharactersInSet(
-                NSCharacterSet.whitespaceCharacterSet()
+            .trimmingCharacters(
+                in: CharacterSet.whitespaces
             ).isEmpty
     }
 }

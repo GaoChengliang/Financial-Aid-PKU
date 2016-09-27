@@ -8,42 +8,42 @@
 
 import UIKit
 
-enum LoginStatus: CustomStringConvertible, BooleanType {
+enum LoginStatus: CustomStringConvertible {
 
-    case Login, Register
+    case login, register
 
     var description: String {
         switch self {
-        case .Login:
+        case .login:
             return NSLocalizedString("Login", comment: "login")
-        case .Register:
+        case .register:
             return NSLocalizedString("Register", comment: "register")
         }
     }
 
     var boolValue: Bool {
         switch self {
-        case .Login:
+        case .login:
             return true
-        case .Register:
+        case .register:
             return false
         }
     }
 }
 
-enum LoginErrorType: ErrorType {
-    case FieldEmpty(Int)
-    case FieldInvalid(Int)
-    case DataInconsistencyError
-    case UnknownError
+enum LoginErrorType: Error {
+    case fieldEmpty(Int)
+    case fieldInvalid(Int)
+    case dataInconsistencyError
+    case unknownError
 }
 
 prefix func ! (status: LoginStatus) -> LoginStatus {
     switch status {
-    case .Login:
-        return .Register
-    case .Register:
-        return .Login
+    case .login:
+        return .register
+    case .register:
+        return .login
     }
 }
 
@@ -55,27 +55,27 @@ typealias TextFieldSetupTuple = (cellID: String,
 
 struct Login {
 
-    private let cellIDs = ["Text", "Text"]
+    fileprivate let cellIDs = ["Text", "Text"]
 
-    private let placeholders = [
+    fileprivate let placeholders = [
         NSLocalizedString("Please input your SID", comment: "user's SID"),
         NSLocalizedString("Default password is birthday", comment: "default password")
     ]
 
-    private let contents = [
-        LoginStatus.Register: ["", ""],
-        LoginStatus.Login: [ContentManager.UserName, ContentManager.Password]
+    fileprivate let contents = [
+        LoginStatus.register: ["", ""],
+        LoginStatus.login: [ContentManager.UserName, ContentManager.Password]
     ]
 
-    private let isSecure = [
+    fileprivate let isSecure = [
         false, true
     ]
 
-    private let keyboardTypes = [
-        UIKeyboardType.Default, UIKeyboardType.Default
+    fileprivate let keyboardTypes = [
+        UIKeyboardType.default, UIKeyboardType.default
     ]
 
-    private let validators = [
+    fileprivate let validators = [
         String.isStudentNo,
         String.isNonEmpty
     ]
@@ -86,8 +86,8 @@ struct Login {
         }
     }
 
-    subscript(status: LoginStatus, indexPath: NSIndexPath) -> TextFieldSetupTuple {
-        let row = indexPath.row
+    subscript(status: LoginStatus, indexPath: IndexPath) -> TextFieldSetupTuple {
+        let row = (indexPath as NSIndexPath).row
         let cellID = cellIDs[row]
         let placeholder = placeholders[row]
         let content = contents[status]?[row] ?? ""
@@ -96,17 +96,17 @@ struct Login {
         return (cellID, placeholder, content, secure, keyboardType)
     }
 
-    func validate(results: [String]) throws -> [String] {
-        guard results.count == validators.count else { throw LoginErrorType.DataInconsistencyError }
-        return try zip(results, validators).enumerate().map {
-            (index: Int, tuple: (string: String, validator: String -> () -> Bool)) in
+    func validate(_ results: [String]) throws -> [String] {
+        guard results.count == validators.count else { throw LoginErrorType.dataInconsistencyError }
+        return try zip(results, validators).enumerated().map {
+            (index: Int, tuple: (string: String, validator: (String) -> () -> Bool)) in
             let content = tuple.string
-                               .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                               .trimmingCharacters(in: CharacterSet.whitespaces)
             if content.isEmpty {
-                throw LoginErrorType.FieldEmpty(index)
+                throw LoginErrorType.fieldEmpty(index)
             }
             if !tuple.validator(content)() {
-                throw LoginErrorType.FieldInvalid(index)
+                throw LoginErrorType.fieldInvalid(index)
             }
             return content
         }

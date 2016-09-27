@@ -8,16 +8,16 @@
 
 import Foundation
 
-extension NSDateFormatter {
+extension DateFormatter {
 
-    class func outputFormatter() -> NSDateFormatter {
-        let formatter = NSDateFormatter()
-        formatter.locale = NSCalendar.currentCalendar().locale
+    class func outputFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Calendar.current.locale
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }
-    class func inputFormatter() -> NSDateFormatter {
-        let formatter = NSDateFormatter()
+    class func inputFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return formatter
     }

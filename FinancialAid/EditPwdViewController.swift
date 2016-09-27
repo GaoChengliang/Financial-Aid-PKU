@@ -15,34 +15,34 @@ class EditPwdViewController: UIViewController {
     @IBOutlet weak var newPwd: UITextField!
     @IBOutlet weak var newPwdCheck: UITextField!
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let segueIdentifier = "UnwindToLoginSegue"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         oldPwd.delegate = self
-        oldPwd.returnKeyType = UIReturnKeyType.Continue
+        oldPwd.returnKeyType = UIReturnKeyType.continue
         oldPwd.enablesReturnKeyAutomatically  = true
         oldPwd.tag = 101
 
         newPwd.delegate = self
-        newPwd.returnKeyType = UIReturnKeyType.Continue
+        newPwd.returnKeyType = UIReturnKeyType.continue
         newPwd.enablesReturnKeyAutomatically  = true
         newPwd.tag = 202
 
         newPwdCheck.delegate = self
-        newPwdCheck.returnKeyType = UIReturnKeyType.Done
+        newPwdCheck.returnKeyType = UIReturnKeyType.done
         newPwdCheck.enablesReturnKeyAutomatically  = true
         newPwdCheck.tag = 303
     }
 
 
 
-    @IBAction func editPwd(sender: UIBarButtonItem) {
+    @IBAction func editPwd(_ sender: UIBarButtonItem) {
         let newPwdCheckStr = newPwdCheck.text ?? ""
 
-        if let oldPwdStr = oldPwd.text, newPwdStr = newPwd.text {
+        if let oldPwdStr = oldPwd.text, let newPwdStr = newPwd.text {
             if oldPwdStr.isNonEmpty() && newPwdStr.isNonEmpty() {
                 if newPwdStr != newPwdCheckStr {
                     SVProgressHUD.showErrorWithStatus(
@@ -56,12 +56,12 @@ class EditPwdViewController: UIViewController {
                     "password": newPwdStr]) {
                     (error) in
                     if let error = error {
-                        if case NetworkErrorType.NetworkUnreachable(_) = error {
+                        if case NetworkErrorType.networkUnreachable(_) = error {
                             SVProgressHUD.showErrorWithStatus(
                                 NSLocalizedString("Network timeout",
                                     comment: "network timeout or interruptted")
                             )
-                        } else if case NetworkErrorType.NetworkWrongParameter(_, let errno) = error {
+                        } else if case NetworkErrorType.networkWrongParameter(_, let errno) = error {
                             if errno == 101 {
                                 SVProgressHUD.showErrorWithStatus(
                                     NSLocalizedString("Check old password error",
@@ -80,7 +80,7 @@ class EditPwdViewController: UIViewController {
                                 comment: "edit password success")
                         )
                         ContentManager.Password = nil
-                        self.performSegueWithIdentifier(Constants.segueIdentifier, sender: self)
+                        self.performSegue(withIdentifier: Constants.segueIdentifier, sender: self)
                     }
                 }
 
@@ -96,7 +96,7 @@ class EditPwdViewController: UIViewController {
 }
 
 extension EditPwdViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 101 {
             newPwd.becomeFirstResponder()
             return true

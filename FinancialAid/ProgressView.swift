@@ -18,7 +18,7 @@ class ProgressView: UIView {
         }
     }
 
-    override class func layerClass() -> AnyClass {
+    override class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
 
@@ -36,15 +36,15 @@ class ProgressView: UIView {
         guard let layer = layer as? CAGradientLayer else { return }
         layer.startPoint = CGPoint(x: 0, y: 0.5)
         layer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        layer.colors = 0.stride(to: 360, by: 5).map {
+        layer.colors = stride(from: 0, to: 360, by: 5).map {
             UIColor(hue: 1.0 * CGFloat($0) / 360.0,
                 saturation: 1.0,
                 brightness: 1.0,
-                alpha: 1.0).CGColor
+                alpha: 1.0).cgColor
         }
 
         maskLayer.frame = CGRect(x: 0, y: 0, width: 0, height: frame.height)
-        maskLayer.backgroundColor = UIColor.whiteColor().CGColor
+        maskLayer.backgroundColor = UIColor.white.cgColor
         layer.mask = maskLayer
         performAnimation()
     }
@@ -59,19 +59,19 @@ class ProgressView: UIView {
         guard let layer = layer as? CAGradientLayer else { return }
         guard var colors = layer.colors as? [CGColor] else { return }
         guard let lastColor = colors.popLast() else { return }
-        colors.insert(lastColor, atIndex: 0)
+        colors.insert(lastColor, at: 0)
         layer.colors = colors
 
         let animation = CABasicAnimation(keyPath: "colors")
         animation.toValue = colors
         animation.duration = 0.08
-        animation.removedOnCompletion = true
+        animation.isRemovedOnCompletion = true
         animation.fillMode = kCAFillModeForwards
         animation.delegate = self
-        layer.addAnimation(animation, forKey: "animateGradient")
+        layer.add(animation, forKey: "animateGradient")
     }
 
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         performAnimation()
     }
 }

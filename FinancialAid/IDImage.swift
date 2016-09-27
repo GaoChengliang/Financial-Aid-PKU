@@ -17,7 +17,7 @@ class IDImage: NSObject {
 }
 
 extension IDImage {
-    override static func mj_replacedKeyFromPropertyName() -> [NSObject : AnyObject]! {
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable: Any]! {
         return [
             "ID" : "id",
             "imageUrl" : "url",

@@ -26,7 +26,7 @@ class UploadImageCollectionViewController: UICollectionViewController {
     var idImages = [IDImage]()
     var image: UIImage?
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let ImageCollectionViewCellIdentifier = "ImageCollectionViewCell"
         static let UploadImageCollectionViewCellIdentifier = "UploadImageCollectionViewCell"
         static let ShowUploadImageSegueIdentifier = "ShowUploadImageSegue"
@@ -62,7 +62,7 @@ class UploadImageCollectionViewController: UICollectionViewController {
         }
     }
 
-    @IBAction func unwindToUploadImage(segue: UIStoryboardSegue) {
+    @IBAction func unwindToUploadImage(_ segue: UIStoryboardSegue) {
         idImages.removeAll()
         fetchImageList()
     }
@@ -74,18 +74,18 @@ class UploadImageCollectionViewController: UICollectionViewController {
         imageCache.clearDisk()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifer = segue.identifier else { return }
         switch segueIdentifer {
         case Constants.ShowDeleteImageSegueIdentifier:
-            if let sdvc = segue.destinationViewController as? ShowDeleteImageViewController {
+            if let sdvc = segue.destination as? ShowDeleteImageViewController {
                 if let cell = sender as? ImageCollectionViewCell {
-                    let index = collectionView?.indexPathForCell(cell)
-                    sdvc.idImage = idImages[(index?.item)!]
+                    let index = collectionView?.indexPath(for: cell)
+                    sdvc.idImage = idImages[((index as NSIndexPath?)?.item)!]
                 }
             }
         case Constants.ShowUploadImageSegueIdentifier:
-            if let suvc = segue.destinationViewController as? ShowUploadImageViewController {
+            if let suvc = segue.destination as? ShowUploadImageViewController {
                 suvc.formID = self.formID
                 suvc.image = self.image
             }
@@ -96,30 +96,30 @@ class UploadImageCollectionViewController: UICollectionViewController {
 }
 
 extension UploadImageCollectionViewController {
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView)
+    override func numberOfSections(in collectionView: UICollectionView)
         -> Int {
             return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView,
+    override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
         return idImages.count + 1
     }
 
-    override func collectionView(collectionView: UICollectionView,
-                                 cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if indexPath.item < idImages.count {
-            if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-                Constants.ImageCollectionViewCellIdentifier, forIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if (indexPath as NSIndexPath).item < idImages.count {
+            if let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: Constants.ImageCollectionViewCellIdentifier, for: indexPath)
                 as? ImageCollectionViewCell {
-                cell.imageView.sd_setImageWithURL(NSURL(string:
+                cell.imageView.sd_setImageWithURL(URL(string:
                     idImages[indexPath.item].thumbnailUrl), placeholderImage: UIImage(named: "Loading"))
                 return cell
             }
         }
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            Constants.UploadImageCollectionViewCellIdentifier, forIndexPath: indexPath)
+        if let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: Constants.UploadImageCollectionViewCellIdentifier, for: indexPath)
             as? UploadImageCollectionViewCell {
             return cell
         }
@@ -128,16 +128,16 @@ extension UploadImageCollectionViewController {
 }
 
 extension UploadImageCollectionViewController {
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath
-        indexPath: NSIndexPath) -> Bool {
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt
+        indexPath: IndexPath) -> Bool {
         return true
     }
 
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath
-        indexPath: NSIndexPath) {
-        if indexPath.item < idImages.count {
-            self.performSegueWithIdentifier(Constants.ShowDeleteImageSegueIdentifier,
-                                            sender: collectionView.cellForItemAtIndexPath(indexPath))
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt
+        indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).item < idImages.count {
+            self.performSegue(withIdentifier: Constants.ShowDeleteImageSegueIdentifier,
+                                            sender: collectionView.cellForItem(at: indexPath))
         } else {
             let pickerController = DKImagePickerController()
             pickerController.maxSelectableCount = 1
@@ -163,15 +163,15 @@ extension UploadImageCollectionViewController {
 
 extension UploadImageCollectionViewController : UICollectionViewDelegateFlowLayout {
 
-    private struct Constant {
+    fileprivate struct Constant {
         static let CollectionCellMinimumItemSpacing: CGFloat   = 5.0
         static let CollectionViewTopMarginSpacing: CGFloat     = 10.0
         static let CollectionCellMininumBorder: CGFloat        = 10.0
     }
 
-    func spacingForCollecionViewWidth(width: CGFloat) -> (leftSpacing: CGFloat,
+    func spacingForCollecionViewWidth(_ width: CGFloat) -> (leftSpacing: CGFloat,
             rightSpacing: CGFloat, interItemSpacing: CGFloat, cellSize: CGFloat) {
-        for i in (1...10).reverse() {
+        for i in (1...10).reversed() {
             if CGFloat(i) * CGFloat(80) +
                 CGFloat(i - 1) * Constant.CollectionCellMinimumItemSpacing +
                 CGFloat(2) * Constant.CollectionCellMininumBorder < width {
@@ -190,10 +190,10 @@ extension UploadImageCollectionViewController : UICollectionViewDelegateFlowLayo
 
 
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        var inset = UIEdgeInsetsZero
+                               insetForSectionAt section: Int) -> UIEdgeInsets {
+        var inset = UIEdgeInsets.zero
         inset.top = Constant.CollectionViewTopMarginSpacing
         (inset.left, inset.right, _, _) = spacingForCollecionViewWidth(
             collectionView.frame.width)
@@ -201,16 +201,16 @@ extension UploadImageCollectionViewController : UICollectionViewDelegateFlowLayo
         return inset
     }
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+                               minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return spacingForCollecionViewWidth(
             collectionView.frame.width).interItemSpacing
     }
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellSize = spacingForCollecionViewWidth(
             collectionView.frame.width).cellSize
         return  CGSize(width: cellSize, height: cellSize)

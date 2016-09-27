@@ -23,28 +23,28 @@ class TextFieldCell: UITableViewCell {
 
 extension TextFieldCell {
 
-    func setupWithPlaceholder(placeholder: String,
+    func setupWithPlaceholder(_ placeholder: String,
                               content: String,
                               isSecure: Bool,
                               AndKeyboardType keyboardType: UIKeyboardType) {
 
         textField.text = content
         textField.placeholder = placeholder
-        textField.secureTextEntry = isSecure
+        textField.isSecureTextEntry = isSecure
         textField.clearsOnBeginEditing = isSecure
-        textField.clearButtonMode = isSecure ? .WhileEditing : .Never
+        textField.clearButtonMode = isSecure ? .whileEditing : .never
         textField.keyboardType = keyboardType
     }
 }
 
 extension TextFieldCell: UITextFieldDelegate {
 
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

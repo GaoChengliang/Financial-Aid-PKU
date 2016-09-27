@@ -14,14 +14,14 @@ class FormTableViewCell: UITableViewCell {
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
 
-    func setupWithName(name: String, startDate: NSDate, endDate: NSDate, status: Int) {
+    func setupWithName(_ name: String, startDate: Date, endDate: Date, status: Int) {
         nameLabel.text = name
-        startDateLabel.text = NSDateFormatter.outputFormatter().stringFromDate(startDate)
-        endDateLabel.text = NSDateFormatter.outputFormatter().stringFromDate(endDate)
+        startDateLabel.text = DateFormatter.outputFormatter().string(from: startDate)
+        endDateLabel.text = DateFormatter.outputFormatter().string(from: endDate)
         if status == 1 {
-            self.accessoryType = .Checkmark
+            self.accessoryType = .checkmark
         } else {
-            self.accessoryType = .DisclosureIndicator
+            self.accessoryType = .disclosureIndicator
         }
     }
 }

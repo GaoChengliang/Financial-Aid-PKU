@@ -10,12 +10,11 @@ import UIKit
 
 extension UIViewController {
 
-    func contentViewController(index: Int = 0) -> UIViewController {
+    func contentViewController(_ index: Int = 0) -> UIViewController {
         if let navigationController = self as? UINavigationController {
             return navigationController.visibleViewController ?? self
         } else if let tabbarController = self as? UITabBarController {
-            guard let viewControllers = tabbarController.viewControllers
-                where index >= 0 && index < viewControllers.count
+            guard let viewControllers = tabbarController.viewControllers, index >= 0 && index < viewControllers.count
                 else {return self}
             return viewControllers[index].contentViewController(index)
         }

@@ -13,32 +13,32 @@ class EditBirthdayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let date = User.sharedInstance.birthday == "0000-00-00" ? NSDate()
-            : NSDateFormatter.outputFormatter().dateFromString(User.sharedInstance.birthday) {
+        if let date = User.sharedInstance.birthday == "0000-00-00" ? Date()
+            : DateFormatter.outputFormatter().date(from: User.sharedInstance.birthday) {
             datePicker.setDate(date, animated: false)
         }
     }
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let unwindSegueIdentifier = "UnwindToUserCenterSegue"
     }
 
     @IBOutlet weak var datePicker: UIDatePicker!
 
-    @IBAction func save(sender: UIButton) {
+    @IBAction func save(_ sender: UIButton) {
         ContentManager.sharedInstance.editUserInfo(["birthday":
-            NSDateFormatter.outputFormatter().stringFromDate(datePicker.date)]) {
+            DateFormatter.outputFormatter().string(from: datePicker.date)]) {
             if $0 != nil {
                 let prompt = NSLocalizedString("Server error occurred",
                                                comment: "network error in saving user info")
                 SVProgressHUD.showErrorWithStatus(prompt)
             } else {
-                self.performSegueWithIdentifier(Constants.unwindSegueIdentifier, sender: nil)
+                self.performSegue(withIdentifier: Constants.unwindSegueIdentifier, sender: nil)
             }
         }
     }
 
-    @IBAction func cancel(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancel(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

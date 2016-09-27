@@ -10,10 +10,10 @@ import UIKit
 
 extension UIStoryboard {
 
-    class func initViewControllerWithIdentifier(identifier: String!) -> UIViewController? {
+    class func initViewControllerWithIdentifier(_ identifier: String!) -> UIViewController? {
         guard let identifier = identifier else {return nil}
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        return storyboard.instantiateViewControllerWithIdentifier(identifier)
+        return storyboard.instantiateViewController(withIdentifier: identifier)
     }
 
 }

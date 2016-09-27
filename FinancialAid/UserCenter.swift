@@ -10,7 +10,7 @@ import Foundation
 
 class UserCenter: NSObject {
     let userCenter = [
-        NSIndexPath(forRow: 0, inSection: 0): [
+        IndexPath(row: 0, section: 0): [
             "content": [
                 User.sharedInstance.userName,
                 User.sharedInstance.realName
@@ -18,7 +18,7 @@ class UserCenter: NSObject {
             "key": "realname",
             "title": NSLocalizedString("User name", comment: "changing user name")
         ],
-        NSIndexPath(forRow: 0, inSection: 1): [
+        IndexPath(row: 0, section: 1): [
             "content": [
                 ({
                         switch User.sharedInstance.gender {
@@ -36,21 +36,21 @@ class UserCenter: NSObject {
             "key": "gender",
             "title": NSLocalizedString("Gender", comment: "giving gender info")
         ],
-        NSIndexPath(forRow: 1, inSection: 1): [
+        IndexPath(row: 1, section: 1): [
             "content": [
                 User.sharedInstance.birthday == "0000-00-00" ? "" : User.sharedInstance.birthday
             ],
             "key": "birthday",
             "title": NSLocalizedString("Birthday", comment: "giving birthday info")
         ],
-        NSIndexPath(forRow: 2, inSection: 1): [
+        IndexPath(row: 2, section: 1): [
             "content": [
                 User.sharedInstance.phone
             ],
             "key": "phone",
             "title": NSLocalizedString("Phone number", comment: "changing user's phone")
         ],
-        NSIndexPath(forRow: 3, inSection: 1): [
+        IndexPath(row: 3, section: 1): [
             "content": [
                 User.sharedInstance.email
             ],
@@ -59,12 +59,12 @@ class UserCenter: NSObject {
         ]
     ]
 
-    func contents(indexPath: NSIndexPath) -> [String] {
+    func contents(_ indexPath: IndexPath) -> [String] {
         guard let dictionary = userCenter[indexPath] else { return [] }
         return (dictionary["content"] ?? []) as? [String] ?? []
     }
 
-    func tuples(indexPath: NSIndexPath) -> (title: String, content: [String], key: String) {
+    func tuples(_ indexPath: IndexPath) -> (title: String, content: [String], key: String) {
         guard let dictionary = userCenter[indexPath] else { return ("", [], "") }
         return (
             dictionary["title"] as? String ?? "",

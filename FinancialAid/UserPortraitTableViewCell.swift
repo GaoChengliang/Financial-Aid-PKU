@@ -15,13 +15,13 @@ class UserPortraitTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var portrait: UIButton!
 
-    func setupWith(userName: String, realName: String, imageName: String? = nil) {
+    func setupWith(_ userName: String, realName: String, imageName: String? = nil) {
         studentID.text = userName
         name.text = realName
         guard let imageName = imageName else {
-            portrait.setImage(UIImage(named: "DefaultPortrait"), forState: .Normal)
+            portrait.setImage(UIImage(named: "DefaultPortrait"), for: UIControlState())
             return
         }
-        portrait.sd_setImageWithURL(NSURL(string: imageName), forState: .Normal)
+        portrait.sd_setImageWithURL(URL(string: imageName), forState: .Normal)
     }
 }

@@ -16,13 +16,13 @@ class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let unwindSegueIdentifier = "UnwindToUserCenterSegue"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                             target: self,
                                                             action:
                                             #selector(EditProfileViewController.saveEdit))
@@ -36,7 +36,7 @@ class EditProfileViewController: UIViewController {
             "email": String.isEmail,
             "realname": String.isNonEmpty
         ][key]
-        var validate: String -> () -> Bool = String.isNonEmpty
+        var validate: (String) -> () -> Bool = String.isNonEmpty
         if let validator = validator {
             validate = validator
         }
@@ -47,7 +47,7 @@ class EditProfileViewController: UIViewController {
             animation.duration = 0.6
             animation.values = [(-20), (20), (-20), (20), (-10), (10), (-5), (5), (0)]
 
-            textField.layer.addAnimation(animation, forKey: "shake")
+            textField.layer.add(animation, forKey: "shake")
             return
         }
         ContentManager.sharedInstance.editUserInfo([key: textField.text ?? ""]) {
@@ -56,7 +56,7 @@ class EditProfileViewController: UIViewController {
                                                comment: "network error in saving user info")
                 SVProgressHUD.showErrorWithStatus(prompt)
             } else {
-                self.performSegueWithIdentifier(Constants.unwindSegueIdentifier, sender: nil)
+                self.performSegue(withIdentifier: Constants.unwindSegueIdentifier, sender: nil)
             }
         }
     }
@@ -64,7 +64,7 @@ class EditProfileViewController: UIViewController {
 
 extension EditProfileViewController: UITextFieldDelegate {
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

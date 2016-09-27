@@ -15,7 +15,7 @@ class EditGenderTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.title = NSLocalizedString("Gender", comment: "gender")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                             target: self, action:
             #selector(EditGenderTableViewController.saveEdit))
         gender = User.sharedInstance.gender == "unknown" ? "male" : User.sharedInstance.gender
@@ -26,35 +26,35 @@ class EditGenderTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    private struct Constants {
+    fileprivate struct Constants {
         static let EditGenderTableViewCellCheckedIdentifier = "EditGenderTableViewCellChecked"
         static let EditGenderTableViewCellUncheckedIdentifier = "EditGenderTableViewCellUnchecked"
         static let unwindSegueIdentifier = "UnwindToUserCenterSegue"
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
 
             var cell: UITableViewCell! = nil
-            if gender == "male" && indexPath.row == 0 || gender == "female" && indexPath.row == 1 {
-                cell = tableView.dequeueReusableCellWithIdentifier(
-                    Constants.EditGenderTableViewCellCheckedIdentifier, forIndexPath: indexPath)
+            if gender == "male" && (indexPath as NSIndexPath).row == 0 || gender == "female" && (indexPath as NSIndexPath).row == 1 {
+                cell = tableView.dequeueReusableCell(
+                    withIdentifier: Constants.EditGenderTableViewCellCheckedIdentifier, for: indexPath)
             } else {
-                cell = tableView.dequeueReusableCellWithIdentifier(
-                    Constants.EditGenderTableViewCellUncheckedIdentifier, forIndexPath: indexPath)
+                cell = tableView.dequeueReusableCell(
+                    withIdentifier: Constants.EditGenderTableViewCellUncheckedIdentifier, for: indexPath)
             }
 
-            if indexPath.row == 0 {
+            if (indexPath as NSIndexPath).row == 0 {
                 cell.textLabel?.text = NSLocalizedString("Male", comment: "gender of user is male")
             } else {
                 cell.textLabel?.text = NSLocalizedString("Female", comment: "gender of user is female")
@@ -62,8 +62,8 @@ class EditGenderTableViewController: UITableViewController {
             return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).row == 0 {
             gender = "male"
         } else {
             gender = "female"
@@ -77,7 +77,7 @@ class EditGenderTableViewController: UITableViewController {
                                                comment: "network error in saving user info")
                 SVProgressHUD.showErrorWithStatus(prompt)
             } else {
-                self.performSegueWithIdentifier(Constants.unwindSegueIdentifier, sender: nil)
+                self.performSegue(withIdentifier: Constants.unwindSegueIdentifier, sender: nil)
             }
         }
     }

@@ -10,8 +10,8 @@ import UIKit
 
 extension CGFloat {
 
-    func format(formatter: String) -> String {
-        return NSString(format: "%\(formatter)f", self) as String
+    func format(_ formatter: String) -> String {
+        return NSString(format: "%\(formatter)f" as NSString, self) as String
     }
 
 }

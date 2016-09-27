@@ -20,7 +20,7 @@ class FormOptionTableViewController: UITableViewController {
 
     var tableViewCellIdentifiers = ["FillFormTableViewCell", "PDFTableViewCell", "UploadImageTableViewCell"]
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let HelpSegueIdentifier = "FormGuideSegue"
         static let FillFormSegueIdentifier = "FormFillSegue"
         static let UploadImageSegueIdentifier = "UploadImageSegue"
@@ -41,14 +41,14 @@ class FormOptionTableViewController: UITableViewController {
         }
         if form.isStepHelp {
             let barItem = UIBarButtonItem(image: UIImage(named: "FillFormGuide"),
-                                          style: .Done, target: self,
+                                          style: .done, target: self,
                                           action: #selector(FormOptionTableViewController.formHelp))
             self.navigationItem.rightBarButtonItem = barItem
         }
     }
 
     func formHelp() {
-        performSegueWithIdentifier(Constants.HelpSegueIdentifier, sender: self)
+        performSegue(withIdentifier: Constants.HelpSegueIdentifier, sender: self)
     }
 
     func showPdfAlert() {
@@ -56,12 +56,12 @@ class FormOptionTableViewController: UITableViewController {
         alertView.title =  NSLocalizedString(
             "Please input the email",
             comment: "email address where user wants to send the pdf")
-        alertView.alertViewStyle = .PlainTextInput
-        alertView.textFieldAtIndex(0)?.text = User.sharedInstance.email
-        alertView.addButtonWithTitle(NSLocalizedString(
+        alertView.alertViewStyle = .plainTextInput
+        alertView.textField(at: 0)?.text = User.sharedInstance.email
+        alertView.addButton(withTitle: NSLocalizedString(
             "Confirm",
             comment: "confirm the email address"))
-        alertView.addButtonWithTitle(NSLocalizedString(
+        alertView.addButton(withTitle: NSLocalizedString(
             "Cancel",
             comment: "cancel send pdf"))
         alertView.delegate = self
@@ -69,20 +69,20 @@ class FormOptionTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(
-            tableViewCellIdentifiers[options[indexPath.row]], forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: tableViewCellIdentifiers[options[(indexPath as NSIndexPath).row]], for: indexPath)
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if options[indexPath.row] == 1 {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if options[(indexPath as NSIndexPath).row] == 1 {
             showPdfAlert()
         }
     }
@@ -90,21 +90,21 @@ class FormOptionTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifer = segue.identifier else { return }
         switch segueIdentifer {
         case Constants.HelpSegueIdentifier:
-            if let fwvc = segue.destinationViewController as? FormWebViewController {
+            if let fwvc = segue.destination as? FormWebViewController {
                 fwvc.title = NSLocalizedString("Tips", comment: "tips for filling the form")
-                fwvc.url = NSURL(string: form.helpPath)
+                fwvc.url = URL(string: form.helpPath)
             }
         case Constants.FillFormSegueIdentifier:
-            if let fwvc = segue.destinationViewController as? FormWebViewController {
+            if let fwvc = segue.destination as? FormWebViewController {
                 fwvc.title = NSLocalizedString("Fill form", comment: "fill the form")
-                fwvc.url = NSURL(string: form.fillPath)
+                fwvc.url = URL(string: form.fillPath)
             }
         case Constants.UploadImageSegueIdentifier:
-            if let uivc = segue.destinationViewController as? UploadImageCollectionViewController {
+            if let uivc = segue.destination as? UploadImageCollectionViewController {
                 uivc.formID = form.ID
             }
         default:
@@ -116,10 +116,10 @@ class FormOptionTableViewController: UITableViewController {
 // MARK: UIAlertViewDelegate
 extension FormOptionTableViewController : UIAlertViewDelegate {
 
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
 
         if buttonIndex == 0 {
-            if let email = alertView.textFieldAtIndex(0)?.text {
+            if let email = alertView.textField(at: 0)?.text {
                 if !email.isEmail() {
                     SVProgressHUD.showErrorWithStatus(
                         NSLocalizedString(
@@ -131,12 +131,12 @@ extension FormOptionTableViewController : UIAlertViewDelegate {
                 ContentManager.sharedInstance.getPDF("\(form.ID)", email: email) {
                     (error) in
                     if let error = error {
-                        if case NetworkErrorType.NetworkUnreachable(_) = error {
+                        if case NetworkErrorType.networkUnreachable(_) = error {
                             SVProgressHUD.showErrorWithStatus(
                                 NSLocalizedString("Network timeout",
                                     comment: "network timeout or interruptted")
                             )
-                        } else if case NetworkErrorType.NetworkWrongParameter(_, let errno) = error {
+                        } else if case NetworkErrorType.networkWrongParameter(_, let errno) = error {
                             if errno == 201 {
                                 SVProgressHUD.showErrorWithStatus(
                                     NSLocalizedString("You have not filled the form",

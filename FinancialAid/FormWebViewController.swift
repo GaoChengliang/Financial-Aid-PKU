@@ -13,11 +13,11 @@ class FormWebViewController: UIViewController {
     @IBOutlet weak var progressBar: ProgressView!
     @IBOutlet weak var webView: UIWebView!
 
-    var timer = NSTimer()
-    var url: NSURL!
+    var timer = Timer()
+    var url: URL!
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.loadRequest(NSURLRequest(URL: url))
+        webView.loadRequest(URLRequest(url: url))
     }
 
     func timerCallback() {
@@ -30,7 +30,7 @@ class FormWebViewController: UIViewController {
         progressBar.progress = 0
         progressBar.alpha = 1.0
         timer.invalidate()
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                                        selector:
                                                        #selector(FormWebViewController.timerCallback),
                                                        userInfo: nil,
@@ -40,21 +40,21 @@ class FormWebViewController: UIViewController {
     func finishLoad() {
         progressBar.progress = 1.0
         timer.invalidate()
-        UIView.animateWithDuration(0.2) {
+        UIView.animate(withDuration: 0.2, animations: {
             self.progressBar.alpha = 0
-        }
+        })
     }
 
 }
 
 extension FormWebViewController: UIWebViewDelegate {
 
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         startLoad()
     }
 
 
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         finishLoad()
     }
 }

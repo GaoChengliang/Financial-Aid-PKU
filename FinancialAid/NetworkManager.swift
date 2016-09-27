@@ -12,26 +12,26 @@ import SwiftyJSON
 /// NetworkCallbackBlock consists the data and an optional network error type for block execution
 typealias NetworkCallbackBlock = (JSON?, NetworkErrorType?) -> Void
 
-enum NetworkErrorType: ErrorType, CustomStringConvertible {
+enum NetworkErrorType: Error, CustomStringConvertible {
 
-    case NetworkUnreachable(String) // Timeout or Unreachable
-    case NetworkUnauthenticated(String) // 401 or 403
-    case NetworkServerError(String) // 5XX
-    case NetworkForbiddenAccess(String) // 400 or 404
-    case NetworkWrongParameter(String, Int) // 200 but with errno
+    case networkUnreachable(String) // Timeout or Unreachable
+    case networkUnauthenticated(String) // 401 or 403
+    case networkServerError(String) // 5XX
+    case networkForbiddenAccess(String) // 400 or 404
+    case networkWrongParameter(String, Int) // 200 but with errno
 
     var description: String {
         get {
             switch self {
-            case .NetworkUnreachable(let message):
+            case .networkUnreachable(let message):
                 return "NetworkUnreachable - \(message)"
-            case .NetworkUnauthenticated(let message):
+            case .networkUnauthenticated(let message):
                 return "NetworkUnauthenticated - \(message)"
-            case .NetworkServerError(let message):
+            case .networkServerError(let message):
                 return "NetworkServerError - \(message)"
-            case .NetworkForbiddenAccess(let message):
+            case .networkForbiddenAccess(let message):
                 return "NetworkForbiddenAccess - \(message)"
-            case .NetworkWrongParameter(let message, let errno):
+            case .networkWrongParameter(let message, let errno):
                 return "NetworkWrongParameter - \(message) \(errno)"
             }
         }
@@ -45,7 +45,7 @@ class NetworkManager: NSObject {
     /**
      *  Unique key for each network request for caching each request
      */
-    private struct Constants {
+    fileprivate struct Constants {
         static let LoginKey         = "Login"
         static let RegisterKey      = "Register"
         static let VersionKey       = "Version"
@@ -76,7 +76,7 @@ class NetworkManager: NSObject {
      Each network request is served as a key-value pair in the dictionary.
      No duplicate request would be executed until the previosus one (sharing with the same key) finished.
      */
-    private static var PendingOpDict = [String : (Request, NSDate)]()
+    fileprivate static var PendingOpDict = [String : (Request, NSDate)]()
 
     /**
      Execute the network request
@@ -85,7 +85,7 @@ class NetworkManager: NSObject {
      - parameter request:  request (or value) in caching dictionary
      - parameter callback: a block executed when network request finished
      */
-    private class func executeRequestWithKey(key: String, request: Request, callback: NetworkCallbackBlock) {
+    fileprivate class func executeRequestWithKey(_ key: String, request: Request, callback: NetworkCallbackBlock) {
 
         // Update the new item in the caching dictionary
         PendingOpDict[key] = (request, NSDate())
@@ -121,7 +121,7 @@ class NetworkManager: NSObject {
         }
     }
 
-    class func existPendingOperation(key: String) -> Bool {
+    class func existPendingOperation(_ key: String) -> Bool {
         return PendingOpDict[key] != nil
     }
 }
@@ -129,22 +129,22 @@ class NetworkManager: NSObject {
 extension NetworkManager {
 
     // Router is a factory for producing network request
-    private enum Router: URLRequestConvertible {
+    fileprivate enum Router: URLRequestConvertible {
 
         // Server URL
         static let APIURLString = "https://app.pku.edu.cn/zzzx"
 
         // Different types of network request
-        case Login(String, String)
-        case Register(String, String)
-        case FormList()
-        case GetUserInfo()
-        case EditUserInfo([String: String])
-        case GetPDF(String, String)
-        case GetImageList(String)
-        case DeleteImage(String)
-        case GetVersion()
-        case GetNews()
+        case login(String, String)
+        case register(String, String)
+        case formList()
+        case getUserInfo()
+        case editUserInfo([String: String])
+        case getPDF(String, String)
+        case getImageList(String)
+        case deleteImage(String)
+        case getVersion()
+        case getNews()
 
         var URLRequest: NSMutableURLRequest {
 
@@ -193,73 +193,73 @@ extension NetworkManager {
         }
     }
 
-    func relativeURL(urlString: String) -> NSURL {
+    func relativeURL(_ urlString: String) -> NSURL {
         let baseURL = NSURL(string: Router.APIURLString)!
         return baseURL.URLByAppendingPathComponent(urlString)
     }
 
-    func login(userName: String, password: String, callback: NetworkCallbackBlock) {
+    func login(_ userName: String, password: String, callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.LoginKey) else { return }
         let request = NetworkManager.Manager.request(Router.Login(userName, password))
         NetworkManager.executeRequestWithKey(Constants.LoginKey, request: request, callback: callback)
     }
 
-    func register(userName: String, password: String, callback: NetworkCallbackBlock) {
+    func register(_ userName: String, password: String, callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.RegisterKey) else { return }
         let request = NetworkManager.Manager.request(Router.Register(userName, password))
         NetworkManager.executeRequestWithKey(Constants.RegisterKey, request: request, callback: callback)
     }
 
-    func formList(callback: NetworkCallbackBlock) {
+    func formList(_ callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.FormListKey) else { return }
         let request = NetworkManager.Manager.request(Router.FormList())
         NetworkManager.executeRequestWithKey(Constants.FormListKey, request: request, callback: callback)
     }
 
-    func getUserInfo(callback: NetworkCallbackBlock) {
+    func getUserInfo(_ callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.GetUserInfoKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetUserInfo())
         NetworkManager.executeRequestWithKey(Constants.GetUserInfoKey, request: request, callback: callback)
     }
 
-    func editUserInfo(editInfo: [String: String], callback: NetworkCallbackBlock) {
+    func editUserInfo(_ editInfo: [String: String], callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.EditUserInfoKey) else { return }
         let request = NetworkManager.Manager.request(Router.EditUserInfo(editInfo))
         NetworkManager.executeRequestWithKey(Constants.EditUserInfoKey, request: request, callback: callback)
     }
 
-    func getPDF(formID: String, email: String, callback: NetworkCallbackBlock) {
+    func getPDF(_ formID: String, email: String, callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.PDFKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetPDF(formID, email))
         NetworkManager.executeRequestWithKey(Constants.PDFKey, request: request, callback: callback)
     }
 
-    func getImageList(formID: String, callback: NetworkCallbackBlock) {
+    func getImageList(_ formID: String, callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.ImageListKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetImageList(formID))
         NetworkManager.executeRequestWithKey(Constants.ImageListKey, request: request, callback: callback)
     }
 
-    func deleteImage(formID: String, callback: NetworkCallbackBlock) {
+    func deleteImage(_ formID: String, callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.DeleteImageKey) else { return }
         let request = NetworkManager.Manager.request(Router.DeleteImage(formID))
         NetworkManager.executeRequestWithKey(Constants.DeleteImageKey, request: request, callback: callback)
     }
 
-    func getVersion(callback: NetworkCallbackBlock) {
+    func getVersion(_ callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.VersionKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetVersion())
         NetworkManager.executeRequestWithKey(Constants.VersionKey, request: request, callback: callback)
     }
 
-    func getNews(callback: NetworkCallbackBlock) {
+    func getNews(_ callback: NetworkCallbackBlock) {
         guard !NetworkManager.existPendingOperation(Constants.GetNewsKey) else { return }
         let request = NetworkManager.Manager.request(Router.GetNews())
         NetworkManager.executeRequestWithKey(Constants.GetNewsKey, request: request, callback: callback)
     }
 
 
-    func uploadImage(formID: Int, imageData: NSData, callback: Response<AnyObject, NSError> -> Void) {
+    func uploadImage(_ formID: Int, imageData: NSData, callback: (Response<AnyObject, NSError>) -> Void) {
         let mutableURLRequest = NSMutableURLRequest(
             URL: NetworkManager.sharedInstance.relativeURL("/form/\(formID)/image"))
         mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue

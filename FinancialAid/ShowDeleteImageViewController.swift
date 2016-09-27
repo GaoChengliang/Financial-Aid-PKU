@@ -16,7 +16,7 @@ class ShowDeleteImageViewController: UIViewController {
         super.viewDidLoad()
         scrollView.delegate = self
         SVProgressHUD.show()
-        imageView.sd_setImageWithURL(NSURL(string: (idImage.imageUrl))) {
+        imageView.sd_setImageWithURL(URL(string: (idImage.imageUrl))) {
             (_, error, _, _) in
             if error == nil {
                 SVProgressHUD.dismiss()
@@ -39,7 +39,7 @@ class ShowDeleteImageViewController: UIViewController {
         imageCache.clearDisk()
     }
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let UnwindToUploadImageIdentifier = "UnwindToUploadImage"
     }
 
@@ -51,33 +51,33 @@ class ShowDeleteImageViewController: UIViewController {
 
     func deleteAlert() {
         let alert = UIAlertController(title: NSLocalizedString("Confirm delete",
-            comment: "confirm delete image"), message: "", preferredStyle: .ActionSheet)
+            comment: "confirm delete image"), message: "", preferredStyle: .actionSheet)
         let confirmAction = UIAlertAction(title: NSLocalizedString("Delete",
-            comment: "delete image"), style: .Default) {
+            comment: "delete image"), style: .default) {
                 action in self.deleteImage()
         }
 
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel",
-            comment: "cancel delete image"), style: .Cancel) {
+            comment: "cancel delete image"), style: .cancel) {
             action in
-            alert.dismissViewControllerAnimated(true, completion: nil)
+            alert.dismiss(animated: true, completion: nil)
         }
 
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 
     func deleteImage() {
         ContentManager.sharedInstance.deleteImage("\(idImage.ID)") {
             (error) in
             if let error = error {
-                if case NetworkErrorType.NetworkUnreachable(_) = error {
+                if case NetworkErrorType.networkUnreachable(_) = error {
                     SVProgressHUD.showErrorWithStatus(
                         NSLocalizedString("Network timeout",
                             comment: "network timeout or interruptted")
                     )
-                } else if case NetworkErrorType.NetworkWrongParameter(_, let errno) = error {
+                } else if case NetworkErrorType.networkWrongParameter(_, let errno) = error {
                     if errno == 301 {
                         SVProgressHUD.showErrorWithStatus(
                             NSLocalizedString("Can not find image",
@@ -101,7 +101,7 @@ class ShowDeleteImageViewController: UIViewController {
                     NSLocalizedString("Delete image success", comment: "delete image success")
                 )
                 SDImageCache.sharedImageCache().removeImageForKey(self.idImage.imageUrl, fromDisk: true)
-                self.performSegueWithIdentifier(Constants.UnwindToUploadImageIdentifier, sender: self)
+                self.performSegue(withIdentifier: Constants.UnwindToUploadImageIdentifier, sender: self)
             }
         }
     }
@@ -109,7 +109,7 @@ class ShowDeleteImageViewController: UIViewController {
 
 
 extension ShowDeleteImageViewController: UIScrollViewDelegate {
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }
 }

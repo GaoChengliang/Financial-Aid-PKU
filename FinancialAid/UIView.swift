@@ -10,10 +10,10 @@ import UIKit
 
 extension UIView {
 
-    func superViewWithClass(c: AnyClass) -> UIView? {
+    func superViewWithClass(_ c: AnyClass) -> UIView? {
         var sV = self.superview
         while sV != nil {
-            if let sv = sV where sv.isKindOfClass(c) {
+            if let sv = sV, sv.isKind(of: c) {
                 return sv
             }
             sV = sV?.superview
@@ -21,8 +21,8 @@ extension UIView {
         return nil
     }
 
-    func startGlow(shadowColor: UIColor) {
-        layer.shadowColor = shadowColor.CGColor
+    func startGlow(_ shadowColor: UIColor) {
+        layer.shadowColor = shadowColor.cgColor
         layer.shadowRadius = 1.0
         layer.shadowOpacity = 0.3
 
@@ -35,12 +35,12 @@ extension UIView {
         animation.autoreverses = true
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
-        layer.addAnimation(animation, forKey: "pulse")
+        layer.add(animation, forKey: "pulse")
     }
 
     func stopGlow() {
         layer.shadowOpacity = 0.0
-        layer.removeAnimationForKey("pulse")
+        layer.removeAnimation(forKey: "pulse")
     }
 }
 
@@ -52,18 +52,18 @@ class CustomView: UIView {
     func xibSetup() {
         view = loadViewFromNib() ?? UIView(frame: CGRect.zero)
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
     }
 
     func loadViewFromNib() -> UIView? {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: nibName(), bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil).first as? UIView
+        let view = nib.instantiate(withOwner: self, options: nil).first as? UIView
         return view
     }
 
-    private func nibName() -> String {
-        return self.dynamicType.description().componentsSeparatedByString(".").last ?? ""
+    fileprivate func nibName() -> String {
+        return type(of: self).description().components(separatedBy: ".").last ?? ""
     }
 }

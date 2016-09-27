@@ -17,11 +17,11 @@ class ShowUploadImageViewController: UIViewController {
         scrollView.delegate = self
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let UnwindToUploadImageIdentifier = "UnwindToUploadImage"
     }
 
@@ -33,8 +33,8 @@ class ShowUploadImageViewController: UIViewController {
             imageView.image = image
         }
     }
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func uploadImage() {
@@ -77,7 +77,7 @@ class ShowUploadImageViewController: UIViewController {
 }
 
 extension ShowUploadImageViewController: UIScrollViewDelegate {
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }
 }

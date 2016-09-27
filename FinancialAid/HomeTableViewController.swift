@@ -20,7 +20,7 @@ class HomeTableViewController: CloudAnimateTableViewController {
     var bannerIndex = 0
     var cycleBanner: SDCycleScrollView!
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let newsCellIdentifier = "NewsCell"
         static let newsDetailSegueIdentifier = "NewsDetailSegue"
         static let bannerNewsDetailSegueIdentifier = "BannerNewsDetailSegue"
@@ -51,24 +51,24 @@ class HomeTableViewController: CloudAnimateTableViewController {
 
     func showAlert() {
         let alert = UIAlertController(title: NSLocalizedString("Open location",
-            comment: "request open location"), message: "", preferredStyle: .Alert)
+            comment: "request open location"), message: "", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: NSLocalizedString("Set",
-            comment: "go to set"), style: .Default) {
+            comment: "go to set"), style: .default) {
                 action in
-                if let setURL = NSURL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(setURL)
+                if let setURL = URL(string: UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(setURL)
                 }
         }
 
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel",
-            comment: "cancel set"), style: .Cancel) {
+            comment: "cancel set"), style: .cancel) {
                 action in
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
         }
 
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 
     func getNewsList() {
@@ -116,57 +116,57 @@ class HomeTableViewController: CloudAnimateTableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 4
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath)
         -> CGFloat {
             return 60
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return listNews.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
 
-        if let cell = tableView.dequeueReusableCellWithIdentifier(
-            Constants.newsCellIdentifier, forIndexPath: indexPath) as? NewsTableViewCell {
-            let news = listNews[indexPath.section]
+        if let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.newsCellIdentifier, for: indexPath) as? NewsTableViewCell {
+            let news = listNews[(indexPath as NSIndexPath).section]
             cell.title.text = news.title
-            cell.newsImageView.sd_setImageWithURL(NSURL(string: news.imageUrl)!)
+            cell.newsImageView.sd_setImageWithURL(URL(string: news.imageUrl)!)
             return cell
         }
         return UITableViewCell()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(Constants.newsDetailSegueIdentifier,
-                                    sender: tableView.cellForRowAtIndexPath(indexPath))
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.newsDetailSegueIdentifier,
+                                    sender: tableView.cellForRow(at: indexPath))
 
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifer = segue.identifier else { return }
         switch segueIdentifer {
         case Constants.newsDetailSegueIdentifier:
-            if let fwvc = segue.destinationViewController as? FormWebViewController {
+            if let fwvc = segue.destination as? FormWebViewController {
                 if let cell = sender as? NewsTableViewCell {
-                    let indexPath = tableView.indexPathForCell(cell)
-                    fwvc.title = listNews[(indexPath?.section)!].title
-                    fwvc.url = NSURL(string: listNews[(indexPath?.section)!].url)
+                    let indexPath = tableView.indexPath(for: cell)
+                    fwvc.title = listNews[((indexPath as NSIndexPath?)?.section)!].title
+                    fwvc.url = URL(string: listNews[((indexPath as NSIndexPath?)?.section)!].url)
                 }
             }
         case Constants.bannerNewsDetailSegueIdentifier:
-            if let fwvc = segue.destinationViewController as? FormWebViewController {
+            if let fwvc = segue.destination as? FormWebViewController {
                 fwvc.title = bannerTitles[bannerIndex]
-                fwvc.url = NSURL(string: bannerNews[bannerIndex].url)
+                fwvc.url = URL(string: bannerNews[bannerIndex].url)
             }
         default:
             break
@@ -182,8 +182,8 @@ extension HomeTableViewController {
 }
 
 extension HomeTableViewController: SDCycleScrollViewDelegate {
-    func cycleScrollView(cycleScrollView: SDCycleScrollView!, didSelectItemAtIndex index: Int) {
+    func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAtIndex index: Int) {
         bannerIndex = index
-        performSegueWithIdentifier(Constants.bannerNewsDetailSegueIdentifier, sender: self)
+        performSegue(withIdentifier: Constants.bannerNewsDetailSegueIdentifier, sender: self)
     }
 }

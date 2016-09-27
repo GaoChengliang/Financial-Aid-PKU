@@ -18,7 +18,7 @@ class LocationCellularManager: NSObject, CLLocationManagerDelegate {
 
     var locationManager: CLLocationManager!
     var carrier: CTCarrier!
-    var timer: NSTimer!
+    var timer: Timer!
     var timeInterval = 1.0
     var battery: Float = 1.0
 
@@ -31,18 +31,18 @@ class LocationCellularManager: NSObject, CLLocationManagerDelegate {
         UIDevice.currentDevice().batteryMonitoringEnabled = true
     }
 
-    func getLocationCellular(completion: (() -> Void)?) {
+    func getLocationCellular(_ completion: (() -> Void)?) {
         locationManager.delegate = self
         startGetLocationCellular()
         battery = UIDevice.currentDevice().batteryLevel
         if battery >= 0.6 {
             timeInterval = 900
-            timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self,
+            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self,
                     selector: #selector(LocationCellularManager.startGetLocationCellular),
                                                            userInfo: nil, repeats: true)
         } else if battery >= 0.2 {
             timeInterval = 1800
-            timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self,
+            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self,
                     selector: #selector(LocationCellularManager.startGetLocationCellular),
                                                            userInfo: nil, repeats: true)
         }
@@ -66,7 +66,7 @@ class LocationCellularManager: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let curLocation = locations.last! as CLLocation
         let latitude = curLocation.coordinate.latitude
         let longitude = curLocation.coordinate.longitude
@@ -74,7 +74,7 @@ class LocationCellularManager: NSObject, CLLocationManagerDelegate {
         stopGetLocationCellular()
     }
 
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         DDLogInfo("Get location error: \(error.localizedDescription)")
         stopGetLocationCellular()
     }

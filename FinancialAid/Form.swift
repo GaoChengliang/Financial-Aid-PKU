@@ -19,14 +19,14 @@ class Form: NSObject {
     var isStepFill = false
     var isStepPdf = false
     var isStepUpload = false
-    var startDate = NSDate()
-    var endDate = NSDate()
+    var startDate = Date()
+    var endDate = Date()
     var helpPath = ""
     var fillPath = ""
 }
 
 extension Form {
-    override static func mj_replacedKeyFromPropertyName() -> [NSObject : AnyObject]! {
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable: Any]! {
         return [
             "ID": "id",
             "name": "name",
@@ -44,7 +44,7 @@ extension Form {
         ]
     }
 
-    override func mj_newValueFromOldValue(oldValue: AnyObject!, property: MJProperty!) -> AnyObject! {
+    override func mj_newValueFromOldValue(_ oldValue: AnyObject!, property: MJProperty!) -> AnyObject! {
         switch property.name {
         case "active":
             fallthrough
@@ -60,7 +60,7 @@ extension Form {
             fallthrough
         case "endDate":
             let dateString = "\(oldValue)"
-            let formatter = NSDateFormatter.inputFormatter()
+            let formatter = DateFormatter.inputFormatter()
             return formatter.dateFromString(dateString)
         case "helpPath":
             fallthrough
@@ -84,7 +84,7 @@ class FormList: NSObject {
 
     var formList = [Form]() {
         didSet {
-            formList.sortInPlace {
+            formList.sort {
                 $0.sortWeight > $1.sortWeight
             }
         }

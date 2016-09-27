@@ -27,40 +27,40 @@ class UserTableViewController: UITableViewController {
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         retrieveUser()
     }
 
-    override func tableView(tableView: UITableView,
-                            cellForRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         let contents = userCenter.contents(indexPath)
-        if indexPath.section == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
             guard let userCell = cell as? UserPortraitTableViewCell else { return cell }
             userCell.setupWith(contents[0], realName: contents[1])
-        } else if indexPath.section == 1 {
+        } else if (indexPath as NSIndexPath).section == 1 {
             cell.detailTextLabel?.text = contents[0]
         }
         return cell
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView(frame: CGRect.zero)
     }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat.min
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             let cell = sender as? UITableViewCell,
-            let indexPath = tableView.indexPathForCell(cell)
+            let indexPath = tableView.indexPath(for: cell)
         else { return }
 
-        let dest = segue.destinationViewController
+        let dest = segue.destination
         let tuple = userCenter.tuples(indexPath)
         if let epvc = dest as? EditProfileViewController {
             epvc.title = tuple.title
@@ -89,7 +89,7 @@ class UserTableViewController: UITableViewController {
         //self.presentViewController(pickerController, animated: true) {}
     }
 
-    @IBAction func unwindToUserCenter(segue: UIStoryboardSegue) {
+    @IBAction func unwindToUserCenter(_ segue: UIStoryboardSegue) {
         userCenter = UserCenter()
     }
 }

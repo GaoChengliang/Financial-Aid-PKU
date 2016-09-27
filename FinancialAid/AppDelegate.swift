@@ -16,13 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var siren: Siren!
 
-    func application(application: UIApplication,
-         didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
+    func application(_ application: UIApplication,
+         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)
             -> Bool {
 
         sleep(2)
 
-        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(
+        UIApplication.shared.setMinimumBackgroundFetchInterval(
             UIApplicationBackgroundFetchIntervalMinimum)
 
         // Override point for customization after application launch.
@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.config()
 //        LocationCellularManager.sharedInstance.getLocationCellular(nil)
         guard
-            let userName = ContentManager.UserName where !userName.isEmpty,
-            let password = ContentManager.Password where !password.isEmpty,
+            let userName = ContentManager.UserName, !userName.isEmpty,
+            let password = ContentManager.Password, !password.isEmpty,
             let viewController = UIStoryboard.initViewControllerWithIdentifier(
                 AppConstants.LoginViewControllerIdentifier
             ) as? LoginViewController else { return true }
@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setAVOSCloud()
 
-        UIApplication.sharedApplication().registerUserNotificationSettings(
-            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        UIApplication.shared.registerUserNotificationSettings(
+            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
 
         return true
     }
@@ -66,13 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //    }
 
-    func application(application: UIApplication,
-                     didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+    func application(_ application: UIApplication,
+                     didRegister notificationSettings: UIUserNotificationSettings) {
+        UIApplication.shared.registerForRemoteNotifications()
     }
 
-    func application(application: UIApplication,
-                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let currentInstallation = AVInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.saveInBackground()

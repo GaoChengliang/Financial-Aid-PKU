@@ -37,8 +37,8 @@ class CloudAnimateTableViewController: UITableViewController {
 
         refreshControl = {
             let refreshControl = UIRefreshControl()
-            refreshControl.tintColor = UIColor.clearColor()
-            refreshControl.backgroundColor = UIColor.clearColor()
+            refreshControl.tintColor = UIColor.clear
+            refreshControl.backgroundColor = UIColor.clear
             cloudRefresh = RefreshContents(frame: refreshControl.bounds)
             refreshControl.addSubview(cloudRefresh)
             tableView.addSubview(refreshControl)
@@ -48,7 +48,7 @@ class CloudAnimateTableViewController: UITableViewController {
         tableView.emptyDataSetDelegate = self
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         resetAnimiation()
 
         super.viewDidDisappear(animated)
@@ -59,27 +59,27 @@ class CloudAnimateTableViewController: UITableViewController {
 
         cloudRefresh.background.image = UIImage(named: "CloudBackground")
         cloudRefresh.refreshingImageView.image = UIImage(named: "Refresh")
-        UIView.animateWithDuration(0.3, animations: { self.alpha = 1.0 }) {
+        UIView.animate(withDuration: 0.3, animations: { self.alpha = 1.0 }, completion: {
             [weak self] in
             if $0 {
                 self?.refreshAnimationDidStart()
             }
-        }
+        })
     }
 
     func animateRefreshStep2() {
         cloudRefresh.background.image = UIImage(named: "Tick")
-        UIView.animateWithDuration(0.6, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             self.cloudRefresh.background.alpha = 1.0
-        }) { [weak self] in
+        }, completion: { [weak self] in
             if $0 {
                 self?.resetAnimiation()
             }
-        }
+        })
     }
 
     func resetAnimiation() {
-        cloudRefresh.refreshingImageView.layer.removeAnimationForKey("rotate")
+        cloudRefresh.refreshingImageView.layer.removeAnimation(forKey: "rotate")
         refreshControl?.endRefreshing()
         isAnimating = false
         alpha = 0
@@ -89,7 +89,7 @@ class CloudAnimateTableViewController: UITableViewController {
 
 extension CloudAnimateTableViewController: RefreshAnimation {
 
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Get the current size of the refresh controller
         var refreshBounds = refreshControl!.bounds
 
@@ -103,11 +103,11 @@ extension CloudAnimateTableViewController: RefreshAnimation {
         // Set the encompassing view's frames
         refreshBounds.size.height = pullDistance
 
-        cloudRefresh.spot.transform = CGAffineTransformMakeScale(scaleRatio, scaleRatio)
+        cloudRefresh.spot.transform = CGAffineTransform(scaleX: scaleRatio, y: scaleRatio)
         cloudRefresh.frame = refreshBounds
 
         // If we're refreshing and the animation is not playing, then play the animation
-        let refreshing = refreshControl?.refreshing ?? false
+        let refreshing = refreshControl?.isRefreshing ?? false
         if refreshing && !isAnimating {
             animateRefreshStep1()
         }
@@ -117,17 +117,17 @@ extension CloudAnimateTableViewController: RefreshAnimation {
         let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
         rotate.toValue = M_PI * 2
         rotate.duration  = 0.9
-        rotate.cumulative = true
+        rotate.isCumulative = true
         rotate.repeatCount = 1e7
 
-        cloudRefresh.refreshingImageView.layer.addAnimation(rotate, forKey: "rotate")
+        cloudRefresh.refreshingImageView.layer.add(rotate, forKey: "rotate")
     }
 
     func refreshAnimationDidFinish() {
         if !isAnimating {
             return
         }
-        UIView.animateWithDuration(0.1, delay: 0.3, options: .CurveLinear, animations: {
+        UIView.animate(withDuration: 0.1, delay: 0.3, options: .curveLinear, animations: {
             self.cloudRefresh.background.alpha = 0
             self.cloudRefresh.refreshingImageView.alpha = 0
         }) {
@@ -142,13 +142,13 @@ extension CloudAnimateTableViewController: RefreshAnimation {
 
 extension CloudAnimateTableViewController: DZNEmptyDataSetSource {
 
-    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+    func imageForEmptyDataSet(_ scrollView: UIScrollView!) -> UIImage! {
         return UIImage(named: "EmptyDataSetBackground")
     }
 
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func titleForEmptyDataSet(_ scrollView: UIScrollView!) -> NSAttributedString! {
         let attributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0),
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0),
             NSForegroundColorAttributeName:
                 UIColor(red: 225.0 / 255.0,
                         green: 225.0 / 255.0,
@@ -161,15 +161,15 @@ extension CloudAnimateTableViewController: DZNEmptyDataSetSource {
 
 extension CloudAnimateTableViewController: DZNEmptyDataSetDelegate {
 
-    func emptyDataSetShouldAllowScroll(scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return true
     }
 
-    func emptyDataSetShouldAllowTouch(scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
         return false
     }
 
-    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+    func verticalOffsetForEmptyDataSet(_ scrollView: UIScrollView!) -> CGFloat {
         return -80
     }
 }

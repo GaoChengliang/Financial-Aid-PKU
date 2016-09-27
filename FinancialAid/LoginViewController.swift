@@ -26,9 +26,9 @@ class LoginViewController: UIViewController {
             loginTableView.setContentOffset(offset, animated: true)
         }
     }
-    var status = LoginStatus.Login {
+    var status = LoginStatus.login {
         didSet {
-            loginTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: oldValue ? .Left : .Right)
+            loginTableView.reloadSections(IndexSet(integer: 0), with: oldValue ? .left : .right)
             setupButton()
         }
     }
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
     // @IBOutlet weak var toggleButton: UIButton!
     @IBOutlet weak var loginTableView: UITableView!
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let FormListSegueIdentifier       = "FormListSegue"
         static let HeaderHeight: CGFloat         = 210.0
     }
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        status = .Login
+        status = .login
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(LoginViewController.dismissKeyboard))
         let panGesture = UIPanGestureRecognizer(target: self,
@@ -58,20 +58,20 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(panGesture)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector:
                                                          #selector(LoginViewController.scrollUpTableView),
-                                                         name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self,
                                                          selector:
                                                          #selector(LoginViewController.scrollDownTableView),
-                                                         name: UIKeyboardWillHideNotification, object: nil)
+                                                         name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // MARK: Auto login
@@ -81,14 +81,14 @@ class LoginViewController: UIViewController {
         }
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: UIKeyboardDidShowNotification,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name.UIKeyboardDidShow,
                                                             object:nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: UIKeyboardWillHideNotification,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name.UIKeyboardWillHide,
                                                             object: nil)
     }
 
@@ -96,7 +96,7 @@ class LoginViewController: UIViewController {
         // let name = NSLocalizedString("Office of Student Financial Aid",
         //                             comment: "name of financial aid center")
 
-        loginButton.setTitle("\(status)", forState: .Normal)
+        loginButton.setTitle("\(status)", for: UIControlState())
         // toggleButton.setTitle("\(name)\(!status)", forState: .Normal)
     }
 
@@ -113,11 +113,11 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
 
-    @IBAction func loginAction(sender: UIButton!) {
+    @IBAction func loginAction(_ sender: UIButton!) {
 
-        func shakeCell(indexPath: NSIndexPath) {
+        func shakeCell(_ indexPath: IndexPath) {
             guard
-                let cell = loginTableView.cellForRowAtIndexPath(indexPath) as? TextFieldCell
+                let cell = loginTableView.cellForRow(at: indexPath) as? TextFieldCell
                 else { return }
 
             let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
@@ -125,17 +125,17 @@ class LoginViewController: UIViewController {
             animation.duration = 0.6
             animation.values = [(-20), (20), (-20), (20), (-10), (10), (-5), (5), (0)]
 
-            cell.textField.layer.addAnimation(animation, forKey: "shake")
+            cell.textField.layer.add(animation, forKey: "shake")
         }
 
         let indexes = [
-            NSIndexPath(forRow: 0, inSection: 0),
-            NSIndexPath(forRow: 1, inSection: 0)
+            IndexPath(row: 0, section: 0),
+            IndexPath(row: 1, section: 0)
         ]
         do {
             var results: [String] = indexes.map {
                 guard
-                    let cell = loginTableView.cellForRowAtIndexPath($0) as? TextFieldCell
+                    let cell = loginTableView.cellForRow(at: $0) as? TextFieldCell
                     else { return "" }
                 return cell.textField.text ?? ""
             }
@@ -148,7 +148,7 @@ class LoginViewController: UIViewController {
                 self.enableLoginButton()
 
                 if let error = error {
-                    if case NetworkErrorType.NetworkUnreachable(_) = error {
+                    if case NetworkErrorType.networkUnreachable(_) = error {
                         SVProgressHUD.showErrorWithStatus(
                             NSLocalizedString("Network timeout",
                                 comment: "network timeout or interruptted")
@@ -161,9 +161,9 @@ class LoginViewController: UIViewController {
                     }
                 } else {
                     if self.isRuntimeInit {
-                        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                        self.presentingViewController?.dismiss(animated: true, completion: nil)
                     } else {
-                        self.performSegueWithIdentifier(Constants.FormListSegueIdentifier, sender: sender)
+                        self.performSegue(withIdentifier: Constants.FormListSegueIdentifier, sender: sender)
                     }
                 }
             }
@@ -173,11 +173,11 @@ class LoginViewController: UIViewController {
             } else {
                 ContentManager.sharedInstance.register(results[0], password: results[1], block: block)
             }
-        } catch LoginErrorType.FieldEmpty(let index) {
+        } catch LoginErrorType.fieldEmpty(let index) {
             let propmt = NSLocalizedString("This field cannot be empty", comment: "field cannot be empty")
             SVProgressHUD.showErrorWithStatus(propmt)
             shakeCell(indexes[index])
-        } catch LoginErrorType.FieldInvalid(let index) {
+        } catch LoginErrorType.fieldInvalid(let index) {
             let prompt = NSLocalizedString("This field is not in the correct format",
                                            comment: "field in wrong format")
             SVProgressHUD.showErrorWithStatus(prompt)
@@ -191,38 +191,38 @@ class LoginViewController: UIViewController {
 //        status = !status
 //    }
 
-    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
+    @IBAction func unwindToLogin(_ segue: UIStoryboardSegue) {
         // refresh login content
         login = Login()
     }
 
     func enableLoginButton() {
         loginIndicator.stopAnimating()
-        loginButton.enabled = true
-        loginButton.setTitle("\(status)", forState: .Normal)
+        loginButton.isEnabled = true
+        loginButton.setTitle("\(status)", for: UIControlState())
     }
 
     func disableLoginButton() {
         loginIndicator.startAnimating()
-        loginButton.enabled = false
-        loginButton.setTitle("", forState: .Normal)
+        loginButton.isEnabled = false
+        loginButton.setTitle("", for: UIControlState())
     }
 }
 
 extension LoginViewController: UITableViewDataSource {
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return login.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tuple = login[status, indexPath]
         guard
-            let cell = tableView.dequeueReusableCellWithIdentifier(tuple.cellID) as? TextFieldCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: tuple.cellID) as? TextFieldCell
             else { return UITableViewCell() }
 
         cell.setupWithPlaceholder(tuple.placeholder,

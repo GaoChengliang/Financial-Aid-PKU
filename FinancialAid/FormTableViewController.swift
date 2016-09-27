@@ -11,7 +11,7 @@ import SVProgressHUD
 
 class FormTableViewController: CloudAnimateTableViewController {
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let cellIdentifier = "FormTableViewCell"
         static let segueIdentifier = "FormOptionSegue"
     }
@@ -22,7 +22,7 @@ class FormTableViewController: CloudAnimateTableViewController {
         retriveFormList()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         retriveFormList()
     }
@@ -41,43 +41,43 @@ class FormTableViewController: CloudAnimateTableViewController {
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return FormList.sharedInstance.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView,
-                            cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.cellIdentifier,
-                       forIndexPath: indexPath) as? FormTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier,
+                       for: indexPath) as? FormTableViewCell
             else { return UITableViewCell() }
-        let form = FormList.sharedInstance[indexPath.section]
+        let form = FormList.sharedInstance[(indexPath as NSIndexPath).section]
         cell.setupWithName(form.name, startDate: form.startDate, endDate: form.endDate, status: form.status)
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(Constants.segueIdentifier,
-                                   sender: tableView.cellForRowAtIndexPath(indexPath))
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.segueIdentifier,
+                                   sender: tableView.cellForRow(at: indexPath))
     }
 
     // MARK: - Table view delegate
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 8
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
-            let fotvc = segue.destinationViewController as? FormOptionTableViewController,
+            let fotvc = segue.destination as? FormOptionTableViewController,
             let cell = sender as? UITableViewCell,
-            let indexPath = tableView.indexPathForCell(cell)
+            let indexPath = tableView.indexPath(for: cell)
             else { return }
-        fotvc.form = FormList.sharedInstance[indexPath.section]
+        fotvc.form = FormList.sharedInstance[(indexPath as NSIndexPath).section]
     }
 }
 

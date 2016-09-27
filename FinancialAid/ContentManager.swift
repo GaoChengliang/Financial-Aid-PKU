@@ -17,7 +17,7 @@ class ContentManager: NSObject {
     static let sharedInstance = ContentManager()
 
     // MARK: Key chain
-    private static let keychain: Keychain = {
+    fileprivate static let keychain: Keychain = {
         let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier!
         return Keychain(service: bundleIdentifier)
     }()
@@ -41,7 +41,7 @@ class ContentManager: NSObject {
         }
     }
 
-    private class func setKeyChainItem(item: String?, forKey key: String) {
+    fileprivate class func setKeyChainItem(_ item: String?, forKey key: String) {
         do {
             try keychain.remove(key) // Dealing with iOS 9 Security.framework bug!
             if let string = item {
@@ -52,7 +52,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func login(userName: String, password: String, block: ((error: NetworkErrorType?) -> Void)?) {
+    func login(_ userName: String, password: String, block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.login(userName, password: password) {
             (json, error) in
 
@@ -69,7 +69,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func register(userName: String, password: String, block: ((error: NetworkErrorType?) -> Void)?) {
+    func register(_ userName: String, password: String, block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.register(userName, password: password) {
             (json, error) in
 
@@ -86,7 +86,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func formList(block: ((error: NetworkErrorType?) -> Void)?) {
+    func formList(_ block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.formList() {
             (json, error) in
 
@@ -105,7 +105,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func getUserInfo(block: ((error: NetworkErrorType?) -> Void)?) {
+    func getUserInfo(_ block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.getUserInfo {
             (json, error) in
 
@@ -122,7 +122,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func editUserInfo(editInfo: [String: String], block: ((error: NetworkErrorType?) -> Void)?) {
+    func editUserInfo(_ editInfo: [String: String], block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.editUserInfo(editInfo) {
             (json, error) in
 
@@ -139,7 +139,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func getPDF(formID: String, email: String, block: ((error: NetworkErrorType?) -> Void)?) {
+    func getPDF(_ formID: String, email: String, block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.getPDF(formID, email: email) {
             (json, error) in
 
@@ -155,7 +155,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func deleteImage(formID: String, block: ((error: NetworkErrorType?) -> Void)?) {
+    func deleteImage(_ formID: String, block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.deleteImage(formID) {
             (json, error) in
 
@@ -171,7 +171,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func getVersion(block: ((error: NetworkErrorType?) -> Void)?) {
+    func getVersion(_ block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.getVersion {
             (json, error) in
 
@@ -188,7 +188,7 @@ class ContentManager: NSObject {
         }
     }
 
-    func saveUser(json: String, userName: String, password: String) {
+    func saveUser(_ json: String, userName: String, password: String) {
         User.sharedInstance = User.mj_objectWithKeyValues(json)
         ContentManager.UserName = User.sharedInstance.userName
         ContentManager.Password = password
