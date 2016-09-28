@@ -30,8 +30,8 @@ class FormTableViewController: CloudAnimateTableViewController {
     func retriveFormList() {
         ContentManager.sharedInstance.formList {
             if $0 != nil {
-                SVProgressHUD.showErrorWithStatus(
-                    NSLocalizedString("Network timeout",
+                SVProgressHUD.showError(
+                    withStatus: NSLocalizedString("Network timeout",
                         comment: "network timeout or interruptted")
                 )
             }

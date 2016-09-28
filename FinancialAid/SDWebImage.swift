@@ -12,7 +12,7 @@ extension SDWebImageManager {
 
     class func config() {
         SDWebImageManager
-            .sharedManager()
+            .shared()
             .imageDownloader
             .setValue("", forHTTPHeaderField: "x-access-token")
     }

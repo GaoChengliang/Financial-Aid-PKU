@@ -85,8 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setSiren() {
         siren = Siren.sharedInstance
-        siren.majorUpdateAlertType = .Force
-        siren.minorUpdateAlertType = .Skip
-        siren.checkVersion(.Immediately)
+        siren.majorUpdateAlertType = .force
+        siren.minorUpdateAlertType = .skip
+        siren.checkVersion(checkType: .immediately)
     }
 }

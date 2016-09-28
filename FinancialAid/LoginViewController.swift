@@ -183,7 +183,7 @@ class LoginViewController: UIViewController {
             SVProgressHUD.showError(withStatus: prompt)
             shakeCell(indexes[index])
         } catch (let error) {
-            ("Unknown error: \(error)")
+            DDLogInfo("Unknown error: \(error)")
         }
     }
 

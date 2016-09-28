@@ -18,7 +18,7 @@ class ContentManager: NSObject {
 
     // MARK: Key chain
     fileprivate static let keychain: Keychain = {
-        let bundleIdentifier = NSBundle.mainBundle().bundleIdentifier!
+        let bundleIdentifier = Bundle.main.bundleIdentifier!
         return Keychain(service: bundleIdentifier)
     }()
 
@@ -62,9 +62,9 @@ class ContentManager: NSObject {
             } else {
                 DDLogInfo("Login failed \(userName): \(error)")
             }
-
-            dispatch_async(dispatch_get_main_queue(), {
-                block?(error: error)
+            
+            DispatchQueue.main.async(execute: {
+                block?(error)
             })
         }
     }
@@ -80,8 +80,8 @@ class ContentManager: NSObject {
                 DDLogInfo("Register failed \(userName): \(error)")
             }
 
-            dispatch_async(dispatch_get_main_queue(), {
-                block?(error: error)
+            DispatchQueue.main.async(execute: {
+                block?(error)
             })
         }
     }
@@ -93,15 +93,15 @@ class ContentManager: NSObject {
             if error == nil, let json = json {
                 DDLogInfo("Querying form list success")
                 FormList.sharedInstance.formList = NSArray(array:
-                    Form.mj_objectArrayWithKeyValuesArray(json["data"].description)
+                    Form.mj_objectArray(withKeyValuesArray: json["data"].description)
                 ) as? [Form] ?? []
             } else {
                 DDLogInfo("Querying form list failed: \(error)")
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
-                block?(error: error)
-            }
+            DispatchQueue.main.async(execute: {
+                block?(error)
+            })
         }
     }
 
@@ -111,14 +111,14 @@ class ContentManager: NSObject {
 
             if error == nil, let json = json {
                 DDLogInfo("Get user information success")
-                User.sharedInstance = User.mj_objectWithKeyValues(json["data"].description)
+                User.sharedInstance = User.mj_object(withKeyValues: json["data"].description)
             } else {
                 DDLogInfo("Get user information failed: \(error)")
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
-                block?(error: error)
-            }
+            DispatchQueue.main.async(execute: {
+                block?(error)
+            })
         }
     }
 
@@ -128,14 +128,14 @@ class ContentManager: NSObject {
 
             if error == nil, let json = json {
                 DDLogInfo("Edit user info success")
-                User.sharedInstance = User.mj_objectWithKeyValues(json["data"].description)
+                User.sharedInstance = User.mj_object(withKeyValues: json["data"].description)
             } else {
                 DDLogInfo("Edit user info failed: \(error)")
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
-                block?(error: error)
-            }
+            DispatchQueue.main.async(execute: {
+                block?(error)
+            })
         }
     }
 
@@ -149,9 +149,9 @@ class ContentManager: NSObject {
                 DDLogInfo("Send PDF failed: \(error)")
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
-                block?(error: error)
-            }
+            DispatchQueue.main.async(execute: {
+                block?(error)
+            })
         }
     }
 
@@ -165,9 +165,9 @@ class ContentManager: NSObject {
                 DDLogInfo("Delete Image failed: \(error)")
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
-                block?(error: error)
-            }
+            DispatchQueue.main.async(execute: {
+                block?(error)
+            })
         }
     }
 
@@ -177,19 +177,19 @@ class ContentManager: NSObject {
 
             if error == nil, let json = json {
                 DDLogInfo("Get version information success")
-                Version.sharedInstance = Version.mj_objectWithKeyValues(json["data"]["ios"].description)
+                Version.sharedInstance = Version.mj_object(withKeyValues: json["data"]["ios"].description)
             } else {
                 DDLogInfo("Get version information failed: \(error)")
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
-                block?(error: error)
-            }
+            DispatchQueue.main.async(execute: {
+                block?(error)
+            })
         }
     }
 
     func saveUser(_ json: String, userName: String, password: String) {
-        User.sharedInstance = User.mj_objectWithKeyValues(json)
+        User.sharedInstance = User.mj_object(withKeyValues: json)
         ContentManager.UserName = User.sharedInstance.userName
         ContentManager.Password = password
     }

@@ -36,13 +36,13 @@ class HomeTableViewController: CloudAnimateTableViewController {
                           height: (tableView.bounds.width * 0.5625))
         cycleBanner = SDCycleScrollView(frame: rect)
         cycleBanner.delegate = self
-        cycleBanner.backgroundColor = UIColor.whiteColor()
-        cycleBanner.bannerImageViewContentMode = .ScaleAspectFill
+        cycleBanner.backgroundColor = UIColor.white
+        cycleBanner.bannerImageViewContentMode = .scaleAspectFill
         cycleBanner.showPageControl = true
         cycleBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight
         cycleBanner.currentPageDotColor = UIColor(red: 148.0/255.0,
                                                   green: 7.0/255.0, blue: 10.0/255.0, alpha: 1.0)
-        cycleBanner.pageDotColor = UIColor.whiteColor()
+        cycleBanner.pageDotColor = UIColor.white
         cycleBanner.autoScrollTimeInterval = 5
         tableView.tableHeaderView = UIView(frame: rect)
         tableView.tableHeaderView?.addSubview(self.cycleBanner)
@@ -81,7 +81,7 @@ class HomeTableViewController: CloudAnimateTableViewController {
                 self.listNews.removeAll()
                 let newsArray = json["data"].arrayValue
                 for news in newsArray {
-                    let tempNews = News.mj_objectWithKeyValues(news.description)
+                    let tempNews: News! = News.mj_object(withKeyValues: news.description)
                     if tempNews.type == 1 {
                         self.bannerNews.append(tempNews)
                         self.bannerImageUrls.append(tempNews.imageUrl)
@@ -98,8 +98,8 @@ class HomeTableViewController: CloudAnimateTableViewController {
                 self.refreshAnimationDidFinish()
             } else {
                 self.refreshAnimationDidFinish()
-                SVProgressHUD.showErrorWithStatus(
-                    NSLocalizedString("Network timeout",
+                SVProgressHUD.showError(
+                    withStatus: NSLocalizedString("Network timeout",
                         comment: "network timeout or interruptted")
                 )
             }
@@ -109,7 +109,7 @@ class HomeTableViewController: CloudAnimateTableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         cycleBanner.clearCache()
-        let imageCache = SDImageCache.sharedImageCache()
+        let imageCache: SDImageCache! = SDImageCache.shared()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
@@ -140,7 +140,7 @@ class HomeTableViewController: CloudAnimateTableViewController {
             withIdentifier: Constants.newsCellIdentifier, for: indexPath) as? NewsTableViewCell {
             let news = listNews[(indexPath as NSIndexPath).section]
             cell.title.text = news.title
-            cell.newsImageView.sd_setImageWithURL(URL(string: news.imageUrl)!)
+            cell.newsImageView.sd_setImage(with: URL(string: news.imageUrl)!)
             return cell
         }
         return UITableViewCell()
@@ -182,7 +182,7 @@ extension HomeTableViewController {
 }
 
 extension HomeTableViewController: SDCycleScrollViewDelegate {
-    func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAtIndex index: Int) {
+    func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAt index: Int) {
         bannerIndex = index
         performSegue(withIdentifier: Constants.bannerNewsDetailSegueIdentifier, sender: self)
     }

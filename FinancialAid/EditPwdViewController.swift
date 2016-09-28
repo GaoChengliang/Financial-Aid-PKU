@@ -45,8 +45,8 @@ class EditPwdViewController: UIViewController {
         if let oldPwdStr = oldPwd.text, let newPwdStr = newPwd.text {
             if oldPwdStr.isNonEmpty() && newPwdStr.isNonEmpty() {
                 if newPwdStr != newPwdCheckStr {
-                    SVProgressHUD.showErrorWithStatus(
-                        NSLocalizedString("Check new password error",
+                    SVProgressHUD.showError(
+                        withStatus: NSLocalizedString("Check new password error",
                             comment: "Two new passwords is not same")
                     )
                     return
@@ -57,26 +57,26 @@ class EditPwdViewController: UIViewController {
                     (error) in
                     if let error = error {
                         if case NetworkErrorType.networkUnreachable(_) = error {
-                            SVProgressHUD.showErrorWithStatus(
-                                NSLocalizedString("Network timeout",
+                            SVProgressHUD.showError(
+                                withStatus: NSLocalizedString("Network timeout",
                                     comment: "network timeout or interruptted")
                             )
                         } else if case NetworkErrorType.networkWrongParameter(_, let errno) = error {
                             if errno == 101 {
-                                SVProgressHUD.showErrorWithStatus(
-                                    NSLocalizedString("Check old password error",
+                                SVProgressHUD.showError(
+                                    withStatus: NSLocalizedString("Check old password error",
                                         comment: "old password is wrong")
                                 )
                             } else {
-                                SVProgressHUD.showErrorWithStatus(
-                                    NSLocalizedString("Server error occurred",
+                                SVProgressHUD.showError(
+                                    withStatus: NSLocalizedString("Server error occurred",
                                         comment: "unknown error")
                                 )
                             }
                         }
                     } else {
-                        SVProgressHUD.showSuccessWithStatus(
-                            NSLocalizedString("Edit password success",
+                        SVProgressHUD.showSuccess(
+                            withStatus: NSLocalizedString("Edit password success",
                                 comment: "edit password success")
                         )
                         ContentManager.Password = nil
@@ -85,8 +85,8 @@ class EditPwdViewController: UIViewController {
                 }
 
             } else {
-                SVProgressHUD.showErrorWithStatus(
-                    NSLocalizedString("Input empty error",
+                SVProgressHUD.showError(
+                    withStatus: NSLocalizedString("Input empty error",
                         comment: "input content is empty")
                 )
             }

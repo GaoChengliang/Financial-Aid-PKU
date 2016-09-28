@@ -55,13 +55,13 @@ extension Form {
         case "isStepPdf":
             fallthrough
         case "isStepUpload":
-            return NSNumber(long: oldValue as? Int ?? 0).boolValue
+            return NSNumber(long: oldValue as? Int ?? 0).boolValue as AnyObject!
         case "startDate":
             fallthrough
         case "endDate":
             let dateString = "\(oldValue)"
             let formatter = DateFormatter.inputFormatter()
-            return formatter.dateFromString(dateString)
+            return formatter.date(from: dateString)
         case "helpPath":
             fallthrough
         case "fillPath":

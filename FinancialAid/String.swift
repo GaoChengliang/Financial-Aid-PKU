@@ -15,7 +15,7 @@ extension String {
             let searchResults = range(of: pattern, options: .regularExpression)
         else { return false }
 
-        return searchResults.lowerBound == startIndex && searchResults.count == characters.count
+        return searchResults.lowerBound == startIndex && distance(from: searchResults.lowerBound, to: searchResults.upperBound) == characters.count
     }
 
     func isStudentNo() -> Bool {

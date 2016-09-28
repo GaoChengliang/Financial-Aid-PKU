@@ -16,14 +16,8 @@ extension Character {
     }
 
     func isEmoji() -> Bool {
-        if Character(UnicodeScalar(0x1d000)) <= self &&
-           Character(UnicodeScalar(0x1f77f)) >= self {
-            return true
-        }
-        if Character(UnicodeScalar(0x2100)) <= self &&
-           Character(UnicodeScalar(0x26ff)) >= self {
-            return true
-        }
+
+        // To do: check emoji
         return false
     }
 

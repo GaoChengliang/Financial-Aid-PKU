@@ -23,11 +23,11 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath as NSIndexPath).section == 0 && (indexPath as NSIndexPath).row == 1 {
-            let imageCache = SDImageCache.sharedImageCache()
+            let imageCache: SDImageCache! = SDImageCache.shared()
             imageCache.clearMemory()
-            imageCache.clearDiskOnCompletion() {
-                SVProgressHUD.showSuccessWithStatus(
-                    NSLocalizedString("Clear cache success", comment: "clear cache success")
+            imageCache.clearDisk() {
+                SVProgressHUD.showSuccess(
+                    withStatus: NSLocalizedString("Clear cache success", comment: "clear cache success")
                 )
             }
         }

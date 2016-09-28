@@ -22,6 +22,6 @@ class UserPortraitTableViewCell: UITableViewCell {
             portrait.setImage(UIImage(named: "DefaultPortrait"), for: UIControlState())
             return
         }
-        portrait.sd_setImageWithURL(URL(string: imageName), forState: .Normal)
+        portrait.sd_setImage(with: URL(string: imageName), for: .normal)
     }
 }
