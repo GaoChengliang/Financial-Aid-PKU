@@ -28,13 +28,13 @@ class LocationCellularManager: NSObject, CLLocationManagerDelegate {
         locationManager.distanceFilter = 500.0
         locationManager.requestAlwaysAuthorization()
         carrier = CTTelephonyNetworkInfo().subscriberCellularProvider
-        UIDevice.currentDevice().batteryMonitoringEnabled = true
+        UIDevice.current.isBatteryMonitoringEnabled = true
     }
 
     func getLocationCellular(_ completion: (() -> Void)?) {
         locationManager.delegate = self
         startGetLocationCellular()
-        battery = UIDevice.currentDevice().batteryLevel
+        battery = UIDevice.current.batteryLevel
         if battery >= 0.6 {
             timeInterval = 900
             timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self,

@@ -54,7 +54,7 @@ class EditProfileViewController: UIViewController {
             if $0 != nil {
                 let prompt = NSLocalizedString("Server error occurred",
                                                comment: "network error in saving user info")
-                SVProgressHUD.showErrorWithStatus(prompt)
+                SVProgressHUD.showError(withStatus: prompt)
             } else {
                 self.performSegue(withIdentifier: Constants.unwindSegueIdentifier, sender: nil)
             }

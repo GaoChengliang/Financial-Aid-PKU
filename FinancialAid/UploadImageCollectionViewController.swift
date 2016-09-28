@@ -39,23 +39,23 @@ class UploadImageCollectionViewController: UICollectionViewController {
             if err == nil && json != nil {
                 let error = json!["error"].intValue
                 if error == 201 {
-                    SVProgressHUD.showErrorWithStatus(
-                        NSLocalizedString("You have not filled the form",
+                    SVProgressHUD.showError(
+                        withStatus: NSLocalizedString("You have not filled the form",
                             comment: "form not filled")
                     )
                 } else {
                     if error == 0 {
                         let array = json!["data"].arrayValue
                         for idImage in array {
-                            self.idImages.append(IDImage.mj_objectWithKeyValues(idImage.description))
+                            self.idImages.append(IDImage.mj_object(withKeyValues: idImage.description))
                             self.collectionView?.reloadData()
                         }
                         self.collectionView?.reloadData()
                     }
                 }
             } else {
-                SVProgressHUD.showErrorWithStatus(
-                    NSLocalizedString("Network timeout",
+                SVProgressHUD.showError(
+                    withStatus: NSLocalizedString("Network timeout",
                         comment: "network timeout or interruptted")
                 )
             }
@@ -69,7 +69,7 @@ class UploadImageCollectionViewController: UICollectionViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        let imageCache = SDImageCache.sharedImageCache()
+        let imageCache: SDImageCache! = SDImageCache.shared()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
@@ -113,7 +113,7 @@ extension UploadImageCollectionViewController {
             if let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: Constants.ImageCollectionViewCellIdentifier, for: indexPath)
                 as? ImageCollectionViewCell {
-                cell.imageView.sd_setImageWithURL(URL(string:
+                cell.imageView.sd_setImage(with: URL(string:
                     idImages[indexPath.item].thumbnailUrl), placeholderImage: UIImage(named: "Loading"))
                 return cell
             }
@@ -142,7 +142,7 @@ extension UploadImageCollectionViewController {
             let pickerController = DKImagePickerController()
             pickerController.maxSelectableCount = 1
             pickerController.allowMultipleTypes = false
-            pickerController.assetType = .AllPhotos
+            pickerController.assetType = .allPhotos
             pickerController.showsEmptyAlbums = false
             pickerController.autoDownloadWhenAssetIsInCloud = false
             pickerController.showsCancelButton = true
@@ -151,12 +151,12 @@ extension UploadImageCollectionViewController {
                     asset.fetchImageWithSize(CGSize(width: 400, height: 800)) {
                         (image: UIImage?, _) in
                             self.image = image
-                            self.performSegueWithIdentifier(Constants
+                            self.performSegue(withIdentifier: Constants
                                 .ShowUploadImageSegueIdentifier, sender: self)
                     }
                 }
             }
-            self.presentViewController(pickerController, animated: true) {}
+            self.present(pickerController, animated: true) {}
         }
     }
 }

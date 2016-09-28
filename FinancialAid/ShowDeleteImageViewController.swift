@@ -16,16 +16,16 @@ class ShowDeleteImageViewController: UIViewController {
         super.viewDidLoad()
         scrollView.delegate = self
         SVProgressHUD.show()
-        imageView.sd_setImageWithURL(URL(string: (idImage.imageUrl))) {
+        imageView.sd_setImage(with: URL(string: (idImage.imageUrl))) {
             (_, error, _, _) in
             if error == nil {
                 SVProgressHUD.dismiss()
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Delete",
-                    comment: "delete image"), style: .Done, target: self,
+                    comment: "delete image"), style: .done, target: self,
                                               action: #selector(ShowDeleteImageViewController.deleteAlert))
             } else {
-                SVProgressHUD.showErrorWithStatus(
-                    NSLocalizedString("Image download error",
+                SVProgressHUD.showError(
+                    withStatus: NSLocalizedString("Image download error",
                         comment: "image download error")
                 )
             }
@@ -34,7 +34,7 @@ class ShowDeleteImageViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        let imageCache = SDImageCache.sharedImageCache()
+        let imageCache: SDImageCache! = SDImageCache.shared()
         imageCache.clearMemory()
         imageCache.clearDisk()
     }
@@ -73,34 +73,34 @@ class ShowDeleteImageViewController: UIViewController {
             (error) in
             if let error = error {
                 if case NetworkErrorType.networkUnreachable(_) = error {
-                    SVProgressHUD.showErrorWithStatus(
-                        NSLocalizedString("Network timeout",
+                    SVProgressHUD.showError(
+                        withStatus: NSLocalizedString("Network timeout",
                             comment: "network timeout or interruptted")
                     )
                 } else if case NetworkErrorType.networkWrongParameter(_, let errno) = error {
                     if errno == 301 {
-                        SVProgressHUD.showErrorWithStatus(
-                            NSLocalizedString("Can not find image",
+                        SVProgressHUD.showError(
+                            withStatus: NSLocalizedString("Can not find image",
                                 comment: "can not find image")
                         )
                     } else if errno == 302 {
-                        SVProgressHUD.showErrorWithStatus(
-                            NSLocalizedString(
+                        SVProgressHUD.showError(
+                            withStatus: NSLocalizedString(
                                 "Privilege error",
                                 comment: "this is not your photo")
                         )
                     } else {
-                        SVProgressHUD.showErrorWithStatus(
-                            NSLocalizedString("Server error occurred",
+                        SVProgressHUD.showError(
+                            withStatus: NSLocalizedString("Server error occurred",
                                 comment: "unknown error")
                         )
                     }
                 }
             } else {
-                SVProgressHUD.showSuccessWithStatus(
-                    NSLocalizedString("Delete image success", comment: "delete image success")
+                SVProgressHUD.showSuccess(
+                    withStatus: NSLocalizedString("Delete image success", comment: "delete image success")
                 )
-                SDImageCache.sharedImageCache().removeImageForKey(self.idImage.imageUrl, fromDisk: true)
+                SDImageCache.shared().removeImage(forKey: self.idImage.imageUrl, fromDisk: true)
                 self.performSegue(withIdentifier: Constants.UnwindToUploadImageIdentifier, sender: self)
             }
         }

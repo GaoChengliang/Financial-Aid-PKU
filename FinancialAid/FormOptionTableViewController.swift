@@ -132,37 +132,37 @@ extension FormOptionTableViewController : UIAlertViewDelegate {
                     (error) in
                     if let error = error {
                         if case NetworkErrorType.networkUnreachable(_) = error {
-                            SVProgressHUD.showErrorWithStatus(
-                                NSLocalizedString("Network timeout",
+                            SVProgressHUD.showError(
+                                withStatus: NSLocalizedString("Network timeout",
                                     comment: "network timeout or interruptted")
                             )
                         } else if case NetworkErrorType.networkWrongParameter(_, let errno) = error {
                             if errno == 201 {
-                                SVProgressHUD.showErrorWithStatus(
-                                    NSLocalizedString("You have not filled the form",
+                                SVProgressHUD.showError(
+                                    withStatus: NSLocalizedString("You have not filled the form",
                                         comment: "form not filled")
                                 )
                             } else if errno == 202 {
-                                SVProgressHUD.showErrorWithStatus(
-                                    NSLocalizedString("You have not filled the form",
+                                SVProgressHUD.showError(
+                                    withStatus: NSLocalizedString("You have not filled the form",
                                         comment: "form not filled")
                                 )
                             } else if errno == 203 {
-                                SVProgressHUD.showErrorWithStatus(
-                                    NSLocalizedString(
+                                SVProgressHUD.showError(
+                                    withStatus: NSLocalizedString(
                                         "Email address is not valid",
                                         comment: "email address is not valid")
                                 )
                             } else {
-                                SVProgressHUD.showErrorWithStatus(
-                                    NSLocalizedString("Server error occurred",
+                                SVProgressHUD.showError(
+                                    withStatus: NSLocalizedString("Server error occurred",
                                         comment: "unknown error")
                                 )
                             }
                         }
                     } else {
-                        SVProgressHUD.showSuccessWithStatus(
-                            NSLocalizedString("The PDF is sent to your email address",
+                        SVProgressHUD.showSuccess(
+                            withStatus: NSLocalizedString("The PDF is sent to your email address",
                                 comment: "Get PDF success")
                         )
                     }

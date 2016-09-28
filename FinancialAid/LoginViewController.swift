@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     }
     var status = LoginStatus.login {
         didSet {
-            loginTableView.reloadSections(IndexSet(integer: 0), with: oldValue ? .left : .right)
+            loginTableView.reloadSections(IndexSet(integer: 0), with: oldValue.boolValue ? .left : .right)
             setupButton()
         }
     }
@@ -149,13 +149,13 @@ class LoginViewController: UIViewController {
 
                 if let error = error {
                     if case NetworkErrorType.networkUnreachable(_) = error {
-                        SVProgressHUD.showErrorWithStatus(
-                            NSLocalizedString("Network timeout",
+                        SVProgressHUD.showError(
+                            withStatus: NSLocalizedString("Network timeout",
                                 comment: "network timeout or interruptted")
                         )
                     } else {
-                        SVProgressHUD.showErrorWithStatus(
-                            NSLocalizedString("Username or password is incorrect",
+                        SVProgressHUD.showError(
+                            withStatus: NSLocalizedString("Username or password is incorrect",
                                 comment: "wrong username or password")
                         )
                     }
@@ -168,19 +168,19 @@ class LoginViewController: UIViewController {
                 }
             }
 
-            if status {
+            if status.boolValue {
                 ContentManager.sharedInstance.login(results[0], password: results[1], block: block)
             } else {
                 ContentManager.sharedInstance.register(results[0], password: results[1], block: block)
             }
         } catch LoginErrorType.fieldEmpty(let index) {
             let propmt = NSLocalizedString("This field cannot be empty", comment: "field cannot be empty")
-            SVProgressHUD.showErrorWithStatus(propmt)
+            SVProgressHUD.showError(withStatus: propmt)
             shakeCell(indexes[index])
         } catch LoginErrorType.fieldInvalid(let index) {
             let prompt = NSLocalizedString("This field is not in the correct format",
                                            comment: "field in wrong format")
-            SVProgressHUD.showErrorWithStatus(prompt)
+            SVProgressHUD.showError(withStatus: prompt)
             shakeCell(indexes[index])
         } catch (let error) {
             ("Unknown error: \(error)")
