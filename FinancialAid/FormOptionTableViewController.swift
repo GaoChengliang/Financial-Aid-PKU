@@ -121,8 +121,8 @@ extension FormOptionTableViewController : UIAlertViewDelegate {
         if buttonIndex == 0 {
             if let email = alertView.textField(at: 0)?.text {
                 if !email.isEmail() {
-                    SVProgressHUD.showErrorWithStatus(
-                        NSLocalizedString(
+                    SVProgressHUD.showError(
+                        withStatus: NSLocalizedString(
                             "Email address is not valid",
                             comment: "email address is not valid")
                     )

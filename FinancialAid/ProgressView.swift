@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProgressView: UIView {
+class ProgressView: UIView, CAAnimationDelegate {
 
     let maskLayer = CALayer()
     var progress: CGFloat = 0 {
@@ -71,7 +71,7 @@ class ProgressView: UIView {
         layer.add(animation, forKey: "animateGradient")
     }
 
-    override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         performAnimation()
     }
 }

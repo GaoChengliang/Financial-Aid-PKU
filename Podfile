@@ -10,7 +10,7 @@ target :FinancialAid do
     pod 'SDCycleScrollView', '1.64'
 
 	# Model related
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :tag => '3.1.0'
+    pod 'SwiftyJSON', '3.0.0'
     pod 'MJExtension', '3.0.10'
 
 	# Network
@@ -19,7 +19,7 @@ target :FinancialAid do
 
 	# Utility
     pod 'KeychainAccess', '3.0.0'
-    pod 'CocoaLumberjack', '2.3.0'
+    pod 'CocoaLumberjack', '3.0.0'
     pod 'OHHTTPStubs', '5.0.0'
 
 	# Test

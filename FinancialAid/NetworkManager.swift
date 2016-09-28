@@ -59,7 +59,7 @@ class NetworkManager: NSObject {
     }
 
     // Default network manager, timeout set to 10s
-    internal static let Manager: Alamofire.Manager = {
+    internal static let Manager: Alamofire.SessionManager = {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 10.0
         configuration.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()

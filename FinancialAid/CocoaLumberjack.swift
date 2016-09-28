@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ChameleonFramework
 import CocoaLumberjack
 
 /// Logging related functions
@@ -19,17 +18,18 @@ class CocoaLumberjack: NSObject {
     static func config() {
         setenv("XcodeColors", "YES", 0)
 
-        DDLog.addLogger(DDASLLogger.sharedInstance())   // Apple system logs
+        DDLog.add(DDASLLogger.sharedInstance())   // Apple system logs
         // Xcode terminal loger in different color
         DDTTYLogger.sharedInstance().colorsEnabled = true
         DDTTYLogger.sharedInstance()
-            .setForegroundColor(UIColor.flatRedColor(),
+            .setForegroundColor(UIColor.red,
                                 backgroundColor: nil,
-                                forFlag: .Error)
+                                for: .error)
         DDTTYLogger.sharedInstance()
-            .setForegroundColor(UIColor.flatOrangeColor(),
+            .setForegroundColor(UIColor.orange,
                                 backgroundColor: nil,
-                                forFlag: .Warning)
+                                for: .warning)
+        /*
         DDTTYLogger
             .sharedInstance()
             .setForegroundColor(
@@ -48,13 +48,14 @@ class CocoaLumberjack: NSObject {
                 UIColor.flatLimeColor(),
                 backgroundColor: nil,
                 forFlag: .Info)
-        DDLog.addLogger(DDTTYLogger.sharedInstance())
+         */
+        DDLog.add(DDTTYLogger.sharedInstance())
 
         // File logger
-        let fileLogger = DDFileLogger()
+        let fileLogger: DDFileLogger! = DDFileLogger()
         fileLogger.rollingFrequency = 60 * 60 * 24
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
-        DDLog.addLogger(fileLogger)
+        DDLog.add(fileLogger)
     }
 
 }

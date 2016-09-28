@@ -73,7 +73,7 @@ class UserTableViewController: UITableViewController {
         let pickerController = DKImagePickerController()
         pickerController.maxSelectableCount = 1
         pickerController.allowMultipleTypes = false
-        pickerController.assetType = .AllPhotos
+        pickerController.assetType = .allPhotos
         pickerController.showsEmptyAlbums = false
         pickerController.autoDownloadWhenAssetIsInCloud = false
         pickerController.showsCancelButton = true
