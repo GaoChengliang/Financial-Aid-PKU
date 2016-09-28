@@ -20,7 +20,7 @@ target :FinancialAid do
 	# Utility
     pod 'KeychainAccess', '3.0.0'
     pod 'CocoaLumberjack', '3.0.0'
-    pod 'OHHTTPStubs', '5.0.0'
+    pod 'OHHTTPStubs', '5.2.1'
 
 	# Test
 	# pod 'Nimble', '4.0.1'
