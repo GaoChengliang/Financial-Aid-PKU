@@ -30,22 +30,19 @@ class CocoaLumberjack: NSObject {
                                 backgroundColor: nil,
                                 for: .warning)
         
-        DDTTYLogger
-            .sharedInstance()
+        DDTTYLogger.sharedInstance()
             .setForegroundColor(
                 UIColor.green,
                 backgroundColor: nil,
                 for: .debug)
-        DDTTYLogger
-            .sharedInstance()
+        DDTTYLogger.sharedInstance()
             .setForegroundColor(
                 UIColor.blue,
                 backgroundColor: nil,
                 for: .verbose)
-        DDTTYLogger
-            .sharedInstance()
+        DDTTYLogger.sharedInstance()
             .setForegroundColor(
-                UIColor.yellow,
+                UIColor.red,
                 backgroundColor: nil,
                 for: .info)
         

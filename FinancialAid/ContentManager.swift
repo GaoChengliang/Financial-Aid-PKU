@@ -48,7 +48,7 @@ class ContentManager: NSObject {
                 try keychain.set(string, key: key)
             }
         } catch let error {
-            print("Key chain save error: \(error)")
+            DDLogInfo("Key chain save error: \(error)")
         }
     }
 
