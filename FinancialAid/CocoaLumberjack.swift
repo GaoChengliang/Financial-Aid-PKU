@@ -29,26 +29,26 @@ class CocoaLumberjack: NSObject {
             .setForegroundColor(UIColor.orange,
                                 backgroundColor: nil,
                                 for: .warning)
-        /*
+        
         DDTTYLogger
             .sharedInstance()
             .setForegroundColor(
-                UIColor.flatMintColor(),
+                UIColor.green,
                 backgroundColor: nil,
-                forFlag: .Debug)
+                for: .debug)
         DDTTYLogger
             .sharedInstance()
             .setForegroundColor(
-                UIColor.flatPowderBlueColorDark(),
+                UIColor.blue,
                 backgroundColor: nil,
-                forFlag: .Verbose)
+                for: .verbose)
         DDTTYLogger
             .sharedInstance()
             .setForegroundColor(
-                UIColor.flatLimeColor(),
+                UIColor.yellow,
                 backgroundColor: nil,
-                forFlag: .Info)
-         */
+                for: .info)
+        
         DDLog.add(DDTTYLogger.sharedInstance())
 
         // File logger

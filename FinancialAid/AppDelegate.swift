@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewController.shouldAutoLogin = true
         window?.rootViewController = viewController
 
-        setSiren()
+        // setSiren()
 
         setAVOSCloud()
 
