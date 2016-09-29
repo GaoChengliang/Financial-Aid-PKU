@@ -111,6 +111,8 @@
 		6ACCF4901CF5DBB700025AA0 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewController.swift; path = FinancialAid/UserTableViewController.swift; sourceTree = "<group>"; };
 		6ACDECCA1D12BAFB00400C5D /* LocationCellularManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationCellularManager.swift; path = FinancialAid/LocationCellularManager.swift; sourceTree = "<group>"; };
 		6AE135451CFD7A0D0006324B /* ShowUploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowUploadImageViewController.swift; path = FinancialAid/ShowUploadImageViewController.swift; sourceTree = "<group>"; };
+		6AFEA3171D9CA226004EC521 /* FinancialAid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinancialAid.entitlements; sourceTree = "<group>"; };
+		6AFEA3191D9CA3CD004EC521 /* FinancialAid-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FinancialAid-Bridging-Header.h"; sourceTree = "<group>"; };
 		F801626F1CF9AF8100C6C582 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = FinancialAid/User.swift; sourceTree = "<group>"; };
 		F80162711CF9B08A00C6C582 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressView.swift; path = FinancialAid/ProgressView.swift; sourceTree = "<group>"; };
 		F82615BF1D10478C006A93F4 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = FinancialAid/AboutViewController.swift; sourceTree = "<group>"; };
@@ -153,7 +155,6 @@
 		F8B76FB41CFAAEE9007A4CE0 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = FinancialAid/Login.swift; sourceTree = "<group>"; };
 		F8B76FB61CFAB987007A4CE0 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldCell.swift; path = FinancialAid/TextFieldCell.swift; sourceTree = "<group>"; };
 		F8B76FBB1CFAC20A007A4CE0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F8C22D561D70166B00C27377 /* FinancialAid-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FinancialAid-Bridging-Header.h"; sourceTree = "<group>"; };
 		F8DA6FDF1CFB013B00078A83 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = FinancialAid/NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,8 +237,9 @@
 				F84722691CEAC6D600B99F03 /* AppDelegate.swift */,
 				F84722751CEAC6D600B99F03 /* LaunchScreen.storyboard */,
 				F84722781CEAC6D600B99F03 /* Info.plist */,
+				6AFEA3171D9CA226004EC521 /* FinancialAid.entitlements */,
 				F84722701CEAC6D600B99F03 /* FinancialAid.xcdatamodeld */,
-				F8C22D561D70166B00C27377 /* FinancialAid-Bridging-Header.h */,
+				6AFEA3191D9CA3CD004EC521 /* FinancialAid-Bridging-Header.h */,
 			);
 			name = "Supporting files";
 			path = FinancialAid;
@@ -764,6 +766,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FinancialAid/FinancialAid.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FinancialAid/Info.plist;
@@ -785,6 +788,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FinancialAid/FinancialAid.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FinancialAid/Info.plist;

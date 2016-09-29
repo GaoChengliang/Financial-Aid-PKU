@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import Siren
+import AVOSCloud
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -73,8 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let currentInstallation = AVInstallation.currentInstallation()
-        currentInstallation.setDeviceTokenFromData(deviceToken)
+        let currentInstallation: AVInstallation! = AVInstallation.current()
+        currentInstallation.setDeviceTokenFrom(deviceToken)
         currentInstallation.saveInBackground()
     }
 

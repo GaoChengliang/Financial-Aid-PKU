@@ -142,11 +142,11 @@ extension CloudAnimateTableViewController: RefreshAnimation {
 
 extension CloudAnimateTableViewController: DZNEmptyDataSetSource {
 
-    func imageForEmptyDataSet(_ scrollView: UIScrollView!) -> UIImage! {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return UIImage(named: "EmptyDataSetBackground")
     }
 
-    func titleForEmptyDataSet(_ scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let attributes = [
             NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18.0),
             NSForegroundColorAttributeName:
@@ -168,8 +168,8 @@ extension CloudAnimateTableViewController: DZNEmptyDataSetDelegate {
     func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
         return false
     }
-
-    func verticalOffsetForEmptyDataSet(_ scrollView: UIScrollView!) -> CGFloat {
+    
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return -80
     }
 }

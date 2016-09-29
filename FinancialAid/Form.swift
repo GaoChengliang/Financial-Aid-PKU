@@ -43,8 +43,8 @@ extension Form {
             "sortWeight": "sort_weight"
         ]
     }
-
-    override func mj_newValueFromOldValue(_ oldValue: AnyObject!, property: MJProperty!) -> AnyObject! {
+    
+    override func mj_newValue(fromOldValue oldValue: Any!, property: MJProperty!) -> Any! {
         switch property.name {
         case "active":
             fallthrough
@@ -55,13 +55,13 @@ extension Form {
         case "isStepPdf":
             fallthrough
         case "isStepUpload":
-            return NSNumber(long: oldValue as? Int ?? 0).boolValue as AnyObject!
+            return NSNumber(value: oldValue as? Int ?? 0).boolValue as AnyObject!
         case "startDate":
             fallthrough
         case "endDate":
             let dateString = "\(oldValue)"
             let formatter = DateFormatter.inputFormatter()
-            return formatter.date(from: dateString)
+            return formatter.date(from: dateString) as AnyObject!
         case "helpPath":
             fallthrough
         case "fillPath":
@@ -76,6 +76,7 @@ extension Form {
             return oldValue
         }
     }
+
 }
 
 class FormList: NSObject {
