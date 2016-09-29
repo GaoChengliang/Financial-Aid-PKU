@@ -348,13 +348,22 @@ open class DKImagePickerController : UINavigationController {
                              if self.sourceType != .camera || self.viewControllers.count == 0 {
                                  self.dismiss(animated: true, completion: nil)
                              }
-                             self.selectImage(DKAsset(originalAsset: newAsset))
+                            
+                            // gcl
+                            if self.maxSelectableCount != 1 {
+                                self.selectImage(DKAsset(originalAsset: newAsset))
+                            }
+                        
                          }
                      } else {
                          if self.sourceType != .camera {
                              self.dismiss(animated: true, completion: nil)
                          }
-                         self.selectImage(DKAsset(image: image))
+                        
+                         // gcl
+                        if self.maxSelectableCount != 1 {
+                            self.selectImage(DKAsset(image: image))
+                        }
                      }
                  })
              }
@@ -372,7 +381,10 @@ open class DKImagePickerController : UINavigationController {
 		 					if self.sourceType != .camera || self.viewControllers.count == 0 {
 		 						self.dismiss(animated: true, completion: nil)
 		 					}
-		 					self.selectImage(DKAsset(originalAsset: newAsset))
+                            
+                            if self.maxSelectableCount != 1 {
+                                self.selectImage(DKAsset(originalAsset: newAsset))
+                            }
 		 				}
 		 			} else {
 		 				self.dismiss(animated: true, completion: nil)

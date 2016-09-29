@@ -95,13 +95,17 @@ open class DKImagePickerControllerDefaultUIDelegate: NSObject, DKImagePickerCont
         self.updateDoneButtonTitle(self.doneButton)
     }
 	
+    // gcl
 	open func imagePickerControllerDidReachMaxLimit(_ imagePickerController: DKImagePickerController) {
-        let alert = UIAlertController(title: DKImageLocalizedStringWithKey("maxLimitReached")
-            , message:String(format: DKImageLocalizedStringWithKey("maxLimitReachedMessage"), imagePickerController.maxSelectableCount)
-            , preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: DKImageLocalizedStringWithKey("ok"), style: .cancel) { _ in })
-        imagePickerController.present(alert, animated: true){}
-	}
+        if imagePickerController.maxSelectableCount != 1 {
+            let alert = UIAlertController(title: DKImageLocalizedStringWithKey("maxLimitReached")
+                , message:String(format: DKImageLocalizedStringWithKey("maxLimitReachedMessage"), imagePickerController.maxSelectableCount)
+                , preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: DKImageLocalizedStringWithKey("ok"), style: .cancel) { _ in })
+            imagePickerController.present(alert, animated: true){}
+
+        }
+    }
 	
 	open func imagePickerControllerFooterView(_ imagePickerController: DKImagePickerController) -> UIView? {
 		return nil

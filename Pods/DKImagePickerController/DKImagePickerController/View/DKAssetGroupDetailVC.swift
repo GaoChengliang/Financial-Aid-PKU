@@ -13,6 +13,7 @@ import Photos
 private let DKImageCameraIdentifier = "DKImageCameraIdentifier"
 private let DKImageAssetIdentifier = "DKImageAssetIdentifier"
 private let DKVideoAssetIdentifier = "DKVideoAssetIdentifier"
+private var maxSelectableCount = 0
 
 // Show all images in the asset group
 internal class DKAssetGroupDetailVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DKGroupDataManagerObserver {
@@ -57,8 +58,14 @@ internal class DKAssetGroupDetailVC: UIViewController, UICollectionViewDelegate,
         class DKImageCheckView: UIView {
 
             internal lazy var checkImageView: UIImageView = {
-                let imageView = UIImageView(image: DKImageResource.checkedImage().withRenderingMode(.alwaysTemplate))
-                return imageView
+                
+                if maxSelectableCount == 1 {
+                    let imageView = UIImageView(image: DKImageResource.checkedImage_1())
+                    return imageView
+                } else {
+                    let imageView = UIImageView(image: DKImageResource.checkedImage().withRenderingMode(.alwaysTemplate))
+                    return imageView
+                }
             }()
             
             internal lazy var checkLabel: UILabel = {
@@ -255,7 +262,15 @@ internal class DKAssetGroupDetailVC: UIViewController, UICollectionViewDelegate,
 		
 		self.hidesCamera = self.imagePickerController.sourceType == .photo
 		self.checkPhotoPermission()
+        
+        // gcl
+        maxSelectableCount = imagePickerController.maxSelectableCount
+        lastAsset = nil     //
     }
+    
+    // gcl
+    var lastAsset: DKAsset?
+    var lastIndex: NSIndexPath?   //
 	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
@@ -319,20 +334,32 @@ internal class DKAssetGroupDetailVC: UIViewController, UICollectionViewDelegate,
 
     func cameraCellForIndexPath(_ indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView!.dequeueReusableCell(withReuseIdentifier: DKImageCameraIdentifier, for: indexPath) as! DKImageCameraCell
-		cell.setCameraImage(self.imagePickerController.UIDelegate.imagePickerControllerCameraImage())
+        cell.setCameraImage(self.imagePickerController.UIDelegate.imagePickerControllerCameraImage())
         
         cell.didCameraButtonClicked = { [unowned self] in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                if self.imagePickerController.selectedAssets.count < self.imagePickerController.maxSelectableCount  {
-                    self.imagePickerController.presentCamera()
-                } else {
-                    self.imagePickerController.UIDelegate.imagePickerControllerDidReachMaxLimit(self.imagePickerController)
+            
+            if maxSelectableCount != 1 {
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    if self.imagePickerController.selectedAssets.count < self.imagePickerController.maxSelectableCount  {
+                        self.imagePickerController.presentCamera()
+                    } else {
+                        self.imagePickerController.UIDelegate.imagePickerControllerDidReachMaxLimit(self.imagePickerController)
+                    }
                 }
+                
+            } else {
+                
+                if let asset = self.lastAsset {
+                    self.imagePickerController.deselectImage(asset)
+                    self.collectionView!.deselectItem(at: self.lastIndex! as IndexPath, animated: false)
+                }
+                self.lastAsset = nil
+                self.lastIndex = nil
+                self.imagePickerController.presentCamera()
             }
         }
-
         return cell
-	}
+    }
 	
 	func assetCellForIndexPath(_ indexPath: IndexPath) -> UICollectionViewCell {
 		let assetIndex = (indexPath.row - (self.hidesCamera ? 0 : 1))
@@ -407,46 +434,79 @@ internal class DKAssetGroupDetailVC: UIViewController, UICollectionViewDelegate,
 
             return false
         }
+        
+        // gcl
+        if maxSelectableCount != 1 {
+            
+            let shouldSelect = self.imagePickerController.selectedAssets.count < self.imagePickerController.maxSelectableCount
+            if !shouldSelect {
+                self.imagePickerController.UIDelegate.imagePickerControllerDidReachMaxLimit(self.imagePickerController)
+            }
+            return shouldSelect
+            
+        } else {
+            return true
+        }
 		
-		let shouldSelect = self.imagePickerController.selectedAssets.count < self.imagePickerController.maxSelectableCount
-		if !shouldSelect {
-			self.imagePickerController.UIDelegate.imagePickerControllerDidReachMaxLimit(self.imagePickerController)
-		}
-		
-		return shouldSelect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let selectedAsset = (collectionView.cellForItem(at: indexPath) as? DKAssetCell)?.asset
-		self.imagePickerController.selectImage(selectedAsset!)
         
-        if let cell = collectionView.cellForItem(at: indexPath) as? DKAssetCell {
-            cell.checkView.checkLabel.text = "\(self.imagePickerController.selectedAssets.count)"
+        if maxSelectableCount != 1 {
+            let selectedAsset = (collectionView.cellForItem(at: indexPath) as? DKAssetCell)?.asset
+            self.imagePickerController.selectImage(selectedAsset!)
+            
+            if let cell = collectionView.cellForItem(at: indexPath) as? DKAssetCell {
+                cell.checkView.checkLabel.text = "\(self.imagePickerController.selectedAssets.count)"
+            }
+            
+        } else {   // gcl
+            let selectedAsset = (collectionView.cellForItem(at: indexPath) as? DKAssetCell)?.asset
+            imagePickerController.selectImage(selectedAsset!)
+            let cell = collectionView.cellForItem(at: indexPath) as! DKAssetCell
+            cell.checkView.checkLabel.text = ""
+            if let asset = lastAsset {
+                imagePickerController.deselectImage(asset)
+                self.collectionView!.deselectItem(at: lastIndex! as IndexPath, animated: false)
+            }
+            lastIndex = indexPath as NSIndexPath?
+            lastAsset = selectedAsset
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-		if let removedAsset = (collectionView.cellForItem(at: indexPath) as? DKAssetCell)?.asset {
-			let removedIndex = self.imagePickerController.selectedAssets.index(of: removedAsset)!
-			
-			/// Minimize the number of cycles.
-			let indexPathsForSelectedItems = collectionView.indexPathsForSelectedItems!
-			let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems
-			
-			let intersect = Set(indexPathsForVisibleItems).intersection(Set(indexPathsForSelectedItems))
-			
-			for selectedIndexPath in intersect {
-				if let selectedCell = (collectionView.cellForItem(at: selectedIndexPath) as? DKAssetCell) {
-					let selectedIndex = self.imagePickerController.selectedAssets.index(of: selectedCell.asset)!
-					
-					if selectedIndex > removedIndex {
-						selectedCell.checkView.checkLabel.text = "\(Int(selectedCell.checkView.checkLabel.text!)! - 1)"
-					}
-				}
-			}
-			
-			self.imagePickerController.deselectImage(removedAsset)
-		}
+        
+        if maxSelectableCount != 1 {
+            if let removedAsset = (collectionView.cellForItem(at: indexPath) as? DKAssetCell)?.asset {
+                let removedIndex = self.imagePickerController.selectedAssets.index(of: removedAsset)!
+                
+                /// Minimize the number of cycles.
+                let indexPathsForSelectedItems = collectionView.indexPathsForSelectedItems!
+                let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems
+                
+                let intersect = Set(indexPathsForVisibleItems).intersection(Set(indexPathsForSelectedItems))
+                
+                for selectedIndexPath in intersect {
+                    if let selectedCell = (collectionView.cellForItem(at: selectedIndexPath) as? DKAssetCell) {
+                        let selectedIndex = self.imagePickerController.selectedAssets.index(of: selectedCell.asset)!
+                        
+                        if selectedIndex > removedIndex {
+                            selectedCell.checkView.checkLabel.text = "\(Int(selectedCell.checkView.checkLabel.text!)! - 1)"
+                        }
+                    }
+                }
+                
+                self.imagePickerController.deselectImage(removedAsset)
+            }
+            
+        } else {   // gcl
+            if let removedAsset = (collectionView.cellForItem(at: indexPath) as? DKAssetCell)?.asset {
+                lastAsset = nil
+                lastIndex = nil
+                let removedIndex = imagePickerController.selectedAssets.index(of: removedAsset)!
+                imagePickerController.deselectImage(removedAsset)
+            }
+        }
     }
 	
 	// MARK: - DKGroupDataManagerObserver methods
