@@ -15,10 +15,12 @@ class FormTableViewController: CloudAnimateTableViewController {
         static let cellIdentifier = "FormTableViewCell"
         static let segueIdentifier = "FormOptionSegue"
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = CGFloat(100)
         retriveFormList()
     }
 

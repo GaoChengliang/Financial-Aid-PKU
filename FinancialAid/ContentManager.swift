@@ -51,7 +51,7 @@ class ContentManager: NSObject {
             DDLogInfo("Key chain save error: \(error)")
         }
     }
-
+    
     func login(_ userName: String, password: String, block: ((_ error: NetworkErrorType?) -> Void)?) {
         NetworkManager.sharedInstance.login(userName, password: password) {
             (json, error) in
