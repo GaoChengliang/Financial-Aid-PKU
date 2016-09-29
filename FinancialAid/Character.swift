@@ -14,11 +14,4 @@ extension Character {
         let scalars = String(self).unicodeScalars
         return UInt32(scalars[scalars.startIndex].value)
     }
-
-    func isEmoji() -> Bool {
-
-        // To do: check emoji
-        return false
-    }
-
 }
