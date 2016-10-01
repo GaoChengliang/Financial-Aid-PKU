@@ -56,6 +56,7 @@ class NetworkManager: NSObject {
         static let ImageListKey     = "Image List"
         static let DeleteImageKey   = "Delete Image"
         static let GetNewsKey       = "Get News"
+        static let GetMessagesKey   = "Get Messages"
     }
 
     // Default network manager, timeout set to 10s
@@ -145,6 +146,7 @@ extension NetworkManager {
         case deleteImage(String)
         case getVersion()
         case getNews()
+        case getMessages(Int, Int)
         
         func asURLRequest() throws -> URLRequest {
            
@@ -174,6 +176,9 @@ extension NetworkManager {
                     return ("/version", HTTPMethod.get, [:])
                 case .getNews:
                     return ("/news", HTTPMethod.get, [:])
+                case .getMessages(let limit, let skip):
+                    let params = ["limit": limit, "skip": skip]
+                    return ("/messages", HTTPMethod.get, params as [String : AnyObject])
                 }
             }()
             
@@ -267,7 +272,12 @@ extension NetworkManager {
         let request = NetworkManager.Manager.request(Router.getNews())
         NetworkManager.executeRequestWithKey(Constants.GetNewsKey, request: request, callback: callback)
     }
-
+    
+    func getMessage(_ limit: Int, skip: Int, callback: @escaping NetworkCallbackBlock) {
+        guard !NetworkManager.existPendingOperation(Constants.GetMessagesKey) else { return }
+        let request = NetworkManager.Manager.request(Router.getMessages(limit, skip))
+        NetworkManager.executeRequestWithKey(Constants.GetMessagesKey, request: request, callback: callback)
+    }
 
     func uploadImage(_ formID: Int, imageData: NSData, callback: @escaping (DataResponse<Any>) -> Void) {
         var urlRequest = URLRequest(url: NetworkManager.sharedInstance.relativeURL("/form/\(formID)/image"))

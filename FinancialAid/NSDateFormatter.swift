@@ -16,6 +16,14 @@ extension DateFormatter {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }
+    
+    class func outputTimeFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Calendar.current.locale
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }
+    
     class func inputFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

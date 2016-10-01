@@ -59,9 +59,9 @@ extension Form {
         case "startDate":
             fallthrough
         case "endDate":
-            let dateString = "\(oldValue)"
+            let timeString: String! = (oldValue as AnyObject).description
             let formatter = DateFormatter.inputFormatter()
-            return formatter.date(from: dateString) as AnyObject!
+            return formatter.date(from: timeString) as AnyObject!
         case "helpPath":
             fallthrough
         case "fillPath":

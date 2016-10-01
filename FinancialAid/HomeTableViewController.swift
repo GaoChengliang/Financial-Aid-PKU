@@ -24,6 +24,7 @@ class HomeTableViewController: CloudAnimateTableViewController {
         static let newsCellIdentifier = "NewsCell"
         static let newsDetailSegueIdentifier = "NewsDetailSegue"
         static let bannerNewsDetailSegueIdentifier = "BannerNewsDetailSegue"
+        static let messageSegueIdentifier = "MessageSegue"
     }
 
     override func viewDidLoad() {
@@ -49,6 +50,10 @@ class HomeTableViewController: CloudAnimateTableViewController {
         getNewsList()
     }
 
+    @IBAction func messageList(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: Constants.messageSegueIdentifier, sender: self)
+    }
+    
     func showAlert() {
         let alert = UIAlertController(title: NSLocalizedString("Open location",
             comment: "request open location"), message: "", preferredStyle: .alert)
