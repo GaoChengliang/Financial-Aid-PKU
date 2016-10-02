@@ -10,6 +10,7 @@ import CocoaLumberjack
 import KeychainAccess
 import MJExtension
 import SwiftyJSON
+import AVOSCloud
 
 class ContentManager: NSObject {
 
@@ -59,6 +60,7 @@ class ContentManager: NSObject {
             if error == nil, let json = json {
                 DDLogInfo("Login success \(userName)")
                 self.saveUser(json["data"].description, userName: userName, password: password)
+        
             } else {
                 DDLogInfo("Login failed \(userName): \(error)")
             }

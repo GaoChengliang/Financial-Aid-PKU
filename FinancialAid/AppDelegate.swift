@@ -76,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let currentInstallation: AVInstallation! = AVInstallation.current()
         currentInstallation.setDeviceTokenFrom(deviceToken)
+        currentInstallation.addUniqueObject("user123456789", forKey: "channels")
         currentInstallation.saveInBackground()
     }
 

@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import SDCycleScrollView
 import SDWebImage
+import AVOSCloud
 
 class HomeTableViewController: CloudAnimateTableViewController {
 
@@ -29,6 +30,7 @@ class HomeTableViewController: CloudAnimateTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 //        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
 //            showAlert()

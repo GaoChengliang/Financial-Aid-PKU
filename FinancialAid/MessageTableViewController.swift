@@ -38,6 +38,10 @@ class MessageTableViewController: CloudAnimateTableViewController {
         pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         pagingSpinner.startAnimating()
         pagingSpinner.frame = CGRect(x: 0, y: 0, width: 320, height: 44)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        currentPage = 0
         getMessageList(0)
     }
     
