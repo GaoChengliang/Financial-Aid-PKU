@@ -15,6 +15,11 @@ class MessageTableViewController: CloudAnimateTableViewController {
     var currentPage = 0
     let messageNumEveryPage = 10
     
+    var allowLoadData = false
+    var existPage = true
+    
+    var isAnimationStop = true
+    
     var pagingSpinner: UIActivityIndicatorView!
     
     fileprivate struct Constants {
@@ -33,17 +38,33 @@ class MessageTableViewController: CloudAnimateTableViewController {
         pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         pagingSpinner.startAnimating()
         pagingSpinner.frame = CGRect(x: 0, y: 0, width: 320, height: 44)
-        getMessageList(currentPage)
+        getMessageList(0)
     }
     
-    func getMessageList(_ currentPage: Int) {
-        NetworkManager.sharedInstance.getMessage(messageNumEveryPage, skip: currentPage * messageNumEveryPage) {
+    func getMessageList(_ page: Int) {
+        
+        allowLoadData = false
+        
+        if page == 0 {
+            messages.removeAll()
+            tableView.reloadData()
+        }
+        
+        NetworkManager.sharedInstance.getMessage(messageNumEveryPage, skip: page * messageNumEveryPage) {
             (json, error) in
             if error == nil, let json = json {
             
                 let messageArray = json["data"].arrayValue
                 for message in messageArray {
                     self.messages.append(Message.mj_object(withKeyValues: message.description))
+                }
+                
+                if messageArray.count < self.messageNumEveryPage {
+                    self.existPage = false
+                }
+                
+                if messageArray.count != 0 {
+                    self.currentPage += 1
                 }
                 
                 self.tableView.reloadData()
@@ -58,6 +79,8 @@ class MessageTableViewController: CloudAnimateTableViewController {
                                                   comment: "network timeout or interruptted")
                 )
             }
+            
+            self.allowLoadData = true
         }
     }
 
@@ -81,28 +104,63 @@ class MessageTableViewController: CloudAnimateTableViewController {
             withIdentifier: Constants.messageCellIdentifier, for: indexPath) as? MessageTableViewCell {
             let message = messages[(indexPath as NSIndexPath).section]
             cell.setupWithTitle(message.title, createdTime: message.createdTime)
+            
+            if (allowLoadData && existPage && indexPath.section == self.messages.count - 1)
+            {
+                tableView.tableFooterView = pagingSpinner
+                getMessageList(currentPage + 1)
+            }
+            
             return cell
         }
         return UITableViewCell()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.messageDetailSegueIdentifier, sender: tableView.cellForRow(at: indexPath))
     }
-    */
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueIdentifer = segue.identifier else { return }
+        switch segueIdentifer {
+        case Constants.messageDetailSegueIdentifier:
+            if let mdvc = segue.destination as? MessageDetailViewController {
+                if let cell = sender as? MessageTableViewCell {
+                    let indexPath = tableView.indexPath(for: cell)
+                    mdvc.message = messages[((indexPath as NSIndexPath?)?.section)!]
+                }
+            }
+
+        default:
+            break
+        }
+    }
 }
 
 extension MessageTableViewController {
+    
     override func refreshAnimationDidStart() {
+        
         super.refreshAnimationDidStart()
-        messages.removeAll()
-        currentPage = 0
-        getMessageList(currentPage)
+        isAnimationStop = false
+    
+        if allowLoadData {
+            currentPage = 0
+            getMessageList(0)
+            existPage = true
+            
+        } else {
+            
+            self.refreshAnimationDidFinish()
+        }
+    }
+    
+    override func refreshAnimationDidFinish() {
+        
+        if !isAnimationStop {
+            
+            super.refreshAnimationDidFinish()
+            isAnimationStop = true
+        }
     }
 }

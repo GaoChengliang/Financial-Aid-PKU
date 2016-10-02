@@ -1525,10 +1525,48 @@
                             <outlet property="delegate" destination="iAc-bj-5ac" id="R6h-wH-5WO"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="G1q-Zj-b5u" kind="show" identifier="MessageDetailSegue" id="A02-Hh-4UI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q8a-J1-H9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2200.8000000000002" y="-2229.5352323838083"/>
+        </scene>
+        <!--Message Detail View Controller-->
+        <scene sceneID="0rI-B1-AEx">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="G1q-Zj-b5u" customClass="MessageDetailViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kIN-ca-O36"/>
+                        <viewControllerLayoutGuide type="bottom" id="bJP-IU-laB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8qe-YK-m9e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aGQ-uU-bpy">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bJP-IU-laB" firstAttribute="top" secondItem="aGQ-uU-bpy" secondAttribute="bottom" id="0Sg-PV-CcN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aGQ-uU-bpy" secondAttribute="trailing" constant="-16" id="1k0-T9-bAI"/>
+                            <constraint firstItem="aGQ-uU-bpy" firstAttribute="top" secondItem="kIN-ca-O36" secondAttribute="bottom" id="Tcs-p9-e0i"/>
+                            <constraint firstItem="aGQ-uU-bpy" firstAttribute="leading" secondItem="8qe-YK-m9e" secondAttribute="leadingMargin" constant="-16" id="r1u-oj-8lp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageContentTextView" destination="aGQ-uU-bpy" id="Fya-g4-McM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6k-oW-ICF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2944.8000000000002" y="-2230.434782608696"/>
         </scene>
     </scenes>
     <resources>
@@ -1556,7 +1594,7 @@
         <image name="UploadImage" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YKI-6Z-845"/>
         <segue reference="IB2-Qy-lfL"/>
+        <segue reference="KXJ-Bt-xbx"/>
     </inferredMetricsTieBreakers>
 </document>

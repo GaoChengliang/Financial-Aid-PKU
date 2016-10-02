@@ -32,6 +32,7 @@
 		D8B56ACE1D9E72680063CAAE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B56ACD1D9E72680063CAAE /* Message.swift */; };
 		D8B56AD01D9FD0970063CAAE /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B56ACF1D9FD0970063CAAE /* MessageTableViewController.swift */; };
 		D8B56AD21D9FD53B0063CAAE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B56AD11D9FD53B0063CAAE /* MessageTableViewCell.swift */; };
+		D8B56AD41DA0A02B0063CAAE /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B56AD31DA0A02B0063CAAE /* MessageDetailViewController.swift */; };
 		DC4C6CD6B829F97D1474FF5A /* Pods_FinancialAid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3404DBB50C7F94BD8F2CD996 /* Pods_FinancialAid.framework */; };
 		F80162701CF9AF8100C6C582 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801626F1CF9AF8100C6C582 /* User.swift */; };
 		F80162721CF9B08A00C6C582 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80162711CF9B08A00C6C582 /* ProgressView.swift */; };
@@ -119,6 +120,7 @@
 		D8B56ACD1D9E72680063CAAE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = FinancialAid/Message.swift; sourceTree = "<group>"; };
 		D8B56ACF1D9FD0970063CAAE /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTableViewController.swift; path = FinancialAid/MessageTableViewController.swift; sourceTree = "<group>"; };
 		D8B56AD11D9FD53B0063CAAE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTableViewCell.swift; path = FinancialAid/MessageTableViewCell.swift; sourceTree = "<group>"; };
+		D8B56AD31DA0A02B0063CAAE /* MessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDetailViewController.swift; path = FinancialAid/MessageDetailViewController.swift; sourceTree = "<group>"; };
 		F801626F1CF9AF8100C6C582 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = FinancialAid/User.swift; sourceTree = "<group>"; };
 		F80162711CF9B08A00C6C582 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressView.swift; path = FinancialAid/ProgressView.swift; sourceTree = "<group>"; };
 		F82615BF1D10478C006A93F4 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = FinancialAid/AboutViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				6AB1541D1CF5C645007191DB /* LoginViewController.swift */,
 				6A5289A81D236DFC004C8A1B /* HomeTableViewController.swift */,
 				D8B56ACF1D9FD0970063CAAE /* MessageTableViewController.swift */,
+				D8B56AD31DA0A02B0063CAAE /* MessageDetailViewController.swift */,
 				6A01A93C1CEB590E00D106AA /* FormTableViewController.swift */,
 				6AB1541B1CF5C645007191DB /* FormOptionTableViewController.swift */,
 				6AB1541C1CF5C645007191DB /* FormWebViewController.swift */,
@@ -579,6 +582,7 @@
 			files = (
 				F869E9C11CEB3D5A001A9D03 /* UIStoryboard.swift in Sources */,
 				6ACCF4911CF5DBB700025AA0 /* UserTableViewController.swift in Sources */,
+				D8B56AD41DA0A02B0063CAAE /* MessageDetailViewController.swift in Sources */,
 				F869E9BF1CEB3D5A001A9D03 /* CGFloat.swift in Sources */,
 				F85238BC1CFC0E4E0010D88B /* UserCenter.swift in Sources */,
 				F878B6921CF5EF0B00A3CC01 /* EditProfileViewController.swift in Sources */,
