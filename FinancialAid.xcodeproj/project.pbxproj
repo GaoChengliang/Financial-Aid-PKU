@@ -116,7 +116,6 @@
 		6ACDECCA1D12BAFB00400C5D /* LocationCellularManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationCellularManager.swift; path = FinancialAid/LocationCellularManager.swift; sourceTree = "<group>"; };
 		6AE135451CFD7A0D0006324B /* ShowUploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowUploadImageViewController.swift; path = FinancialAid/ShowUploadImageViewController.swift; sourceTree = "<group>"; };
 		6AFEA3171D9CA226004EC521 /* FinancialAid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinancialAid.entitlements; sourceTree = "<group>"; };
-		6AFEA3191D9CA3CD004EC521 /* FinancialAid-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FinancialAid-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8B56ACD1D9E72680063CAAE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = FinancialAid/Message.swift; sourceTree = "<group>"; };
 		D8B56ACF1D9FD0970063CAAE /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTableViewController.swift; path = FinancialAid/MessageTableViewController.swift; sourceTree = "<group>"; };
 		D8B56AD11D9FD53B0063CAAE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageTableViewCell.swift; path = FinancialAid/MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -247,7 +246,6 @@
 				F84722781CEAC6D600B99F03 /* Info.plist */,
 				6AFEA3171D9CA226004EC521 /* FinancialAid.entitlements */,
 				F84722701CEAC6D600B99F03 /* FinancialAid.xcdatamodeld */,
-				6AFEA3191D9CA3CD004EC521 /* FinancialAid-Bridging-Header.h */,
 			);
 			name = "Supporting files";
 			path = FinancialAid;
@@ -797,7 +795,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "FinancialAid/FinancialAid-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -820,7 +817,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.pku.netlab.FinancialAid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "FinancialAid/FinancialAid-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
