@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
          didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)
             -> Bool {
-
+                
         sleep(2)
 
         UIApplication.shared.setMinimumBackgroundFetchInterval(
@@ -41,12 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewController.shouldAutoLogin = true
         window?.rootViewController = viewController
 
-        // setSiren()
-
+        setSiren()
         setAVOSCloud()
-
-        UIApplication.shared.registerUserNotificationSettings(
-            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
 
         return true
     }
@@ -67,10 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //    }
 
-    func application(_ application: UIApplication,
-                     didRegister notificationSettings: UIUserNotificationSettings) {
-        UIApplication.shared.registerForRemoteNotifications()
-    }
 
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

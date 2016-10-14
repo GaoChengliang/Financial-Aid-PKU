@@ -511,7 +511,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Setting" id="Fpk-VC-KK5">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Settings" id="Fpk-VC-KK5">
                                                     <frame key="frameInset" minX="15" minY="7" width="28" height="28"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -1102,7 +1102,7 @@
         <scene sceneID="rW7-76-lJ1">
             <objects>
                 <collectionViewController title="上传照片" id="L4z-cu-r11" customClass="UploadImageCollectionViewController" customModule="FinancialAid" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="jZX-Gd-e7b">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jZX-Gd-e7b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1585,7 +1585,7 @@
         <image name="Logout" width="28" height="28"/>
         <image name="Message" width="22" height="22"/>
         <image name="PhoneNum" width="28" height="28"/>
-        <image name="Setting" width="28" height="28"/>
+        <image name="Settings" width="28" height="28"/>
         <image name="TabForm" width="28" height="28"/>
         <image name="TabFormSelected" width="28" height="28"/>
         <image name="TabUser" width="28" height="28"/>

@@ -60,7 +60,12 @@ class ContentManager: NSObject {
             if error == nil, let json = json {
                 DDLogInfo("Login success \(userName)")
                 self.saveUser(json["data"].description, userName: userName, password: password)
-        
+                
+                // register channel for notification
+                let currentInstallation: AVInstallation! = AVInstallation.current()
+                currentInstallation.addUniqueObject("user\(User.sharedInstance.ID)", forKey: "channels")
+                currentInstallation.saveInBackground()
+                
             } else {
                 DDLogInfo("Login failed \(userName): \(error)")
             }
